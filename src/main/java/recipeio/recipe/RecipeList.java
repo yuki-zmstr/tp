@@ -8,6 +8,7 @@ import recipeio.commands.FindByAllergyCommand;
 import recipeio.commands.FindByNameCommand;
 import recipeio.commands.ListRecipeCommand;
 import recipeio.ui.UI;
+import recipeio.storage.Storage;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class RecipeList {
 
     public RecipeList() {
         this.recipes = new ArrayList<>();
+        loadRecipes();
     }
 
     /**
@@ -41,27 +43,38 @@ public class RecipeList {
         return recipes.get(index);
     }
 
+    /**
+     * Used to add recipes from user inputs
+     *
+     * @param userInput takes the user input
+     */
     public void add(String userInput) {
         assert(recipes.size() < MAX_RECIPES);
         try {
             Recipe newRecipe = parseAdd(userInput);
-            AddRecipeCommand.execute(newRecipe, recipes);
+            AddRecipeCommand.execute(newRecipe, recipes, false);
+            saveRecipes();
         } catch (Exception e){
             UI.printMessage(e.getMessage());
         }
     }
 
+    /**
+     * Used to load recipe to RecipeList
+     */
     public void add(Recipe recipe) {
-        AddRecipeCommand.execute(recipe, recipes);
+        AddRecipeCommand.execute(recipe, recipes, true);
     }
 
     public void delete (String userInput) {
         int index = InputParser.parseID(userInput);
         DeleteRecipeCommand.execute(index, recipes);
+        saveRecipes();
     }
 
     public void delete (int index) {
         DeleteRecipeCommand.execute(index, recipes);
+        saveRecipes();
     }
 
     public void listRecipes() {
@@ -74,6 +87,25 @@ public class RecipeList {
 
     public String findAllergy(String allergy) {
         return FindByAllergyCommand.execute(allergy, recipes);
+    }
+
+    public void saveRecipes() {
+        try {
+            Storage.saveFile(RecipeList.this);
+            System.out.println(Constants.RECIPE_SAVE_SUCCESS);
+        }
+        catch (Exception e) {
+            System.out.println(Constants.RECIPE_SAVE_ERROR);
+        }
+    }
+
+    public void loadRecipes() {
+        try {
+            Storage.loadFile(RecipeList.this);
+            System.out.println(Constants.RECIPE_LOAD_SUCCESS);
+        } catch (Exception e) {
+            System.out.println(Constants.RECIPE_LOAD_ERROR);
+        }
     }
 
     public void executeCommand(String command, String userInput){

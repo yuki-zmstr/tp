@@ -4,7 +4,14 @@ public class Constants {
     public static final int INDEX_COMMAND = 0;
     public static final int INDEX_ID = 1;
     public static final int MAX_RECIPES = 99999;
+    public static final int STORAGE_NAME = 0;
+    public static final int STORAGE_COOKTIME = 1;
+    public static final int STORAGE_CALORIES= 2;
+    public static final int STORAGE_ALLERGIES = 3;
+    public static final int STORAGE_MEALCATEGORY = 4;
+    public static final int STORAGE_URL = 5;
 
+    public static final String FILE_PATH = "data/recipe.txt";
     public static final String RECIPE_NAME_PREFIX = "/name ";
     public static final String RECIPE_TIME_PREFIX = "/time ";
     public static final String RECIPE_DELIMETER = "/";
@@ -23,5 +30,10 @@ public class Constants {
             "options:\n BREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
     static final String REGEX_MATCHER = RECIPE_NAME_PREFIX + "|"
             + RECIPE_TIME_PREFIX;
+
+    public static final String RECIPE_LOAD_ERROR = "Error encountered loading recipes!";
+    public static final String RECIPE_SAVE_ERROR = "Error encountered saving recipes!";
+    public static final String RECIPE_LOAD_SUCCESS = "Recipe loaded successfully!";
+    public static final String RECIPE_SAVE_SUCCESS = "Recipe saved successfully!";
 
 }
