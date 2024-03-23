@@ -5,10 +5,10 @@ public class Constants {
     public static final int INDEX_ID = 1;
     public static final int MAX_RECIPES = 99999;
     public static final int STORAGE_NAME = 0;
-    public static final int STORAGE_COOKTIME = 1;
-    public static final int STORAGE_CALORIES= 2;
-    public static final int STORAGE_ALLERGIES = 3;
-    public static final int STORAGE_MEALCATEGORY = 4;
+    public static final int COOKTIME = 1;
+    public static final int CALORIES= 2;
+    public static final int ALLERGIES = 3;
+    public static final int CATEGORY = 4;
     public static final int STORAGE_URL = 5;
 
     public static final String FILE_PATH = "data/recipe.txt";
@@ -28,12 +28,13 @@ public class Constants {
             "calories!";
     public static final String MEAL_CATEGORY_ERROR_MESSAGE = "Please enter a valid meal category. Here are your" +
             "options:\n BREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
+
+    public static final String LOAD_ERROR = "Error encountered loading recipes!";
+    public static final String SAVE_ERROR = "Error encountered saving recipes!";
+    public static final String LOAD_SUCCESS = "Recipe loaded successfully!";
+    public static final String SAVE_SUCCESS = "Recipe saved successfully!";
+
     static final String REGEX_MATCHER = RECIPE_NAME_PREFIX + "|"
             + RECIPE_TIME_PREFIX;
-
-    public static final String RECIPE_LOAD_ERROR = "Error encountered loading recipes!";
-    public static final String RECIPE_SAVE_ERROR = "Error encountered saving recipes!";
-    public static final String RECIPE_LOAD_SUCCESS = "Recipe loaded successfully!";
-    public static final String RECIPE_SAVE_SUCCESS = "Recipe saved successfully!";
 
 }

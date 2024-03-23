@@ -56,11 +56,11 @@ public class Storage {
         while (s.hasNext()) {
             String line = s.nextLine();
             String name = line.split(Constants.RECIPE_DELIMETER)[Constants.STORAGE_NAME];
-            int cookTime = Integer.parseInt(line.split(Constants.RECIPE_DELIMETER)[Constants.STORAGE_COOKTIME]);
-            int calories = Integer.parseInt(line.split(Constants.RECIPE_DELIMETER)[Constants.STORAGE_CALORIES]);
+            int cookTime = Integer.parseInt(line.split(Constants.RECIPE_DELIMETER)[Constants.COOKTIME]);
+            int calories = Integer.parseInt(line.split(Constants.RECIPE_DELIMETER)[Constants.CALORIES]);
             ArrayList<String> allergies = new ArrayList<>();
-            allergies.add(line.split(Constants.RECIPE_DELIMETER)[Constants.STORAGE_ALLERGIES]);
-            MealCategory category = MealCategory.valueOf(line.split(Constants.RECIPE_DELIMETER)[Constants.STORAGE_MEALCATEGORY]);
+            allergies.add(line.split(Constants.RECIPE_DELIMETER)[Constants.ALLERGIES]);
+            MealCategory category = MealCategory.valueOf(line.split(Constants.RECIPE_DELIMETER)[Constants.CATEGORY]);
             String url = line.split(Constants.RECIPE_DELIMETER)[Constants.STORAGE_URL];
             Recipe testRecipe = new Recipe(name, cookTime, calories, allergies, category, url);
             recipeList.add(testRecipe);

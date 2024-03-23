@@ -21,23 +21,25 @@ class RecipeIOTest {
     public void testAddRecipe() {
         RecipeList recipes = new RecipeList();
         ArrayList<String> allergies = new ArrayList<String>();
+        int originalSize = recipes.getSize();
         allergies.add("eggs");
         Recipe newRecipe = new Recipe("cookies", 40, 350, allergies,
                 MealCategory.DESSERT, "THIS IS MY URL");
         recipes.add(newRecipe);
-        assertTrue(recipes.getSize() == 1);
+        assertTrue(recipes.getSize() == originalSize + 1);
     }
 
     @Test
     public void testDeleteRecipe() {
         RecipeList recipes = new RecipeList();
         ArrayList<String> allergies = new ArrayList<String>();
+        int originalSize = recipes.getSize();
         allergies.add("eggs");
         Recipe newRecipe = new Recipe("cookies", 40, 350, allergies,
                 MealCategory.DESSERT, "THIS IS MY URL");
         recipes.add(newRecipe);
         recipes.delete(1);
-        assertTrue(recipes.getSize() == 0);
+        assertTrue(recipes.getSize() == originalSize);
     }
     
     @Test

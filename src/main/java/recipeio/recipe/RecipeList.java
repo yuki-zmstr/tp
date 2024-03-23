@@ -92,19 +92,18 @@ public class RecipeList {
     public void saveRecipes() {
         try {
             Storage.saveFile(RecipeList.this);
-            System.out.println(Constants.RECIPE_SAVE_SUCCESS);
-        }
-        catch (Exception e) {
-            System.out.println(Constants.RECIPE_SAVE_ERROR);
+            System.out.println(Constants.SAVE_SUCCESS);
+        } catch (Exception e) {
+            System.out.println(Constants.SAVE_ERROR);
         }
     }
 
     public void loadRecipes() {
         try {
             Storage.loadFile(RecipeList.this);
-            System.out.println(Constants.RECIPE_LOAD_SUCCESS);
+            System.out.println(Constants.LOAD_SUCCESS);
         } catch (Exception e) {
-            System.out.println(Constants.RECIPE_LOAD_ERROR);
+            System.out.println(Constants.LOAD_ERROR);
         }
     }
 
