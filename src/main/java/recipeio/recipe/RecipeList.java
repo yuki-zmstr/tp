@@ -44,7 +44,7 @@ public class RecipeList {
     }
 
     /**
-     * Used to add recipes from user inputs
+     * Add recipe from user inputs
      *
      * @param userInput takes the user input
      */
@@ -52,8 +52,9 @@ public class RecipeList {
         assert(recipes.size() < MAX_RECIPES);
         try {
             Recipe newRecipe = parseAdd(userInput);
-            AddRecipeCommand.execute(newRecipe, recipes, false);
+            AddRecipeCommand.execute(newRecipe, recipes);
             saveRecipes();
+            UI.printAddMessage(newRecipe, recipes.size());
         } catch (Exception e){
             UI.printMessage(e.getMessage());
         }
@@ -63,7 +64,7 @@ public class RecipeList {
      * Used to load recipe to RecipeList
      */
     public void add(Recipe recipe) {
-        AddRecipeCommand.execute(recipe, recipes, true);
+        AddRecipeCommand.execute(recipe, recipes);
     }
 
     public void delete (String userInput) {

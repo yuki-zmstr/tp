@@ -12,14 +12,11 @@ public class AddRecipeCommand {
      *
      * @param recipe The new recipe to be added.
      */
-    public static void execute(Recipe recipe, ArrayList<Recipe> recipes, boolean silentLoad) {
+    public static void execute(Recipe recipe, ArrayList<Recipe> recipes) {
         //this try-catch block can be helpful when there's not enough memory for a new recipe in the list
         try {
             //TaskList<T> add method only throw IndexOutOfBound exception for the overload add(int, T).
             recipes.add(recipe);
-            if (!silentLoad) {
-                UI.printAddMessage(recipe, recipes.size());
-            }
         } catch (Exception e) {
             UI.printMessage(e.toString());
         }
