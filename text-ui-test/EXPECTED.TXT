@@ -1,8 +1,10 @@
+Recipe loaded successfully!
 -----------------------------
 Welcome to Recipe.io!
 -----------------------------
 Enter command:
 [Command entered: add pizza/34/340/eggs/dinner/www.food.com]
+Recipe saved successfully!
 -----------------------------
 Woo hoo chef! I have added this recipe to your recipe book:
 	pizza / DINNER

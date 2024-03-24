@@ -70,12 +70,12 @@ public class RecipeList {
     public void delete (String userInput) {
         int index = InputParser.parseID(userInput);
         DeleteRecipeCommand.execute(index, recipes);
-        saveRecipes();
+        //saveRecipes();
     }
 
     public void delete (int index) {
         DeleteRecipeCommand.execute(index, recipes);
-        saveRecipes();
+        //saveRecipes();
     }
 
     public void listRecipes() {
