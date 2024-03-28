@@ -67,20 +67,22 @@ public class FindCommand {
     public static void findAllergy(String allergy, ArrayList<Recipe> recipes) {
         int count = 0;
         ArrayList<Recipe> matches = new ArrayList<>();
+        boolean isAllergic = false;
         for (Recipe item: recipes) {
+            //check if there's any matching allergic item
             for (String value : item.allergies) {
-                if (value.equals(allergy)) {
-                    matches.add(item);
-                    count++;
+                value = value.toLowerCase();
+                if (value.equals(allergy.toLowerCase())) {
+                    isAllergic = true;
                     break; //if found allergic item, break from the loop
                 }
             }
+            if (!isAllergic) {
+                matches.add(item);
+            }
+            isAllergic = false;
         }
         //if no allergies are found
-        if (count == 0) {
-            System.out.println("There are no recipes with " + allergy);
-            return;
-        }
         UI.printMatches(matches);
     }
 }
