@@ -5,7 +5,6 @@ import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class FindCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
