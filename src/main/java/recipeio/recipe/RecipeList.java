@@ -99,8 +99,7 @@ public class RecipeList {
     public void saveRecipes() {
         try {
             Storage.saveFile(RecipeList.this);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("File save unsuccessful");
         }
     }
