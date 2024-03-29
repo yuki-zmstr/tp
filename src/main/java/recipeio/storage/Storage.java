@@ -42,7 +42,7 @@ public class Storage {
             bw.newLine();
         }
         bw.close();
-        System.out.println("Successfully saved recipe book.");
+        System.out.println("\n\tStorage client says: Successfully saved recipe book.");
     }
 
     /**
