@@ -3,11 +3,12 @@ package recipeio;
 import org.junit.jupiter.api.Test;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
-import recipeio.recipe.RecipeList;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class InputParserTest {
 
@@ -21,23 +22,23 @@ public class InputParserTest {
         allergies.add("eggs");
         allergies.add("dairy");
         this.dummyRecipe = new Recipe(
-                "Spaghetti Carbonara",
+                "Cream Spaghetti",
                 60,
                 500,
                 allergies,
                 MealCategory.LUNCH,
-                "www.carbonara.com"
+                "www.spaghetti.com"
         );
     }
 
     @Test
-    public void parseID_IdGiven_expectIdReturned() {
+    public void parseID_idGiven_expectIdReturned() {
         String userInput = "details 1";
         assertEquals(1, InputParser.parseID(userInput));
     }
 
     @Test
-    public void parseID_IdNotGiven_expectNullReturned() {
+    public void parseID_idNotGiven_expectNullReturned() {
         String userInput = "details ";
         assertNull(InputParser.parseID(userInput));
     }
@@ -49,7 +50,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void isWithinRange_IdOutOfBounds_expectFalseReturned() {
+    public void isWithinRange_idOutOfBounds_expectFalseReturned() {
         recipes.add(dummyRecipe);
         int testInput = 2;
         assertFalse(Utils.isWithinRange(recipes, testInput));
