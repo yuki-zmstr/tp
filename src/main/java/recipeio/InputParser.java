@@ -13,7 +13,6 @@ import static recipeio.Constants.INTEGER_NEEDED_ERROR_MESSAGE;
 import static recipeio.Constants.INVALID_TASK_FORMAT_ERROR_MESSAGE;
 import static recipeio.Constants.MEAL_CATEGORY_ERROR_MESSAGE;
 import static recipeio.Constants.RECIPE_DELIMETER;
-import static recipeio.Constants.REGEX_MATCHER;
 
 
 /**
@@ -46,7 +45,7 @@ public class InputParser {
             System.out.println("\tIndex not given, please enter an index");
             return null;
         }
-        if (!Utils.isParsableAsInteger(id)) {
+        if (!CommandValidator.isParsableAsInteger(id)) {
             return null;
         }
         return Integer.parseInt(id);
@@ -61,7 +60,19 @@ public class InputParser {
         String[] words = userInput.trim().split(" ");
         // Ignore the first word and join the remaining words into a string
         String remainingInput = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
-        return remainingInput.trim().split(REGEX_MATCHER);
+        return remainingInput.trim().split(" ");
+    }
+
+    public static String parseFindType(String userInput) {
+        return parseDetails(userInput)[0];
+    }
+
+    public static String parseFindCriteria(String userInput) {
+        return parseDetails(userInput)[1];
+    }
+
+    public static String parseAllergyCriteria(String userInput) {
+        return parseDetails(userInput)[0];
     }
 
     public static Recipe parseAdd(String userInput) throws Exception{

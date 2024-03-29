@@ -1,6 +1,8 @@
 package recipeio.commands;
 
 import recipeio.Constants;
+import recipeio.InputParser;
+import recipeio.CommandValidator;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 import java.time.LocalDate;
@@ -8,81 +10,58 @@ import java.util.ArrayList;
 
 public class FindCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
-        String[] inputSplitUp = userInput.split(" ", 3);
-        String findType = inputSplitUp[1];
+        if (!CommandValidator.isValidFindCommand(userInput)) {
+            return;
+        }
+        String findType = InputParser.parseFindType(userInput);
+        String criteria = InputParser.parseFindCriteria(userInput);
         switch (findType) {
         case (Constants.FIND_BY_KEYWORD):
-            String keyword = inputSplitUp[2];
-            findKeyword(keyword, recipes);
+            if (!CommandValidator.isWord(criteria)) {
+                return;
+            }
+            findKeyword(criteria, recipes);
             break;
         case (Constants.FIND_BY_DATE):
-            LocalDate date = LocalDate.parse(inputSplitUp[2]);
+            if (!CommandValidator.isParsableAsDate(criteria)) {
+                return;
+            }
+            LocalDate date = LocalDate.parse(criteria);
             findDate(date, recipes);
             break;
-        case (Constants.FIND_BY_ALLERGY):
-            String allergy = inputSplitUp[2];
-            findAllergy(allergy, recipes);
-            break;
         default:
-            System.out.println("Sorry. Please follow one of the find command formats");
+            System.out.println("\tSorry, please follow one of the find command formats.");
+            System.out.println("\tAccepted find parameters are: 'kw' and 'date'.");
         }
     }
     public static void findKeyword(String keyword, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
-        if (recipes.isEmpty()) {
-            System.out.println("\tSorry, you have no recipes to find matches with. Try adding some!");
-            return;
-        }
-        assert (!recipes.isEmpty());
         for (Recipe recipe : recipes) {
-            if (recipe.name.contains(keyword)) {
+            if (CommandValidator.splitName(recipe.getName()).contains(keyword)) {
                 matches.add(recipe);
             }
         }
         if (matches.isEmpty()) {
-            System.out.println("\tThere were no matches. Try searching for something else.");
+            System.out.println(Constants.NO_MATCHES_ERROR_MESSAGE);
             return;
         }
-        UI.printMatches(matches);
+        System.out.println("\tHere are your matches with keyword: " + keyword);
+        UI.printRecipes(matches);
     }
 
     public static void findDate(LocalDate date, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
-        if (recipes.isEmpty()) {
-            System.out.println("\tSorry, you have no recipes to find matches with. Try adding some!");
-            return;
-        }
         for (Recipe recipe : recipes) {
             if (recipe.dateAdded.isEqual(date)) {
                 matches.add(recipe);
             }
         }
         if (matches.isEmpty()) {
-            System.out.println("\tThere were no matches. Try searching for something else.");
+            System.out.println(Constants.NO_MATCHES_ERROR_MESSAGE);
             return;
         }
-        UI.printMatches(matches);
+        System.out.println("\tHere are your matches with date: " + date);
+        UI.printRecipes(matches);
     }
 
-    public static void findAllergy(String allergy, ArrayList<Recipe> recipes) {
-        int count = 0;
-        ArrayList<Recipe> matches = new ArrayList<>();
-        boolean isAllergic = false;
-        for (Recipe item: recipes) {
-            //check if there's any matching allergic item
-            for (String value : item.allergies) {
-                value = value.toLowerCase();
-                if (value.equals(allergy.toLowerCase())) {
-                    isAllergic = true;
-                    break; //if found allergic item, break from the loop
-                }
-            }
-            if (!isAllergic) {
-                matches.add(item);
-            }
-            isAllergic = false;
-        }
-        //if no allergies are found
-        UI.printMatches(matches);
-    }
 }
