@@ -40,9 +40,10 @@ public class Storage {
             bw.write(recipe.category.toString());
             bw.write(DELIMITER);
             bw.write(recipe.url);
+            bw.newLine();
         }
-        bw.newLine();
         bw.close();
+        System.out.println("Successfully saved recipe book.");
     }
 
     /**

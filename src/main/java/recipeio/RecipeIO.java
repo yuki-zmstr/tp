@@ -1,6 +1,7 @@
 package recipeio;
 
 import recipeio.recipe.RecipeList;
+import recipeio.storage.Storage;
 import recipeio.ui.UI;
 
 import java.io.IOException;
@@ -38,6 +39,12 @@ public class RecipeIO {
             logger.log(Level.INFO, Constants.MESSAGE_ASK_INPUT);
             userInput = ui.getUserInput();
             parsedCommand = InputParser.parseCommand(userInput);
+        }
+
+        try {
+            Storage.saveFile(recipeList);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
