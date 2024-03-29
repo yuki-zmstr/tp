@@ -2,11 +2,14 @@ package recipeio.recipe;
 
 import recipeio.Constants;
 import recipeio.InputParser;
+import recipeio.Utils;
 import recipeio.commands.AddRecipeCommand;
-import recipeio.commands.DeleteRecipeCommand;
-import recipeio.commands.FindByAllergyCommand;
-import recipeio.commands.FindCommand;
 import recipeio.commands.ListRecipeCommand;
+import recipeio.commands.ShowDetailsCommand;
+import recipeio.commands.FindCommand;
+import recipeio.commands.FindByAllergyCommand;
+import recipeio.commands.DeleteRecipeCommand;
+
 import recipeio.exceptions.InvalidIndexException;
 import recipeio.ui.UI;
 
@@ -68,6 +71,18 @@ public class RecipeList {
         ListRecipeCommand.execute(recipes);
     }
 
+    public void showDetails(String userInput) {
+        Integer index = InputParser.parseID(userInput);
+        if (index == null) {
+            return;
+        }
+        if (!Utils.isWithinRange(recipes, index)) {
+            return;
+        }
+        Recipe recipe = get(index-1);
+        ShowDetailsCommand.execute(recipe);
+    }
+
     public void find(String input) {
         FindCommand.execute(input, recipes);
     }
@@ -80,6 +95,9 @@ public class RecipeList {
         switch (command) {
         case Constants.LIST_COMMAND:
             listRecipes();
+            break;
+        case Constants.DETAIL_COMMAND:
+            showDetails(userInput);
             break;
         case Constants.ADD_COMMAND:
             add(userInput);
