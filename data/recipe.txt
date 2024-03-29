@@ -1,1 +1,2 @@
- pasta | 10 | 10 | none | DINNER | url
+pizza | 34 | 340 | eggs | DINNER | www.food.com
+pizza | 34 | 350 | eggs | DINNER | www.food.com
