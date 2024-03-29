@@ -1,0 +1,9 @@
+-----------------------------
+Welcome to Recipe.io!
+-----------------------------
+Enter command:
+[Command entered: exit]
+-----------------------------
+Successfully saved recipe book.
+See you again chef!
+-----------------------------
