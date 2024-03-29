@@ -42,11 +42,6 @@ public class RecipeIO {
             parsedCommand = InputParser.parseCommand(userInput);
         }
 
-        try {
-            Storage.saveFile(recipeList);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public static void setUpLogger() {
