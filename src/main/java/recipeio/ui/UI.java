@@ -35,13 +35,17 @@ public class UI {
     }
 
     public static void printAddMessage(Recipe recipe, int recipeListSize) {
-        System.out.println("Woo hoo chef! I have added this recipe to your recipe book:\n\t" + recipe.toString() +
-                "\nYou now have " + recipeListSize + " recipes in your recipe book. Keep adding some!");
+        System.out.println("\tWoo hoo chef! I have added this recipe to your recipe book:");
+        System.out.print("\t\t");
+        System.out.print(recipe.toString());
+        System.out.println("\n\tYou now have " + recipeListSize + " recipes in your recipe book. Keep adding some!");
     }
 
     public static void printDeleteMessage(Recipe recipe, int recipeListSize) {
-        System.out.println("Okay chef! I have deleted this recipe from your recipe book:\n\t" +  recipe.toString() +
-                "\nYou now have " + recipeListSize + " recipes in your recipe book. Keep adding some!");
+        System.out.println("\tOkay chef! I have deleted this recipe from your recipe book:");
+        System.out.print("\t\t");
+        System.out.print(recipe.toString());
+        System.out.println("\n\tYou now have " + recipeListSize + " recipes in your recipe book. Keep adding some!");
     }
 
     /**
