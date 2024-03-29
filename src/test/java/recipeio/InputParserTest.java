@@ -53,6 +53,6 @@ public class InputParserTest {
     public void isWithinRange_idOutOfBounds_expectFalseReturned() {
         recipes.add(dummyRecipe);
         int testInput = 2;
-        assertFalse(Utils.isWithinRange(recipes, testInput));
+        assertFalse(CommandValidator.isWithinRange(recipes, testInput));
     }
 }
