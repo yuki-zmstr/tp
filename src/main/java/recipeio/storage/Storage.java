@@ -13,8 +13,7 @@ import recipeio.recipe.Recipe;
 import recipeio.recipe.RecipeList;
 
 public class Storage {
-    public static final String FILE_PATH = "./data/recipe.txt";
-
+    public static final String FILE_PATH = "." + File.separator + "data" + File.separator + "recipe.txt";
     public static final String DELIMITER = " | ";
     /**
      * Save the list of items to a txt file

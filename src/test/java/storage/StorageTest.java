@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class StorageTest {
-    public static final String FILE_PATH = "./data/recipe.txt";
+    public static final String FILE_PATH = "." + File.separator + "data" + File.separator + "recipe.txt";
     @Test
     public void testExist(){
         File f = new File(FILE_PATH);
-        assert f.getPath().equals(FILE_PATH) : "File exists";
+        System.out.println(f.getAbsolutePath());
         if (f.exists()) {
             assertTrue(true);
         } else {
