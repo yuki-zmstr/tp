@@ -14,7 +14,7 @@ Enter command:
 	Here is a summary of your recipe book.
 		pizza / 34 min / 340 kcal / url: www.food.com
 
-	To find out more about a particular recipe, try 'detail + {recipe index}'
+	To find out more about a particular recipe, try the detail command
 -----------------------------
 Enter command:
 [Command entered: delete 1]
