@@ -5,28 +5,32 @@ Enter command:
 [Command entered: add pizza/34/340/eggs/dinner/www.food.com]
 -----------------------------
 Woo hoo chef! I have added this recipe to your recipe book:
-	pizza / DINNER
+	pizza / 34 min / 340 kcal / url: www.food.com
 You now have 1 recipes in your recipe book. Keep adding some!
 -----------------------------
 Enter command:
 [Command entered: list]
 -----------------------------
-pizza / DINNER
+	Here is a summary of your recipe book.
+		pizza / 34 min / 340 kcal / url: www.food.com
+
+	To find out more about a particular recipe, try 'detail + {recipe index}'
 -----------------------------
 Enter command:
 [Command entered: delete 1]
 -----------------------------
 Okay chef! I have deleted this recipe from your recipe book:
-	pizza / DINNER
+	pizza / 34 min / 340 kcal / url: www.food.com
 You now have 0 recipes in your recipe book. Keep adding some!
 -----------------------------
 Enter command:
 [Command entered: list]
 -----------------------------
-Sorry, there are no recipes in your recipe book to print.
+	Sorry, there are no recipes in your recipe book to print.
 -----------------------------
 Enter command:
 [Command entered: exit]
 -----------------------------
+Successfully saved recipe book.
 See you again chef!
 -----------------------------
