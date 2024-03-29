@@ -9,6 +9,7 @@ import recipeio.commands.ShowDetailsCommand;
 import recipeio.commands.FindCommand;
 import recipeio.commands.FindByAllergyCommand;
 import recipeio.commands.DeleteRecipeCommand;
+import recipeio.storage.Storage;
 
 import recipeio.exceptions.InvalidIndexException;
 import recipeio.ui.UI;
@@ -26,6 +27,7 @@ public class RecipeList {
 
     public RecipeList() {
         this.recipes = new ArrayList<>();
+        loadRecipes();
     }
 
     /**
@@ -50,6 +52,7 @@ public class RecipeList {
         try {
             Recipe newRecipe = parseAdd(userInput);
             AddRecipeCommand.execute(newRecipe, recipes);
+            saveRecipes();
         } catch (Exception e){
             UI.printMessage(e.getMessage());
         }
@@ -62,6 +65,7 @@ public class RecipeList {
     public void delete (int index) {
         try {
             DeleteRecipeCommand.execute(index, recipes);
+            saveRecipes();
         } catch (InvalidIndexException e) {
             System.out.println(e.getMessage() + "\nPlease enter a valid index");
         }
@@ -89,6 +93,25 @@ public class RecipeList {
 
     public String findAllergy(String allergy) {
         return FindByAllergyCommand.execute(allergy, recipes);
+    }
+
+    public void saveRecipes() {
+        try {
+            Storage.saveFile(RecipeList.this);
+            System.out.println("File save successful");
+        }
+        catch (Exception e) {
+            System.out.println("File save unsuccessful");
+        }
+    }
+
+    public void loadRecipes() {
+        try {
+            Storage.loadFile(RecipeList.this);
+            System.out.println("File load successful");
+        } catch (Exception e) {
+            System.out.println("File load unsuccessful");
+        }
     }
 
     public void executeCommand(String command, String userInput){
