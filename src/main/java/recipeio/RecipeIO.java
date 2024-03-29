@@ -1,7 +1,6 @@
 package recipeio;
 
 import recipeio.recipe.RecipeList;
-import recipeio.storage.Storage;
 import recipeio.ui.UI;
 
 import java.io.IOException;
