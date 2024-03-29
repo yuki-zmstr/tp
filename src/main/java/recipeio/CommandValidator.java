@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
 
-public class Utils {
+public class CommandValidator {
 
 
     public static ArrayList<String> splitName(String recipeName) {
@@ -63,7 +63,28 @@ public class Utils {
         if (index == null) {
             return false;
         }
-        if (!Utils.isWithinRange(recipes, index)) {
+        if (!CommandValidator.isWithinRange(recipes, index)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
+        String[] details = InputParser.parseDetails(userInput);
+        if (details.length != 1 || details[0].isEmpty()) {
+            System.out.println("\tThe delete function takes in one parameter: {index}");
+            System.out.println("\t\tInput Example: delete 1");
+            return false;
+        }
+        if (!isParsableAsInteger(details[0])) {
+            System.out.println("\t\tInput Example: delete 1");
+            return false;
+        }
+        Integer index = InputParser.parseID(userInput);
+        if (index == null) {
+            return false;
+        }
+        if (!CommandValidator.isWithinRange(recipes, index)) {
             return false;
         }
         return true;
