@@ -34,11 +34,13 @@ public class RecipeIO {
         assert !userInput.isEmpty() : "user input empty";
 
         while (!parsedCommand.equals(Constants.EXIT_COMMAND)) {
+            logger.log(Level.INFO, "Executing command: "+ userInput);
             recipeList.executeCommand(parsedCommand, userInput);
             logger.log(Level.INFO, Constants.MESSAGE_ASK_INPUT);
             userInput = ui.getUserInput();
             parsedCommand = InputParser.parseCommand(userInput);
         }
+
     }
 
     public static void setUpLogger() {

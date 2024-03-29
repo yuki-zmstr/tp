@@ -42,6 +42,7 @@ public class Storage {
             bw.newLine();
         }
         bw.close();
+        System.out.println("Successfully saved recipe book.");
     }
 
     /**

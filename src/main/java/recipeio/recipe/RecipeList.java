@@ -2,13 +2,16 @@ package recipeio.recipe;
 
 import recipeio.Constants;
 import recipeio.InputParser;
+import recipeio.Utils;
 import recipeio.commands.AddRecipeCommand;
-import recipeio.commands.DeleteRecipeCommand;
-import recipeio.commands.FindByAllergyCommand;
-import recipeio.commands.FindByNameCommand;
 import recipeio.commands.ListRecipeCommand;
+import recipeio.commands.ShowDetailsCommand;
+import recipeio.commands.FindCommand;
+import recipeio.commands.FindByAllergyCommand;
+import recipeio.commands.DeleteRecipeCommand;
+
+import recipeio.exceptions.InvalidIndexException;
 import recipeio.ui.UI;
-import recipeio.storage.Storage;
 
 import java.util.ArrayList;
 
@@ -23,7 +26,6 @@ public class RecipeList {
 
     public RecipeList() {
         this.recipes = new ArrayList<>();
-        loadRecipes();
     }
 
     /**
@@ -43,69 +45,50 @@ public class RecipeList {
         return recipes.get(index);
     }
 
-    /**
-     * Add recipe from user inputs
-     *
-     * @param userInput takes the user input
-     */
     public void add(String userInput) {
         assert(recipes.size() < MAX_RECIPES);
         try {
             Recipe newRecipe = parseAdd(userInput);
             AddRecipeCommand.execute(newRecipe, recipes);
-            saveRecipes();
-            UI.printAddMessage(newRecipe, recipes.size());
         } catch (Exception e){
             UI.printMessage(e.getMessage());
         }
     }
 
-    /**
-     * Used to load recipe to RecipeList
-     */
     public void add(Recipe recipe) {
         AddRecipeCommand.execute(recipe, recipes);
     }
 
-    public void delete (String userInput) {
-        int index = InputParser.parseID(userInput);
-        DeleteRecipeCommand.execute(index, recipes);
-        //saveRecipes();
-    }
-
     public void delete (int index) {
-        DeleteRecipeCommand.execute(index, recipes);
-        //saveRecipes();
+        try {
+            DeleteRecipeCommand.execute(index, recipes);
+        } catch (InvalidIndexException e) {
+            System.out.println(e.getMessage() + "\nPlease enter a valid index");
+        }
     }
 
     public void listRecipes() {
         ListRecipeCommand.execute(recipes);
     }
 
-    public void findName(String name) {
-        FindByNameCommand.execute(name, recipes);
+    public void showDetails(String userInput) {
+        Integer index = InputParser.parseID(userInput);
+        if (index == null) {
+            return;
+        }
+        if (!Utils.isWithinRange(recipes, index)) {
+            return;
+        }
+        Recipe recipe = get(index-1);
+        ShowDetailsCommand.execute(recipe);
+    }
+
+    public void find(String input) {
+        FindCommand.execute(input, recipes);
     }
 
     public String findAllergy(String allergy) {
         return FindByAllergyCommand.execute(allergy, recipes);
-    }
-
-    public void saveRecipes() {
-        try {
-            Storage.saveFile(RecipeList.this);
-            System.out.println(Constants.SAVE_SUCCESS);
-        } catch (Exception e) {
-            System.out.println(Constants.SAVE_ERROR);
-        }
-    }
-
-    public void loadRecipes() {
-        try {
-            Storage.loadFile(RecipeList.this);
-            System.out.println(Constants.LOAD_SUCCESS);
-        } catch (Exception e) {
-            System.out.println(Constants.LOAD_ERROR);
-        }
     }
 
     public void executeCommand(String command, String userInput){
@@ -113,17 +96,28 @@ public class RecipeList {
         case Constants.LIST_COMMAND:
             listRecipes();
             break;
+        case Constants.DETAIL_COMMAND:
+            showDetails(userInput);
+            break;
         case Constants.ADD_COMMAND:
             add(userInput);
             break;
         case Constants.DELETE_COMMAND:
-            delete(userInput);
+            Integer index = InputParser.parseID(userInput);
+            if (index != null) {
+                delete(index);
+            }
             break;
-        case Constants.FIND_BY_NAME:
-            findName(userInput);
+        case Constants.FIND_COMMAND:
+            find(userInput);
+            break;
+        case Constants.HELP_COMMAND:
+            UI.printInstructions();
             break;
         default:
-            System.out.println("try another command");
+            UI.printInvalidCommandWarning();
+            UI.printInstructions();
+            break;
         }
     }
 }

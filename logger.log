@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2024-03-24T09:39:58.722357Z</date>
-  <millis>1711273198722</millis>
-  <nanos>357000</nanos>
+  <date>2024-03-25T00:24:46.717543Z</date>
+  <millis>1711326286717</millis>
+  <nanos>543000</nanos>
   <sequence>0</sequence>
   <logger>RecipeIO Logger</logger>
   <level>INFO</level>
@@ -13,15 +13,4 @@
   <thread>1</thread>
   <message>asking for first input from user.</message>
 </record>
-<record>
-  <date>2024-03-24T09:40:05.656959Z</date>
-  <millis>1711273205656</millis>
-  <nanos>959000</nanos>
-  <sequence>1</sequence>
-  <logger>RecipeIO Logger</logger>
-  <level>INFO</level>
-  <class>recipeio.RecipeIO</class>
-  <method>runCommandLoopUntilExitCommand</method>
-  <thread>1</thread>
-  <message>not an exit command.</message>
-</record>
+</log>
