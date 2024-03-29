@@ -25,6 +25,7 @@ public class StorageTest {
     @Test
     public void testSaving(){
         RecipeList testRecipeList = new RecipeList();
+
         try {
             Storage.loadFile(testRecipeList);
             assertTrue(true);

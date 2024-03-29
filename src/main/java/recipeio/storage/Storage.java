@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 
-import recipeio.Constants;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.recipe.RecipeList;
@@ -16,6 +15,7 @@ import recipeio.recipe.RecipeList;
 public class Storage {
     public static final String FILE_PATH = "data/recipe.txt";
 
+    public static final String DELIMITER = " | ";
     /**
      * Save the list of items to a txt file
      *
@@ -30,15 +30,15 @@ public class Storage {
         for (int i = 0; i < recipeSize; i++) {
             Recipe recipe = recipeList.get(i);
             bw.write(recipe.name);
-            bw.write(Constants.RECIPE_DELIMETER);
+            bw.write(DELIMITER);
             bw.write(String.valueOf(recipe.cookTime));
-            bw.write(Constants.RECIPE_DELIMETER);
+            bw.write(DELIMITER);
             bw.write(String.valueOf(recipe.calories));
-            bw.write(Constants.RECIPE_DELIMETER);
+            bw.write(DELIMITER);
             bw.write(String.join(",",recipe.allergies));
-            bw.write(Constants.RECIPE_DELIMETER);
+            bw.write(DELIMITER);
             bw.write(recipe.category.toString());
-            bw.write(Constants.RECIPE_DELIMETER);
+            bw.write(DELIMITER);
             bw.write(recipe.url);
             bw.newLine();
         }
@@ -57,13 +57,13 @@ public class Storage {
 
         while (s.hasNext()) {
             String line = s.nextLine();
-            String name = line.split(Constants.RECIPE_DELIMETER)[0];
-            int cookTime = Integer.parseInt(line.split(Constants.RECIPE_DELIMETER)[1]);
-            int calories = Integer.parseInt(line.split(Constants.RECIPE_DELIMETER)[2]);
+            String name = line.split(" \\| ")[0];
+            int cookTime = Integer.parseInt(line.split(" \\| ")[1]);
+            int calories = Integer.parseInt(line.split(" \\| ")[2]);
             ArrayList<String> allergies = new ArrayList<>();
-            allergies.add(line.split(Constants.RECIPE_DELIMETER)[3]);
-            MealCategory category = MealCategory.valueOf(line.split(Constants.RECIPE_DELIMETER)[4]);
-            String url = line.split(Constants.RECIPE_DELIMETER)[5];
+            allergies.add(line.split(" \\| ")[3]);
+            MealCategory category = MealCategory.valueOf(line.split(" \\| ")[4]);
+            String url = line.split(" \\| ")[5];
             Recipe testRecipe = new Recipe(name, cookTime, calories, allergies, category, url);
             recipeList.add(testRecipe);
         }
