@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class StorageTest {
-    public static final String FILE_PATH = "data/recipe.txt";
+    public static final String FILE_PATH = "./data/recipe.txt";
     @Test
     public void testExist(){
         File f = new File(FILE_PATH);
