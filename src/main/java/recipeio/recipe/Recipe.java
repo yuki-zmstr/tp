@@ -28,6 +28,11 @@ public class Recipe {
         this.category = Objects.requireNonNullElse(category, MealCategory.GENERAL);
         this.dateAdded = LocalDate.now();
     }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return name + " / " + cookTime + " min / " + calories + " kcal /" + " url: " + url;
