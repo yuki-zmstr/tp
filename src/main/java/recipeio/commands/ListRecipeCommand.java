@@ -16,6 +16,6 @@ public class ListRecipeCommand {
         }
         System.out.println("\tHere is a summary of your recipe book.");
         recipes.forEach(recipe -> System.out.println("\t\t" + recipe));
-        System.out.println("\n\tTo find out more about a particular recipe, try the detail command");
+        System.out.println("\n\tTo find out more about a particular recipe, try the 'detail {index}' command.");
     }
 }

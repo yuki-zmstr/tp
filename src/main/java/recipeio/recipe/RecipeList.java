@@ -52,6 +52,7 @@ public class RecipeList {
         try {
             Recipe newRecipe = parseAdd(userInput);
             AddRecipeCommand.execute(newRecipe, recipes);
+            UI.printAddMessage(newRecipe, recipes.size());
             saveRecipes();
         } catch (Exception e){
             UI.printMessage(e.getMessage());
@@ -98,9 +99,7 @@ public class RecipeList {
     public void saveRecipes() {
         try {
             Storage.saveFile(RecipeList.this);
-            System.out.println("File save successful");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("File save unsuccessful");
         }
     }

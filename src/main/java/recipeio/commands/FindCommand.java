@@ -30,7 +30,7 @@ public class FindCommand {
     public static void findKeyword(String keyword, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
         if (recipes.isEmpty()) {
-            System.out.println("Sorry, you have no recipes to find matches with. Try adding some!");
+            System.out.println("\tSorry, you have no recipes to find matches with. Try adding some!");
             return;
         }
         assert (!recipes.isEmpty());
@@ -40,7 +40,7 @@ public class FindCommand {
             }
         }
         if (matches.isEmpty()) {
-            System.out.println("There were no matches. Try searching for something else.");
+            System.out.println("\tThere were no matches. Try searching for something else.");
             return;
         }
         UI.printMatches(matches);
@@ -49,7 +49,7 @@ public class FindCommand {
     public static void findDate(LocalDate date, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
         if (recipes.isEmpty()) {
-            System.out.println("Sorry, you have no recipes to find matches with. Try adding some!");
+            System.out.println("\tSorry, you have no recipes to find matches with. Try adding some!");
             return;
         }
         for (Recipe recipe : recipes) {
@@ -58,7 +58,7 @@ public class FindCommand {
             }
         }
         if (matches.isEmpty()) {
-            System.out.println("There were no matches. Try searching for something else.");
+            System.out.println("\tThere were no matches. Try searching for something else.");
             return;
         }
         UI.printMatches(matches);
