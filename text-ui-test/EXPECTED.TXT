@@ -1,4 +1,4 @@
-File load unsuccessful
+No input file found, will create a new one.
 -----------------------------
 Welcome to Recipe.io!
 -----------------------------

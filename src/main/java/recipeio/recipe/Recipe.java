@@ -19,14 +19,14 @@ public class Recipe {
     public LocalDate dateAdded;
 
     public Recipe(String name, int cookTime, int calories, ArrayList<String> allergies,
-                  MealCategory category, String url) {
+                  MealCategory category, LocalDate dateAdded, String url) {
         this.name = name;
         this.cookTime = cookTime;
         this.calories = calories;
         this.allergies = allergies;
         this.url = url;
         this.category = Objects.requireNonNullElse(category, MealCategory.GENERAL);
-        this.dateAdded = LocalDate.now();
+        this.dateAdded = dateAdded;
     }
 
     public String getName() {

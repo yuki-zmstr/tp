@@ -1,33 +1,43 @@
 package storage;
 import org.junit.jupiter.api.Test;
-import recipeio.recipe.RecipeList;
+import recipeio.enums.MealCategory;
+import recipeio.recipe.Recipe;
 import recipeio.storage.Storage;
 
-import java.io.File;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class StorageTest {
-    public static final String FILE_PATH = "." + File.separator + "data" + File.separator + "recipe.txt";
-    @Test
-    public void testExist(){
-        File f = new File(FILE_PATH);
-        System.out.println(f.getAbsolutePath());
-        if (f.exists()) {
-            assertTrue(true);
-        } else {
-            fail();
-        }
+
+    ArrayList<Recipe> recipes;
+    ArrayList<String> allergies;
+    Recipe testRecipe;
+
+    public StorageTest() {
+        this.recipes = new ArrayList<>();
+        this.allergies = new ArrayList<>();
+        allergies.add("eggs");
+        allergies.add("dairy");
+        this.testRecipe = new Recipe(
+                "Cream Spaghetti",
+                60,
+                500,
+                allergies,
+                MealCategory.LUNCH,
+                LocalDate.of(2024, 3, 20),
+                "www.spaghetti.com"
+        );
     }
 
     @Test
     public void testSaving(){
-        RecipeList testRecipeList = new RecipeList();
-
+        recipes.add(testRecipe);
         try {
-            Storage.loadFile(testRecipeList);
+            Storage.saveFile(recipes);
             assertTrue(true);
         } catch (Exception e) {
             fail();

@@ -1,6 +1,7 @@
 package recipeio;
 
 import recipeio.recipe.RecipeList;
+import recipeio.storage.Storage;
 import recipeio.ui.UI;
 
 import java.io.IOException;
@@ -16,9 +17,10 @@ public class RecipeIO {
     private static final Logger logger = Logger.getLogger("RecipeIO Logger");
     private final RecipeList recipeList;
 
-    public RecipeIO() {
+    public RecipeIO(String filePath) {
         ui = new UI();
-        recipeList = new RecipeList();
+        Storage storage = new Storage(filePath);
+        recipeList = new RecipeList(storage.loadData());
     }
 
     public void run() {
@@ -59,6 +61,6 @@ public class RecipeIO {
 
     public static void main(String[] args) {
         setUpLogger();
-        new RecipeIO().run();
+        new RecipeIO("data/recipe.txt").run();
     }
 }
