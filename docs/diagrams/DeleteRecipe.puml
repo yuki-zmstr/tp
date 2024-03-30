@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+Actor User as user USER_COLOR
+Participant ":RecipeIO" as ui UI_COLOR
+Participant ":RecipeList" as logic LOGIC_COLOR
+Participant ":CommandValidator" as validator VALIDATOR_COLOR
+Participant ":InputParser" as parser PARSER_COLOR
+Participant ":DeleteRecipeCommand" as command COMMAND_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
+
+user -[USER_COLOR]> ui : "delete 1"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : executeCommand("delete 1")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> logic : delete("delete 1")
+activate logic LOGIC_COLOR_T1
+
+logic -[LOGIC_COLOR]> validator : isValidDeleteCommand("delete 1")
+activate validator VALIDATOR_COLOR
+validator -[VALIDATOR_COLOR]-> logic : valid
+deactivate validator
+
+alt valid
+
+    logic -> parser : parseID("delete 1")
+    activate parser PARSER_COLOR
+    parser -[PARSER_COLOR]-> logic : id
+    deactivate parser
+
+    logic -> command : execute(1, recipes: ArrayList<Recipe>)
+    activate command COMMAND_COLOR
+    command -[COMMAND_COLOR]-> logic
+    deactivate command
+
+    logic -> storage : saveRecipes()
+    activate storage STORAGE_COLOR
+    storage -[STORAGE_COLOR]-> logic
+    deactivate storage
+
+    logic --[LOGIC_COLOR]> logic
+
+    deactivate logic
+
+
+    logic -[LOGIC_COLOR]-> ui
+
+else
+    logic -[LOGIC_COLOR]-> ui
+end
+
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
