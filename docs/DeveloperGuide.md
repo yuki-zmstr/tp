@@ -2,11 +2,44 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This application is built in partial fulfillment of the requirements of CS2113.</br>
+Knowledge and ideas are adapted from the CS2113 textbook, as well as SE-EDU textbook.
+
+---
+
+## Setting up, getting started
+
+Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.html.
+
+---
 
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`RecipeIO`**  is in charge of the app launch and shut down.
+* At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
+* At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+
+The bulk of the app's work is done by the following five components:
+
+* **`UI`** The UI of the App.
+* **`RecipeList`**: The command executor and holder of data of the app.
+* **`InputParser`**: Extracts information from the user input into the command line.
+* **`CommandValidator`**: The command validator.
+* **`Storage`**: Reads data from, and writes data to, the hard disk.
+
+**`commands`** represents a collection of commands used by **`RecipeList`**
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+<img src="images/DeleteRecipe.png" width="800" />
+
 
 ## Product scope
 

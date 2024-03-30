@@ -1,6 +1,4 @@
-# Duke
-
-{Recipe.io}
+# Recipe.io
 
 Useful links:
 * [User Guide](UserGuide.md)
