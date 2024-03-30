@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,19 +15,20 @@ public class InputParserTest {
 
     ArrayList<Recipe> recipes;
     ArrayList<String> allergies;
-    Recipe dummyRecipe;
+    Recipe testRecipe;
 
     public InputParserTest() {
         this.recipes = new ArrayList<>();
         this.allergies = new ArrayList<>();
         allergies.add("eggs");
         allergies.add("dairy");
-        this.dummyRecipe = new Recipe(
+        this.testRecipe = new Recipe(
                 "Cream Spaghetti",
                 60,
                 500,
                 allergies,
                 MealCategory.LUNCH,
+                LocalDate.of(2024, 3, 20),
                 "www.spaghetti.com"
         );
     }
@@ -51,7 +53,7 @@ public class InputParserTest {
 
     @Test
     public void isWithinRange_idOutOfBounds_expectFalseReturned() {
-        recipes.add(dummyRecipe);
+        recipes.add(testRecipe);
         int testInput = 2;
         assertFalse(CommandValidator.isWithinRange(recipes, testInput));
     }

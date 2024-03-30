@@ -24,9 +24,8 @@ public class RecipeList {
      */
     private final ArrayList<Recipe> recipes;
 
-    public RecipeList() {
-        this.recipes = new ArrayList<>();
-        loadRecipes();
+    public RecipeList(ArrayList<Recipe> recipeData) {
+        this.recipes = recipeData;
     }
 
     /**
@@ -120,18 +119,9 @@ public class RecipeList {
 
     public void saveRecipes() {
         try {
-            Storage.saveFile(RecipeList.this);
+            Storage.saveFile(recipes);
         } catch (Exception e) {
             System.out.println("File save unsuccessful");
-        }
-    }
-
-    public void loadRecipes() {
-        try {
-            Storage.loadFile(RecipeList.this);
-            System.out.println("File load successful");
-        } catch (Exception e) {
-            System.out.println("File load unsuccessful");
         }
     }
 
