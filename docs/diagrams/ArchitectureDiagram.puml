@@ -1,0 +1,38 @@
+@startuml
+!include <office/Concepts/documents>
+!include <office/Users/user>
+!include style.puml
+
+Package " "<<Rectangle>>{
+    Class RecipeIO UI_COLOR
+    Class UI UI_COLOR_T2
+    Class RecipeList LOGIC_COLOR
+    Class InputParser PARSER_COLOR
+    Class CommandValidator VALIDATOR_COLOR
+    Class XYZCommand COMMAND_COLOR_T3
+    Class Storage STORAGE_COLOR
+}
+
+Class "<$user>" as User USER_COLOR
+Class "<$documents>" as File UI_COLOR_T1
+
+User ..> UI
+
+RecipeIO -[#green]> UI
+UI -left[#green]-> RecipeIO
+
+RecipeIO -left[#blue]> RecipeList
+
+RecipeList -[#darkgrey]-> CommandValidator
+CommandValidator -[#darkgrey]-> RecipeList
+
+CommandValidator -[#red]-> InputParser
+InputParser -[#red]-> CommandValidator
+
+RecipeList -[#green]-> XYZCommand
+
+XYZCommand -[#blue]-> Storage
+Storage .left[STORAGE_COLOR].>File
+Storage -up[STORAGE_COLOR].> RecipeList
+
+@enduml

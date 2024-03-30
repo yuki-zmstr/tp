@@ -43,6 +43,7 @@ public class FindCommand {
         }
         if (matches.isEmpty()) {
             System.out.println(Constants.NO_MATCHES_ERROR_MESSAGE);
+            System.out.println("\tPlease ensure that you have inputted a full word.");
             return;
         }
         System.out.println("\tHere are your matches with keyword: " + keyword);
