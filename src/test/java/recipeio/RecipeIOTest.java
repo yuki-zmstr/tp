@@ -48,7 +48,7 @@ class RecipeIOTest {
 
     @Test
     public void testStringConversion() {
-        assertEquals("Cream Spaghetti / 60 min / 500 kcal / url: www.spaghetti.com", testRecipe.toString());
+        assertEquals("Cream Spaghetti / added on 2024-03-30 / url: www.spaghetti.com", testRecipe.toString());
     }
 
 }
