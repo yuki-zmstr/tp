@@ -19,3 +19,6 @@ bin/
 
 text-ui-test/EXPECTED-UNIX.TXT
 text-ui-test/ACTUAL.TXT
+
+# data files used in JUnit tests
+/test_data
