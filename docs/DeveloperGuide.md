@@ -17,6 +17,12 @@ Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Architecture
+
+<img src="images/ArchitectureDiagram.png" width="350" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
@@ -38,16 +44,22 @@ The bulk of the app's work is done by the following five components:
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
 <img src="images/DeleteRecipe.png" width="800" />
 
+---
+
+## **Appendix: Requirements**
 
 ## Product scope
 
 ### Target user profile
 
-Professional culinary practitioners, students who love to cook.
-People having special dietary restrictions or tracking their calorie intake.
-Basically anyone who cooks and want to keep track of his/her recipes!
+* Has a need to manage a significant number of recipes.
+* e.g. Professional culinary practitioners, students who love to cook.
+* can type fast 
+* People having special dietary restrictions.
+* People who would like easily access the recipes they found online.
 
 ### Value proposition
 
@@ -68,10 +80,22 @@ The user can put the recipes into different categories.
 | v2.0    | user     | find recipes without a certain ingredient  | save time finding recipes that I can eat                      |
 | v2.0    | user     | find a recipe by date                      | find a recipe if I don't remember its name                    |
 
+### Use cases
+
+(For all use cases below, the **System** is the `RecipeIO` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Delete a person**
+
+1.  User requests to list recipes
+2.  RecipeIO shows a list of recipes
+3.  User requests to delete a specific recipe in the list
+4.  AddressBook deletes the person
+
+    Use case ends.
+
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
-Users can use the help function to understand all the available commands they can use
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
 ## Commands Glossary
 
@@ -84,6 +108,52 @@ Users can use the help function to understand all the available commands they ca
 * *find allergy [KEYWORD]* - This finds recipes without a certain ingredient.
 * *exit* - This is the command to leave the program. 
 
-## Instructions for manual testing
+---
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.</div>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Deleting a recipe
+
+1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
+
+2. Test case: `delete 1`<br>
+   Expected: First recipe is deleted from the list. Console output saying which recipe was deleted.
+
+3. Test case: `delete 0`<br>
+   Expected: No recipe is deleted. Console output tells you to input a number within the range of the recipe list numbers.
+
+4. Test case: `delete xyz`<br>
+   Expected: No recipe is deleted. Console output tells you to input a number within the range of the recipe list numbers.
+
+### Finding a recipe by keyword
+
+1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list. At least one with "soup" in recipe name.
+
+2. Test case: `find kw soup`<br>
+   Expected: Console output shows you which recipes have the word "soup" in its name.
+
+3. Test case: `find kw sou`<br>
+   Expected: No recipe is found. Console output tells you to check if your parameter is a word.
+
+4. Test case: `find kw`<br>
+   Expected: Console output tells you to check that you inputted two arguments to the find method.
+
+### Finding a recipe by date
+
+1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list. At least one with date as 2024-03-30.
+
+2. Test case: `find date 2024-03-30`<br>
+   Expected: Console output shows you which recipes were added on 2024-03-30.
+
+3. Test case: `find date xyx`<br>
+   Expected: No recipe is found. Console output tells you to check if your parameter is a valid date.
+
+4. Test case: `find date`<br>
+   Expected: Console output tells you to check that you inputted two arguments to the find method.

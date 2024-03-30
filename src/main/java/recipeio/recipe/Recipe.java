@@ -35,6 +35,6 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return name + " / " + cookTime + " min / " + calories + " kcal /" + " url: " + url;
+        return name + " / added on " + dateAdded + " / url: " + url;
     }
 }
