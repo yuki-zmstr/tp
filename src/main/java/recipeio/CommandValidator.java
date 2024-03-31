@@ -8,15 +8,28 @@ import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class containing methods that validate a user's input into the command line.
+ */
 public class CommandValidator {
 
-
+    /**
+     * Splits a recipe name into individual words.
+     *
+     * @return ArrayList of words in recipe name.
+     */
     public static ArrayList<String> splitName(String recipeName) {
         String[] nameWords = recipeName.split(" ");
         return new ArrayList<>(Arrays.asList(nameWords));
     }
 
 
+    /**
+     * Checks if an input can be parsed as an integer.
+     *
+     * @param input the String to check.
+     * @return status of check.
+     */
     public static boolean isParsableAsInteger(String input) {
         try {
             Integer.parseInt(input);
@@ -28,15 +41,12 @@ public class CommandValidator {
         }
     }
 
-    public static boolean isWithinRange(ArrayList<Recipe> recipes, int index) {
-        if (index > recipes.size() || index < 1) {
-            System.out.println("\tSorry, there is no recipe at index: " + index);
-            System.out.println("\tYou currently have: " + recipes.size() + " recipes");
-            return false;
-        }
-        return true;
-    }
-
+    /**
+     * Checks if an input can be parsed as a word.
+     *
+     * @param input the String to check.
+     * @return status of check.
+     */
     public static boolean isWord(String input) {
         // Regular expression to match only alphabetic characters
         String regex = "^[a-zA-Z]+$";
@@ -48,6 +58,48 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if an input can be parsed as a word.
+     *
+     * @param input the String to check.
+     * @return status of check.
+     */
+    public static boolean isParsableAsDate(String input) {
+        try {
+            LocalDate date = LocalDate.parse(input);
+            return true;
+        } catch (DateTimeParseException e) {
+            System.out.println("\tParameter cannot be parsed as a date.");
+            System.out.println("\tPlease enter a date in the format yyyy-MM-dd");
+            System.out.println("\t\tInput Example: find date 2024-03-28");
+            return false;
+        }
+    }
+    /**
+     * Checks if an integer is within the range of number of recipes currently stored.
+     *
+     * @param recipes the list of current recipes.
+     * @param index the index to check.
+     * @return status of check.
+     */
+    public static boolean isWithinRange(ArrayList<Recipe> recipes, int index) {
+        if (index > recipes.size() || index < 1) {
+            System.out.println("\tSorry, there is no recipe at index: " + index);
+            System.out.println("\tYou currently have: " + recipes.size() + " recipes");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks if a detail command is valid.
+     * Check fails if number of parameters is not 1, or the parameter is not an integer,
+     * or the parameter is out of range.
+     *
+     * @param userInput User's input in the command line.
+     * @param recipes list of current recipes.
+     * @return status of check.
+     */
     public static boolean isValidDetailCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != 1 || details[0].isEmpty()) {
@@ -69,6 +121,15 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if a delete command is valid.
+     * Check fails if number of parameters is not 1, or the parameter is not an integer,
+     * or the parameter is out of range.
+     *
+     * @param userInput User's input in the command line.
+     * @param recipes list of current recipes.
+     * @return status of check.
+     */
     public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != 1 || details[0].isEmpty()) {
@@ -90,6 +151,12 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if a find command is given two parameters.
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
     public static boolean isValidFindCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != 2) {
@@ -101,18 +168,13 @@ public class CommandValidator {
         return true;
     }
 
-    public static boolean isParsableAsDate(String input) {
-        try {
-            LocalDate date = LocalDate.parse(input);
-            return true;
-        } catch (DateTimeParseException e) {
-            System.out.println("\tParameter cannot be parsed as a date.");
-            System.out.println("\tPlease enter a date in the format yyyy-MM-dd");
-            System.out.println("\t\tInput Example: find date 2024-03-28");
-            return false;
-        }
-    }
-
+    /**
+     * Checks if a filter command is valid.
+     * Check fails if number of parameters is not 1, or the parameter is not a word,
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
     public static boolean isValidFilterCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != 1 || details[0].isEmpty()) {

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * The Recipe class represents a recipe containing various attributes such as name, cook time,
- * calories, allergies, category, and URL.
+ * The Recipe class represents a recipe containing attributes: name, cook time (in minutes),
+ * calories (in kcals), list of allergies, meal category, and URL.
  */
 public class Recipe {
     public String name = "";

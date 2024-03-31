@@ -1,4 +1,4 @@
-No input file found, will create a new one.
+Storage client says: No input file found, will create a new one.
 -----------------------------
 Welcome to Recipe.io!
 -----------------------------
