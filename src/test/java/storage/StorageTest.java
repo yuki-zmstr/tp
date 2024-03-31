@@ -16,6 +16,7 @@ public class StorageTest {
     ArrayList<Recipe> recipes;
     ArrayList<String> allergies;
     Recipe testRecipe;
+    Storage storage;
 
     public StorageTest() {
         this.recipes = new ArrayList<>();
@@ -31,6 +32,7 @@ public class StorageTest {
                 LocalDate.of(2024, 3, 20),
                 "www.spaghetti.com"
         );
+        this.storage = new Storage("test_data/test_recipes.txt");
     }
 
     @Test
