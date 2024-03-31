@@ -9,6 +9,7 @@ import recipeio.commands.ShowDetailsCommand;
 import recipeio.commands.FindCommand;
 import recipeio.commands.FilterByAllergyCommand;
 import recipeio.commands.DeleteRecipeCommand;
+import recipeio.constants.StorageConstants;
 import recipeio.storage.Storage;
 
 import recipeio.ui.UI;
@@ -24,15 +25,11 @@ public class RecipeList {
      */
     private final ArrayList<Recipe> recipes;
 
+    /**
+     * Accepts recipeData from RecipeIO class, and sets that as initial list of recipe.
+     */
     public RecipeList(ArrayList<Recipe> recipeData) {
         this.recipes = recipeData;
-    }
-
-    /**
-     * Returns the size of the list (recipe book).
-     */
-    public int getSize() {
-        return recipes.size();
     }
 
     /**
@@ -45,90 +42,12 @@ public class RecipeList {
         return recipes.get(index);
     }
 
-    public void listRecipes() {
-        ListRecipeCommand.execute(recipes);
-    }
-
-    public void showDetails(String userInput) {
-        if (!CommandValidator.isValidDetailCommand(userInput, recipes)){
-            return;
-        }
-        Integer index = InputParser.parseID(userInput);
-        if (index == null) {
-            return;
-        }
-        Recipe recipe = get(index-1);
-        ShowDetailsCommand.execute(recipe);
-    }
-
-    public void add(String userInput) {
-        assert(recipes.size() < MAX_RECIPES);
-        try {
-            Recipe newRecipe = parseAdd(userInput);
-            AddRecipeCommand.execute(newRecipe, recipes);
-            UI.printAddMessage(newRecipe, recipes.size());
-            saveRecipes();
-        } catch (Exception e){
-            UI.printMessage(e.getMessage());
-        }
-    }
-
-    public void add(Recipe recipe) {
-        AddRecipeCommand.execute(recipe, recipes);
-    }
-
-    public void delete(String userInput) {
-        if (!CommandValidator.isValidDeleteCommand(userInput, recipes)){
-            return;
-        }
-        Integer index = InputParser.parseID(userInput);
-        if (index == null) {
-            return;
-        }
-        DeleteRecipeCommand.execute(index, recipes);
-        saveRecipes();
-    }
-
     /**
-     * Deletes the recipe at the specified index, used in test methods.
+     * Executes command given from the user.
      *
-     * @param index The index of the recipe.
+     * @param command command keyword in the user's command in the command line.
+     * @param userInput the full user input in the command line.
      */
-    public void delete(int index) {
-        DeleteRecipeCommand.execute(index, recipes);
-    }
-
-    public void find(String userInput) {
-        if (recipes.isEmpty()) {
-            System.out.println(Constants.NO_RECIPES_ERROR_MESSAGE);
-            return;
-        }
-        FindCommand.execute(userInput, recipes);
-    }
-
-    public void filter(String userInput) {
-        if (recipes.isEmpty()) {
-            System.out.println(Constants.NO_RECIPES_ERROR_MESSAGE);
-            return;
-        }
-        if (!CommandValidator.isValidFilterCommand(userInput)){
-            return;
-        }
-        FilterByAllergyCommand.execute(userInput, recipes);
-    }
-
-    public void saveRecipes() {
-        try {
-            Storage.saveFile(recipes);
-        } catch (Exception e) {
-            System.out.println("File save unsuccessful");
-        }
-    }
-
-    public void clear() {
-        recipes.clear();
-    }
-
     public void executeCommand(String command, String userInput){
         switch (command) {
         case Constants.LIST_COMMAND:
@@ -156,6 +75,117 @@ public class RecipeList {
             UI.printInvalidCommandWarning();
             UI.printInstructions();
             break;
+        }
+    }
+
+    /**
+     * Lists the recipes in the recipe book.
+     * Calls the execute method in ListRecipeCommand.
+     */
+    public void listRecipes() {
+        ListRecipeCommand.execute(recipes);
+    }
+
+    /**
+     * Shows the detail of the recipe at given index.
+     * Validates the user's command, and exits early if the validation fails.
+     * If validation passes, calls the execute method in ShowDetailsCommand.
+     *
+     * @param userInput input from the user in the command line.
+     */
+    public void showDetails(String userInput) {
+        if (!CommandValidator.isValidDetailCommand(userInput, recipes)){
+            return;
+        }
+        Integer index = InputParser.parseID(userInput);
+        if (index == null) {
+            return;
+        }
+        Recipe recipe = get(index-1);
+        ShowDetailsCommand.execute(recipe);
+    }
+
+    /**
+     * Adds a recipe into the list of recipes.
+     * Validates the user's command, and exits early if the validation fails.
+     * If validation passes, calls the execute method in AddRecipeCommand.
+     *
+     * @param userInput input from the user in the command line.
+     */
+    public void add(String userInput) {
+        assert(recipes.size() < MAX_RECIPES);
+        try {
+            Recipe newRecipe = parseAdd(userInput);
+            AddRecipeCommand.execute(newRecipe, recipes);
+            UI.printAddMessage(newRecipe, recipes.size());
+            saveRecipes();
+        } catch (Exception e){
+            UI.printMessage(e.getMessage());
+        }
+    }
+
+    /**
+     * Deletes a recipe from the list of recipes.
+     * Validates the user's command, and exits early if the validation fails.
+     * If validation passes, calls the execute method in DeleteRecipeCommand.
+     *
+     * @param userInput input from the user in the command line.
+     */
+    public void delete(String userInput) {
+        if (!CommandValidator.isValidDeleteCommand(userInput, recipes)){
+            return;
+        }
+        Integer index = InputParser.parseID(userInput);
+        if (index == null) {
+            return;
+        }
+        DeleteRecipeCommand.execute(index, recipes);
+        saveRecipes();
+    }
+
+    /**
+     * Finds a recipe by keyword or date.
+     * Calls the execute method in FindRecipeCommand.
+     * Validation is done within FindRecipeCommand.
+     *
+     * @param userInput input from the user in the command line.
+     */
+    public void find(String userInput) {
+        if (recipes.isEmpty()) {
+            System.out.println(Constants.NO_RECIPES_ERROR_MESSAGE);
+            return;
+        }
+        FindCommand.execute(userInput, recipes);
+    }
+
+    /**
+     * Filters a recipe by allergy.
+     * Validates the user's command, and exits early if the validation fails.
+     * If validation passes, calls the execute method in FilterRecipeCommand.
+     *
+     * @param userInput input from the user in the command line.
+     */
+    public void filter(String userInput) {
+        if (recipes.isEmpty()) {
+            System.out.println(Constants.NO_RECIPES_ERROR_MESSAGE);
+            return;
+        }
+        if (!CommandValidator.isValidFilterCommand(userInput)){
+            return;
+        }
+        FilterByAllergyCommand.execute(userInput, recipes);
+    }
+
+    /**
+     * Saves the recipe book.
+     * Calls the saveFile method in Storage.
+     * If fails, and error message is shown.
+     */
+    public void saveRecipes() {
+        try {
+            Storage.saveFile(recipes);
+        } catch (Exception e) {
+            System.out.println(StorageConstants.UNSUCCESSFUL_SAVE_MESSAGE);
         }
     }
 }

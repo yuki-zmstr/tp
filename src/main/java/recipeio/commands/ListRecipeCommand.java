@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class ListRecipeCommand {
 
     /**
-     * Prints the recipes in the list.
+     * Lists the recipes in the list.
+     *
+     * @param recipes The list of current recipes.
      */
     public static void execute(ArrayList<Recipe> recipes) {
         if (recipes.isEmpty()) {
