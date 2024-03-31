@@ -195,11 +195,11 @@ testers are expected to do more *exploratory* testing.</div>
    shows you that no recipes were added on 2024-01-03 as a valid gate is given without any
    matching recipes
 
-4. **Test case**: `find date xyx`<br>
+4. **Test case**: `find date xyx`
    * **Expected**: No recipe is found due to invalid date format or not following the
    correct date convention. Console output tells you that the parameter cannot be parsed
    as a valid date. Console output also hints the user to use the format of YYYY-MM-DD.
 
-5. **Test case**: `find date`<br>
+5. **Test case**: `find date`
    * **Expected**: No recipe is found due to the lack of a given date. Console output tells 
    you to check that you inputted two arguments to the find method.
