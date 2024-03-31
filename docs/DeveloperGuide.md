@@ -122,21 +122,21 @@ testers are expected to do more *exploratory* testing.</div>
 ### Adding a recipe
 
 1. **Test case** `add pizza/34/340/eggs/dinner/www.food.com`<br>
-   **Expected**: Mentioned recipe is added to the list of recipes. <br>
+   * **Expected**: Mentioned recipe is added to the list of recipes. <br>
    Console output providing a brief description of the added recipe <br>
    and total number recipes present in list 
 
 2. **Test case** `add pizza/34/340/www.food.com`<br>
-   **Expected**: Recipe is not added to the list due to format error.<br>
+   * **Expected**: Recipe is not added to the list due to format error.<br>
    Console output stating for the user to follow the correct format.
 
 3. **Test case** `add pizza/aa/aa/eggs/dinner/www.food.com`<br>
-   **Expected**: Recipe is not added to list due to incorrect input types.<br>
+   * **Expected**: Recipe is not added to list due to incorrect input types.<br>
    Console output asking for user to use integer for fields of cook time <br>
    and calories
 
 4. **Test case** `add pizza/30/30/eggs/dinnerTest/www.food.com`<br>
-   **Expected**: Recipe is not added to the list due to invalid meal categories.<br>
+   * **Expected**: Recipe is not added to the list due to invalid meal categories.<br>
    Console output asking for user select correct meal category from options of <br>
    breakfast, lunch, dinner, appetizer and dessert
 
@@ -145,19 +145,19 @@ testers are expected to do more *exploratory* testing.</div>
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
 2. **Test case**: `delete 1`<br>
-   **Expected**: First recipe is deleted from the list. Console output <br>
+   * **Expected**: First recipe is deleted from the list. Console output <br>
    saying which recipe was deleted with a brief description.
 
 3. **Test case**: `delete 0`<br>
-   **Expected**: No recipe is deleted due to index given being out of bounds. <br>
+   * **Expected**: No recipe is deleted due to index given being out of bounds. <br>
    Console output tells you to input a number within the range of the recipe list numbers.
 
 4. **Test case**: `delete xyz`<br>
-   **Expected**: No recipe is deleted. Console output tells you to input <br>
+   * **Expected**: No recipe is deleted. Console output tells you to input <br>
    an integer instead of other data types.
 
 5. **Test case**: `delete`<br>
-   **Expected**: No recipe is deleted due to given index. Console output <br>
+   * **Expected**: No recipe is deleted due to given index. Console output <br>
    tells you to use a index parameter for the delete function.
 
 ### Finding a recipe by keyword
@@ -166,40 +166,40 @@ testers are expected to do more *exploratory* testing.</div>
    At least one with "soup" in recipe name.
 
 2. **Test case**: `find kw soup`<br>
-   **Expected**: Matching recipes are found. Console output shows you which <br>
+   * **Expected**: Matching recipes are found. Console output shows you which <br>
    recipes have the word "soup" in its name.
 
 3. **Test case**: `find kw sou`<br>
-   **Expected**: No matching recipe is found. Console output tells you to attempt <br>
+   * **Expected**: No matching recipe is found. Console output tells you to attempt <br>
    to search for another ingredient.
 
 4. **Test case**: `find kw`<br>
-   **Expected**: No matching recipe is found due to lack of search keywords. <br>
+   * **Expected**: No matching recipe is found due to lack of search keywords. <br>
    Console output tells you to check that you inputted two arguments to the find method.
 
 5. **Test case**: `find kw 1`<br>
-   **Expected**: No matching recipes is found due to invalid keyword. Console output <br> 
+   * **Expected**: No matching recipes is found due to invalid keyword. Console output <br> 
    tells you to ensure the keyword is an alphabet
 
 ### Finding a recipe by date
 
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list. <br>
-   At least one with date as 2024-03-30.
+   At least one with date as 2024-03-30 but none with 2024-01-03.
 
 2. **Test case**: `find date 2024-03-30`<br>
-   **Expected**: Matching recipes are found with a valid date given. Console output <br>
+   * **Expected**: Matching recipes are found with a valid date given. Console output <br>
    shows you which recipes were added on 2024-03-30.
 
 3. **Test case**: `find date 2024-01-03`<br>
-   **Expected**: No matching recipes are found despite a valid date given. Console output <br>
+   * **Expected**: No matching recipes are found despite a valid date given. Console output <br>
    shows you that no recipes were added on 2024-01-03 as a valid gate is given without any <br>
    matching recipes
 
 4. **Test case**: `find date xyx`<br>
-   **Expected**: No recipe is found due to invalid date format or not following the <br> 
+   * **Expected**: No recipe is found due to invalid date format or not following the <br> 
    correct date convention. Console output tells you that the parameter cannot be parsed <br> 
    as a valid date. Console output also hints the user to use the format of YYYY-MM-DD.
 
 5. **Test case**: `find date`<br>
-   **Expected**: No recipe is found due to the lack of a given date. Console output tells <br> 
+   * **Expected**: No recipe is found due to the lack of a given date. Console output tells <br> 
    you to check that you inputted two arguments to the find method.
