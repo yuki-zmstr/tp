@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 public class FilterByAllergyCommand {
 
     /**
-     * Shows a list of recipes with the allergy excluded.
+     * Shows a list of recipes that do not contain the given allergy.
      *
-     * @param userInput user's input in the command line.
-     * @param recipes list of recipes to execute on.
+     * @param userInput User's input in the command line.
+     * @param recipes The list of current recipes.
      */
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
 
