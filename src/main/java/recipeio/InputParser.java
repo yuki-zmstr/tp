@@ -2,6 +2,7 @@ package recipeio;
 
 import recipeio.recipe.Recipe;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -103,7 +104,6 @@ public class InputParser {
         }
         MealCategory category = MealCategory.valueOf(remainingInput[4].trim().toUpperCase());
         String url = remainingInput[5].trim();
-        Recipe newRecipe = new Recipe(recipeName, cookTime, calories, allergiesList, category, url);
-        return newRecipe;
+        return new Recipe(recipeName, cookTime, calories, allergiesList, category, LocalDate.now(), url);
     }
 }

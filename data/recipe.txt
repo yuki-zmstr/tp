@@ -1,3 +1,0 @@
-pizza | 34 | 350 | eggs | DINNER | www.food.com
-pizza | 34 | 340 | eggs | DINNER | www.food.com
-cookies | 40 | 350 | eggs | DESSERT | THIS IS MY URL
