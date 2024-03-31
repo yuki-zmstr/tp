@@ -23,6 +23,22 @@ public class UI {
         System.out.println(SEPARATOR);
     }
 
+    /**
+     * Asks user for input in console.
+     */
+    public String getUserInput() {
+        printLine();
+        System.out.println("Enter command:");
+        String fullInputLine = in.nextLine();
+
+        System.out.println("[Command entered: " + fullInputLine + "]");
+        printLine();
+        return fullInputLine;
+    }
+
+    /**
+     * Greets the user.
+     */
     public static void sayHi() {
         printLine();
         System.out.println("Welcome to Recipe.io!");
@@ -34,6 +50,13 @@ public class UI {
         printLine();
     }
 
+    /**
+     * Reports to the user that a recipe has been added successfully.
+     * Also reports the number of recipes in the recipe book.
+     *
+     * @param recipe The recipe that was added.
+     * @param recipeListSize The size of the recipe book.
+     */
     public static void printAddMessage(Recipe recipe, int recipeListSize) {
         System.out.println("\tWoo hoo chef! I have added this recipe to your recipe book:");
         System.out.print("\t\t");
@@ -41,6 +64,13 @@ public class UI {
         System.out.println("\n\tYou now have " + recipeListSize + " recipes in your recipe book. Keep adding some!");
     }
 
+    /**
+     * Reports to the user that a recipe has been deleted successfully.
+     * Also reports the number of recipes in the recipe book.
+     *
+     * @param recipe The recipe that was deleted.
+     * @param recipeListSize The size of the recipe book.
+     */
     public static void printDeleteMessage(Recipe recipe, int recipeListSize) {
         System.out.println("\tOkay chef! I have deleted this recipe from your recipe book:");
         System.out.print("\t\t");
@@ -69,6 +99,9 @@ public class UI {
         System.out.println("\texit: to leave the program");
     }
 
+    /**
+     * Prints list of recipes. Refer to toString() method in Recipe class for implementation.
+     */
     public static void printRecipes(ArrayList<Recipe> matches) {
         matches.forEach(recipe -> System.out.println("\t\t" + recipe));
     }
@@ -80,21 +113,11 @@ public class UI {
         System.out.println("Invalid command.");
     }
 
+    /**
+     * Bids farewell to the user.
+     */
     public static void bye() {
         System.out.println("See you again chef!");
         printLine();
-    }
-
-    /**
-     * Asks user for input in console.
-     */
-    public String getUserInput() {
-        printLine();
-        System.out.println("Enter command:");
-        String fullInputLine = in.nextLine();
-
-        System.out.println("[Command entered: " + fullInputLine + "]");
-        printLine();
-        return fullInputLine;
     }
 }
