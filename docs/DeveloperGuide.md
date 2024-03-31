@@ -122,95 +122,84 @@ testers are expected to do more *exploratory* testing.</div>
 ### Adding a recipe
 
 1. **Test case** `add pizza/34/340/eggs/dinner/www.food.com`<br>
-   **Expected**: Mentioned recipe is added to the list of recipes.<br>
-   Console output providing a brief description of the added recipe and total recipes.
-   <br>*Example output*: Woo hoo chef! I have added this recipe to your recipe book:
-   <br>pizza / added on 2024-03-31 / url: www.food.com
-   <br>You now have 4 recipes in your recipe book. Keep adding some!
+   **Expected**: Mentioned recipe is added to the list of recipes. <br>
+   Console output providing a brief description of the added recipe <br>
+   and total number recipes present in list 
 
 2. **Test case** `add pizza/34/340/www.food.com`<br>
    **Expected**: Recipe is not added to the list due to format error.<br>
    Console output stating for the user to follow the correct format.
-   <br>*Example output*: Sorry. I couldn't understand. Please follow the correct format.
 
 3. **Test case** `add pizza/aa/aa/eggs/dinner/www.food.com`<br>
-   **Expected**: Recipe is not added to the list due to incorrect input types.<br>
-   Console output asking for user to use integer for the appropriate fields.
-   <br>*Example output*: Make sure you enter an integer for cook time and calories!
+   **Expected**: Recipe is not added to list due to incorrect input types.<br>
+   Console output asking for user to use integer for fields of cook time <br>
+   and calories
 
 4. **Test case** `add pizza/30/30/eggs/dinnerTest/www.food.com`<br>
    **Expected**: Recipe is not added to the list due to invalid meal categories.<br>
-   Console output asking for user select correct meal category from options.
-   <br>*Example output*: Please enter a valid meal category. Here are your options:
-   <br>BREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT
+   Console output asking for user select correct meal category from options of <br>
+   breakfast, lunch, dinner, appetizer and dessert
 
 ### Deleting a recipe
 
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
 2. **Test case**: `delete 1`<br>
-   **Expected**: First recipe is deleted from the list. Console output saying which recipe was deleted.
-   <br>*Example output*: 	Okay chef! I have deleted this recipe from your recipe book:
-   <br>pizza / added on 2024-03-30 / url: www.food.com
+   **Expected**: First recipe is deleted from the list. Console output <br>
+   saying which recipe was deleted with a brief description.
 
 3. **Test case**: `delete 0`<br>
-   **Expected**: No recipe is deleted. Console output tells you to input a number within the range of the recipe list numbers.
-   <br>*Example output*: Sorry, there is no recipe at index: 0
+   **Expected**: No recipe is deleted due to index given being out of bounds. <br>
+   Console output tells you to input a number within the range of the recipe list numbers.
 
 4. **Test case**: `delete xyz`<br>
-   **Expected**: No recipe is deleted. Console output tells you to input a number within the range of the recipe list numbers.
-   <br>*Example output*: Parameter cannot be parsed as an integer.
+   **Expected**: No recipe is deleted. Console output tells you to input <br>
+   an integer instead of other data types.
 
 5. **Test case**: `delete`<br>
-   **Expected**: No recipe is deleted. Console output tells you to use a index parameter for the delete function.
-   <br>*Example output*: The delete function takes in one parameter: {index}
-   <br>Input Example: delete 1
+   **Expected**: No recipe is deleted due to given index. Console output <br>
+   tells you to use a index parameter for the delete function.
 
 ### Finding a recipe by keyword
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list. At least one with "soup" in recipe name.
+1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.<br>
+   At least one with "soup" in recipe name.
 
 2. **Test case**: `find kw soup`<br>
-   **Expected**: Console output shows you which recipes have the word "soup" in its name.
-   <br>*Example output*: Here are your matches with keyword: soup
-   <br>soup / added on 2024-03-31 / url: www.food.com
+   **Expected**: Matching recipes are found. Console output shows you which <br>
+   recipes have the word "soup" in its name.
 
 3. **Test case**: `find kw sou`<br>
-   **Expected**: No recipe is found. Console output tells you to check if your parameter is a word.
-   <br>*Example output*: There were no matches. Try searching for something else.
+   **Expected**: No matching recipe is found. Console output tells you to attempt <br>
+   to search for another ingredient.
 
 4. **Test case**: `find kw`<br>
-   **Expected**: Console output tells you to check that you inputted two arguments to the find method.
-   <br>*Example output*: The find function accepts two parameters: {type} and {criteria}
-   <br>Input Example: find kw pizza
-   <br>Input Example: find date 2024-03-28
+   **Expected**: No matching recipe is found due to lack of search keywords. <br>
+   Console output tells you to check that you inputted two arguments to the find method.
 
 5. **Test case**: `find kw 1`<br>
-   **Expected**: Console output tells you to ensure the keyword is an alphabet
-   <br>*Example output*: Parameter cannot be parsed as an word.
-   <br> Please enter a word using lower and upper case alphabets.
+   **Expected**: No matching recipes is found due to invalid keyword. Console output <br> 
+   tells you to ensure the keyword is an alphabet
 
 ### Finding a recipe by date
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list. At least one with date as 2024-03-30.
+1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list. <br>
+   At least one with date as 2024-03-30.
 
 2. **Test case**: `find date 2024-03-30`<br>
-   **Expected**: Console output shows you which recipes were added on 2024-03-30.
-   <br>*Example output*: Here are your matches with date: 2024-03-30
-   <br>pizza / added on 2024-03-30 / url: www.food.com
+   **Expected**: Matching recipes are found with a valid date given. Console output <br>
+   shows you which recipes were added on 2024-03-30.
 
-3. **Test case**: `find date 2025-03-03`<br>
-      **Expected**: Console output shows you that no recipes were added on 2025-03-03.
-      <br>*Example output*: There were no matches. Try searching for something else.
+3. **Test case**: `find date 2024-01-03`<br>
+   **Expected**: No matching recipes are found despite a valid date given. Console output <br>
+   shows you that no recipes were added on 2024-01-03 as a valid gate is given without any <br>
+   matching recipes
 
 4. **Test case**: `find date xyx`<br>
-   **Expected**: No recipe is found. Console output tells you to check if your parameter is a valid date.
-   <br>*Example output*:Parameter cannot be parsed as a date.
-   <br>Please enter a date in the format yyyy-MM-dd
-   <br>Input Example: find date 2024-03-28
+   **Expected**: No recipe is found due to invalid date format or not following the <br> 
+   correct date convention. Console output tells you that the parameter cannot be parsed <br> 
+   as a valid date. Console output also hints the user to use the format of YYYY-MM-DD.
 
 5. **Test case**: `find date`<br>
-   **Expected**: Console output tells you to check that you inputted two arguments to the find method.
-   <br>*Example output*: The find function accepts two parameters: {type} and {criteria}
-   <br>Input Example: find kw pizza
-   <br>Input Example: find date 2024-03-28
+   **Expected**: No recipe is found due to the lack of a given date. Console output tells <br> 
+   you to check that you inputted two arguments to the find method.
