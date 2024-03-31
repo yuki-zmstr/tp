@@ -9,14 +9,22 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 /**
  * Main entry-point for the Recipe.IO application.
  */
 public class RecipeIO {
     private static UI ui;
     private static final Logger logger = Logger.getLogger("RecipeIO Logger");
+    private static final String PATH_TO_FILE = "data/recipe.txt";
+
     private final RecipeList recipeList;
 
+    /**
+     * Instantiates UI object, Storage object, and RecipeList object, for use during application run.
+     *
+     * @param filePath path to the file where recipe book is stored.
+     */
     public RecipeIO(String filePath) {
         ui = new UI();
         Storage storage = new Storage(filePath);
@@ -29,6 +37,9 @@ public class RecipeIO {
         UI.bye();
     }
 
+    /**
+     * Asks user for input. While the command is not 'exit', passes the input to RecipeList class to handle.
+     */
     public void runCommandLoopUntilExitCommand() {
         logger.log(Level.INFO, Constants.MESSAGE_ASK_INPUT);
         String userInput = ui.getUserInput();
@@ -45,6 +56,9 @@ public class RecipeIO {
 
     }
 
+    /**
+     * Sets up logger object.
+     */
     public static void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -61,6 +75,6 @@ public class RecipeIO {
 
     public static void main(String[] args) {
         setUpLogger();
-        new RecipeIO("data/recipe.txt").run();
+        new RecipeIO(PATH_TO_FILE).run();
     }
 }

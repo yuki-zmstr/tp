@@ -2,8 +2,8 @@
 
 ## Acknowledgements
 
-This application is built in partial fulfillment of the requirements of CS2113.</br>
-Knowledge and ideas are adapted from the CS2113 textbook, as well as SE-EDU textbook.
+* This application is built in partial fulfillment of the requirements of CS2113.<br>
+* Knowledge and ideas are adapted from the CS2113 textbook, as well as SE-EDU textbook.
 
 ---
 

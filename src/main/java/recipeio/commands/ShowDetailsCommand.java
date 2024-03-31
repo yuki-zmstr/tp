@@ -5,9 +5,9 @@ import recipeio.recipe.Recipe;
 public class ShowDetailsCommand {
 
     /**
-     * Prints details about a recipe
+     * Prints details about a recipe.
      *
-     * @param recipe The recipe to show details of
+     * @param recipe The recipe to show details of.
      */
     public static void execute(Recipe recipe) {
 
