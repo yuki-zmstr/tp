@@ -79,6 +79,19 @@ public class UI {
     }
 
     /**
+     * Prints the valid meal categories
+     */
+    public static void printValidMealCategories() {
+        System.out.println("\tAccepted meal categories are:");
+        System.out.println("\t\tBreakfast");
+        System.out.println("\t\tLunch");
+        System.out.println("\t\tDinner");
+        System.out.println("\t\tDessert");
+        System.out.println("\t\tAppetizer");
+        System.out.println("\t\tGeneral");
+    }
+
+    /**
      * Prints list of accepted instructions.
      */
     public static void printInstructions(){

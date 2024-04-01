@@ -14,6 +14,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FindCommandTest {
+    //Test find commands
+    public static final String COMMAND_INVALID_MEAL_CAT = "find meal fdjsjfsad";
+    public static final String COMMAND_EXIST_MEAL = "find meal breakfast";
+    public static final String COMMAND_NOT_EXIST_MEAL = "find meal Appetizer";
     private ArrayList<Recipe> recipes;
     private ArrayList<String> allergies;
 
@@ -59,7 +63,7 @@ public class FindCommandTest {
 
     @Test
     public void testFindByMealExistItem() {
-        String expected = "\tThese recipes have the category " + Constants.MEAL_CAT_BREAKFAST
+        String expected = "\tThese recipes have the category breakfast"
                 + System.lineSeparator()
                 + "\t\t" + "Pho / added on 2024-04-01 / url: www.pho.com"
                 + System.lineSeparator();
@@ -67,7 +71,7 @@ public class FindCommandTest {
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
-        FindCommand.execute(Constants.COMMAND_EXIST_MEAL, recipes);
+        FindCommand.execute(COMMAND_EXIST_MEAL, recipes);
 
         String actual = testOut.toString();
 
@@ -76,13 +80,13 @@ public class FindCommandTest {
 
     @Test
     public void testFindByMealNotExistItem() {
-        String expected = "\tThere's no recipe with category appetizer" +
+        String expected = "\tThere's no recipe with category Appetizer" +
                 System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
-        FindCommand.execute(Constants.COMMAND_NOT_EXIST_MEAL, recipes);
+        FindCommand.execute(COMMAND_NOT_EXIST_MEAL, recipes);
 
         String actual = testOut.toString();
 
@@ -91,12 +95,19 @@ public class FindCommandTest {
 
     @Test
     void testInvalidMealCat() {
-        String expected = "";
+        String expected = "Invalid meal category!" + System.lineSeparator()
+                + "\tAccepted meal categories are:" + System.lineSeparator()
+                + "\t\tBreakfast" + System.lineSeparator()
+                + "\t\tLunch" + System.lineSeparator()
+                + "\t\tDinner" + System.lineSeparator()
+                + "\t\tDessert" + System.lineSeparator()
+                + "\t\tAppetizer" + System.lineSeparator()
+                + "\t\tGeneral" + System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
-        FindCommand.execute(Constants.COMMAND_INVALID_MEAL_CAT, recipes);
+        FindCommand.execute(COMMAND_INVALID_MEAL_CAT, recipes);
 
         String actual = testOut.toString();
 

@@ -32,7 +32,9 @@ public class FindCommand {
             findDate(date, recipes);
             break;
         case (Constants.FIND_BY_MEAL):
-            if (!CommandValidator.isMealCat(criteria)){
+            if (!CommandValidator.isMealCat(criteria)) {
+                System.out.println("Invalid meal category!");
+                UI.printValidMealCategories();
                 return;
             }
             findMeal(criteria, recipes);
