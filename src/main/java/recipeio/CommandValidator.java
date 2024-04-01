@@ -58,6 +58,24 @@ public class CommandValidator {
         return true;
     }
 
+    public static boolean isMealCat(String input) {
+        String coreInput = input.trim().toLowerCase();
+        boolean isCategory;
+        switch (coreInput) {
+        case Constants.MEAL_CAT_GENERAL:
+        case Constants.MEAL_CAT_DINNER:
+        case Constants.MEAL_CAT_LUNCH:
+        case Constants.MEAL_CAT_BREAKFAST:
+        case Constants.MEAL_CAT_APPETIZER:
+        case Constants.MEAL_CAT_DESSERT:
+            isCategory = true;
+            break;
+        default:
+            isCategory = false;
+        }
+        return isCategory;
+    }
+
     /**
      * Checks if an input can be parsed as a word.
      *
