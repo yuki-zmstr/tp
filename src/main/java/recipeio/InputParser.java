@@ -77,10 +77,9 @@ public class InputParser {
         return parseDetails(userInput)[0];
     }
 
-    public static MealCategory parseMealCriteria(String userInput) throws InvalidMealCategory {
-        String stringCategory = parseDetails(userInput)[1];
+    public static MealCategory parseMealCriteria(String userInput) {
         MealCategory mealCategory;
-        switch (stringCategory) {
+        switch (userInput) {
         case Constants.MEAL_CAT_GENERAL:
             mealCategory = MealCategory.GENERAL;
             break;
@@ -100,7 +99,7 @@ public class InputParser {
             mealCategory = MealCategory.DESSERT;
             break;
         default:
-            throw new InvalidMealCategory();
+            mealCategory = MealCategory.GENERAL;
         }
         return mealCategory;
     }

@@ -59,7 +59,6 @@ public class FindCommandTest {
 
     @Test
     public void testFindByMealExistItem() {
-        String command = Constants.TEST_FIND_BY_MEAL_EXIST_ITEM;
         String expected = "\tThese recipes have the category " + Constants.MEAL_CAT_BREAKFAST
                 + System.lineSeparator()
                 + "\t\t" + "Pho / added on 2024-04-01 / url: www.pho.com"
@@ -68,7 +67,7 @@ public class FindCommandTest {
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
-        FindCommand.findByMeal(command, recipes);
+        FindCommand.execute(Constants.COMMAND_EXIST_MEAL, recipes);
 
         String actual = testOut.toString();
 
@@ -77,14 +76,13 @@ public class FindCommandTest {
 
     @Test
     public void testFindByMealNotExistItem() {
-        String command = Constants.TEST_FIND_BY_MEAL_NOT_EXIST_ITEM;
-        String expected = "\tThere's no recipe with category dessert" +
+        String expected = "\tThere's no recipe with category appetizer" +
                 System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
-        FindCommand.findByMeal(command, recipes);
+        FindCommand.execute(Constants.COMMAND_NOT_EXIST_MEAL, recipes);
 
         String actual = testOut.toString();
 
@@ -93,14 +91,12 @@ public class FindCommandTest {
 
     @Test
     void testInvalidMealCat() {
-        String command = Constants.TEST_FIND_BY_INVALID_MEAL;
-        String expected = "Invalid meal category!" +
-                System.lineSeparator();
+        String expected = "";
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
-        FindCommand.findByMeal(command, recipes);
+        FindCommand.execute(Constants.COMMAND_INVALID_MEAL_CAT, recipes);
 
         String actual = testOut.toString();
 

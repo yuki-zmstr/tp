@@ -32,6 +32,12 @@ public class FindCommand {
             LocalDate date = LocalDate.parse(criteria);
             findDate(date, recipes);
             break;
+        case (Constants.FIND_BY_MEAL):
+            if (!CommandValidator.isMealCat(criteria)){
+                return;
+            }
+            findMeal(criteria, recipes);
+           break;
         default:
             System.out.println("\tSorry, please follow one of the find command formats.");
             System.out.println("\tAccepted find parameters are: 'kw' and 'date'.");
@@ -70,28 +76,21 @@ public class FindCommand {
 
     /**
      * Show a list of recipes with a given meal category
-     * @param userInput the user's command from the terminal
+     * @param meal the user's meal search from the terminal
      * @param recipes the current recipe list
      */
-    public static void findByMeal(String userInput, ArrayList<Recipe> recipes) {
-        MealCategory mealCategory;
-        try {
-            mealCategory = InputParser.parseMealCriteria(userInput);
-        } catch (InvalidMealCategory e) {
-            System.out.println(e.toString());
-            return;
-        }
-        String categoryName = InputParser.parseDetails(userInput)[1];
+    public static void findMeal(String meal, ArrayList<Recipe> recipes) {
+        MealCategory mealCategory = InputParser.parseMealCriteria(meal);
         ArrayList<Recipe> matches = (ArrayList<Recipe>) recipes.stream()
                 .filter(recipe -> recipe.category == mealCategory)
                 .collect(Collectors.toList());
 
         if (matches.isEmpty()) {
-            System.out.println("\tThere's no recipe with category " + categoryName);
+            System.out.println("\tThere's no recipe with category " + meal);
             return;
         }
 
-        System.out.println("\tThese recipes have the category " + categoryName);
+        System.out.println("\tThese recipes have the category " + meal);
         UI.printRecipes(matches);
     }
 }

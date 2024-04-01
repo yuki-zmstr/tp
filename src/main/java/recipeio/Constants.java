@@ -28,6 +28,7 @@ public class Constants {
     public static final String FIND_BY_KEYWORD = "kw";
     public static final String FIND_BY_DATE = "date";
     public static final String FIND_BY_ALLERGY = "allergy";
+    public static final String FIND_BY_MEAL = "meal";
 
     public static final String MEAL_CAT_GENERAL = "general";
     public static final String MEAL_CAT_DINNER = "dinner";
@@ -37,9 +38,7 @@ public class Constants {
     public static final String MEAL_CAT_DESSERT = "dessert";
 
     //Test find commands
-    public static final String TEST_FIND_BY_MEAL_EXIST_ITEM = "find meal breakfast";
-
-    public static final String TEST_FIND_BY_MEAL_NOT_EXIST_ITEM = "find meal dessert";
-
-    public static final String TEST_FIND_BY_INVALID_MEAL = "find meal djsakhfs";
+    public static final String COMMAND_INVALID_MEAL_CAT = "find meal fdjsjfsad";
+    public static final String COMMAND_EXIST_MEAL = "find meal breakfast";
+    public static final String COMMAND_NOT_EXIST_MEAL = "find meal appetizer";
 }
