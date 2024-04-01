@@ -29,4 +29,11 @@ public class Constants {
     public static final String FIND_BY_DATE = "date";
     public static final String FIND_BY_ALLERGY = "allergy";
 
+    public static final String MEAL_CAT_GENERAL = "general";
+    public static final String MEAL_CAT_DINNER = "dinner";
+    public static final String MEAL_CAT_BREAKFAST = "breakfast";
+    public static final String MEAL_CAT_LUNCH = "lunch";
+    public static final String MEAL_CAT_APPETIZER = "appetizer";
+    public static final String MEAL_CAT_DESSERT = "dessert";
+
 }
