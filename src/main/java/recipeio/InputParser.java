@@ -81,26 +81,26 @@ public class InputParser {
         String stringCategory = parseDetails(userInput)[1];
         MealCategory mealCategory;
         switch (stringCategory) {
-            case Constants.MEAL_CAT_GENERAL:
-                mealCategory = MealCategory.GENERAL;
-                break;
-            case Constants.MEAL_CAT_DINNER:
-                mealCategory = MealCategory.DINNER;
-                break;
-            case Constants.MEAL_CAT_LUNCH:
-                mealCategory = MealCategory.LUNCH;
-                break;
-            case Constants.MEAL_CAT_BREAKFAST:
-                mealCategory = MealCategory.BREAKFAST;
-                break;
-            case Constants.MEAL_CAT_APPETIZER:
-                mealCategory = MealCategory.APPETIZER;
-                break;
-            case Constants.MEAL_CAT_DESSERT:
-                mealCategory = MealCategory.DESSERT;
-                break;
-            default:
-                throw new InvalidMealCategory();
+        case Constants.MEAL_CAT_GENERAL:
+            mealCategory = MealCategory.GENERAL;
+            break;
+        case Constants.MEAL_CAT_DINNER:
+            mealCategory = MealCategory.DINNER;
+            break;
+        case Constants.MEAL_CAT_LUNCH:
+            mealCategory = MealCategory.LUNCH;
+            break;
+        case Constants.MEAL_CAT_BREAKFAST:
+            mealCategory = MealCategory.BREAKFAST;
+            break;
+        case Constants.MEAL_CAT_APPETIZER:
+            mealCategory = MealCategory.APPETIZER;
+            break;
+        case Constants.MEAL_CAT_DESSERT:
+            mealCategory = MealCategory.DESSERT;
+            break;
+        default:
+            throw new InvalidMealCategory();
         }
         return mealCategory;
     }
