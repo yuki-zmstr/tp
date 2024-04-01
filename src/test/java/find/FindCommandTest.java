@@ -3,7 +3,6 @@ package find;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import recipeio.Constants;
 import recipeio.commands.FindCommand;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
