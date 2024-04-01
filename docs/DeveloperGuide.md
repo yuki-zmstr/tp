@@ -2,7 +2,7 @@
 
 ## Acknowledgements
 
-* This application is built in partial fulfillment of the requirements of CS2113.<br>
+* This application is built in partial fulfillment of the requirements of CS2113.
 * Knowledge and ideas are adapted from the CS2113 textbook, as well as SE-EDU textbook.
 
 ---
@@ -21,7 +21,7 @@ Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.
 
 <img src="images/ArchitectureDiagram.png" width="350" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the application.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -33,13 +33,13 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the app's work is done by the following five components:
 
-* **`UI`** The UI of the App.
-* **`RecipeList`**: The command executor and holder of data of the app.
-* **`InputParser`**: Extracts information from the user input into the command line.
-* **`CommandValidator`**: The command validator.
-* **`Storage`**: Reads data from, and writes data to, the hard disk.
+* `UI` The UI of the App.
+* `RecipeList`: The command executor and holder of data of the app.
+* `InputParser`: Extracts information from the user input into the command line.
+* `CommandValidator`: The command validator.
+* `Storage`: Reads data from, and writes data to, the hard disk.
 
-**`commands`** represents a collection of commands used by **`RecipeList`**
+the `commands`package represents a collection of commands used by **`RecipeList`**
 
 **How the architecture components interact with each other**
 
@@ -47,26 +47,53 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/DeleteRecipe.png" width="800" />
 
+### RecipeList Component
+
+The **API** of this component is specified in [RecipeList.java](https://github.com/AY2324S2-CS2113-W14-2/tp/tree/master/src/recipeio/recipe/RecipeList.java)
+
+![Structure of the UI Component](images/RecipeListDiagram.png)
+
+The `RecipeList` contains many `Recipe`s, which has attributes:
+* `name` : String
+* `cookTime` : int
+* `calories` : int
+* `allergies` : ArrayList<String>
+* `mealCategory` : MealCategory
+* `url` : String
+* `dateAdded` : LocaleDate
+
+How the component works:
+
+* Upon `executeCommand` call, the `RecipeList` will identify the command given in the user input (e.g. `list`), 
+* It will then call the corresponding `list()` method defined in `RecipeList`. 
+* This `list()` method in turn calls the `ListRecipeCommand.execute()` command. 
+* The reason for such a structure is to allow for command validation *before* the real execution. A good example is the `find()` command. 
+* Thus, `RecipeList` contains an intermediate method for each functionality (add, find, delete, so on) , and serves as a command validator.
+  * **Note:** these methods have been omitted in the class diagram for brevity.
+* In `add()` and `delete()`, the `saveRecipes()` method is called to save the recipeBook after the modification.
+
+
+
 ---
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ## Product scope
 
 ### Target user profile
 
 * Has a need to manage a significant number of recipes.
-* e.g. Professional culinary practitioners, students who love to cook.
-* can type fast 
+  * For example, professional culinary practitioners, students who love to cook.
+* Can type fast 
 * People having special dietary restrictions.
 * People who would like easily access the recipes they found online.
 
 ### Value proposition
 
-The user will be able to add, access, and list recipes.
-He can also filter recipes based on ingredients, time required, dietary restrictions, etc.
-The saved recipes will be loaded in a recipe text file for easy sharing with friends.
-The user can put the recipes into different categories.
+* The user will be able to add, access, and list recipes.
+* He can also filter recipes based on ingredients, time required, dietary restrictions, etc.
+* The saved recipes will be loaded in a recipe text file for easy sharing with friends.
+* The user can put the recipes into different categories.
 
 ## User Stories
 
@@ -84,20 +111,22 @@ The user can put the recipes into different categories.
 
 (For all use cases below, the **System** is the `RecipeIO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a recipe**
 
 1.  User requests to list recipes
 2.  RecipeIO shows a list of recipes
 3.  User requests to delete a specific recipe in the list
 4.  AddressBook deletes the person
 
-    Use case ends.
+Use case ends.
 
 ## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
-## Commands Glossary
+---
+
+## Appendix: Commands Glossary
 
 * *add [NAME, MINUTES, KCALS, ALLERGIES, CATEGORY, URL]* - This is the command a user can call to add a recipe. 
 * *help* - This shows the user all the available commands. 
@@ -203,3 +232,14 @@ testers are expected to do more *exploratory* testing.</div>
 5. **Test case**: `find date`
    * **Expected**: No recipe is found due to the lack of a given date. Console output tells 
    you to check that you inputted two arguments to the find method.
+
+---
+
+## Appendix: Area of Improvement
+
+1. **Having the CommandValidator return the parsed input, if the command is valid.**
+   * `CommandValidator` evaluates the inputs from the user, but only returns a boolean value of whether the command is valid.
+   * If the command is valid, there is an additional call to `InputParser` to get the inputs again.
+   * **Recommendation**: The `CommandValidator` could return the input together if the command is valid, and `null` otherwise.
+
+
