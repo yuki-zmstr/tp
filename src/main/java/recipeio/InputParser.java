@@ -1,5 +1,6 @@
 package recipeio;
 
+import recipeio.exceptions.InvalidMealCategory;
 import recipeio.recipe.Recipe;
 
 import java.time.LocalDate;
@@ -76,7 +77,7 @@ public class InputParser {
         return parseDetails(userInput)[0];
     }
 
-    public static MealCategory parseMealCriteria(String userInput) {
+    public static MealCategory parseMealCriteria(String userInput) throws InvalidMealCategory {
         String stringCategory = parseDetails(userInput)[1];
         MealCategory mealCategory;
         switch (stringCategory) {
@@ -99,7 +100,7 @@ public class InputParser {
                 mealCategory = MealCategory.DESSERT;
                 break;
             default:
-                mealCategory = MealCategory.GENERAL;
+                throw new InvalidMealCategory();
         }
         return mealCategory;
     }

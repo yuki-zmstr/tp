@@ -36,4 +36,10 @@ public class Constants {
     public static final String MEAL_CAT_APPETIZER = "appetizer";
     public static final String MEAL_CAT_DESSERT = "dessert";
 
+    //Test find commands
+    public static final String TEST_FIND_BY_MEAL_EXIST_ITEM = "find meal breakfast";
+
+    public static final String TEST_FIND_BY_MEAL_NOT_EXIST_ITEM = "find meal dessert";
+
+    public static final String TEST_FIND_BY_INVALID_MEAL = "find meal djsakhfs";
 }

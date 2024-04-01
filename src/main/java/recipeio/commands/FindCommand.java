@@ -3,10 +3,13 @@ package recipeio.commands;
 import recipeio.Constants;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
+import recipeio.enums.MealCategory;
+import recipeio.exceptions.InvalidMealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class FindCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
@@ -65,4 +68,30 @@ public class FindCommand {
         UI.printRecipes(matches);
     }
 
+    /**
+     * Show a list of recipes with a given meal category
+     * @param userInput the user's command from the terminal
+     * @param recipes the current recipe list
+     */
+    public static void findByMeal(String userInput, ArrayList<Recipe> recipes) {
+        MealCategory mealCategory;
+        try {
+            mealCategory = InputParser.parseMealCriteria(userInput);
+        } catch (InvalidMealCategory e) {
+            System.out.println(e.toString());
+            return;
+        }
+        String categoryName = InputParser.parseDetails(userInput)[1];
+        ArrayList<Recipe> matches = (ArrayList<Recipe>) recipes.stream()
+                .filter(recipe -> recipe.category == mealCategory)
+                .collect(Collectors.toList());
+
+        if (matches.isEmpty()) {
+            System.out.println("\tThere's no recipe with category " + categoryName);
+            return;
+        }
+
+        System.out.println("\tThese recipes have the category " + categoryName);
+        UI.printRecipes(matches);
+    }
 }
