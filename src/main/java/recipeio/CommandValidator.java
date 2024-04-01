@@ -1,7 +1,5 @@
 package recipeio;
 
-import recipeio.enums.MealCategory;
-import recipeio.exceptions.InvalidMealCategory;
 import recipeio.recipe.Recipe;
 
 import java.time.LocalDate;

@@ -4,7 +4,6 @@ import recipeio.Constants;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
 import recipeio.enums.MealCategory;
-import recipeio.exceptions.InvalidMealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 import java.time.LocalDate;
@@ -37,7 +36,7 @@ public class FindCommand {
                 return;
             }
             findMeal(criteria, recipes);
-           break;
+            break;
         default:
             System.out.println("\tSorry, please follow one of the find command formats.");
             System.out.println("\tAccepted find parameters are: 'kw' and 'date'.");
