@@ -77,29 +77,28 @@ public class InputParser {
     }
 
     public static MealCategory parseMealCriteria(String userInput) {
-        String stringCategory = parseDetails(userInput)[1];
         MealCategory mealCategory;
-        switch (stringCategory) {
-            case Constants.MEAL_CAT_GENERAL:
-                mealCategory = MealCategory.GENERAL;
-                break;
-            case Constants.MEAL_CAT_DINNER:
-                mealCategory = MealCategory.DINNER;
-                break;
-            case Constants.MEAL_CAT_LUNCH:
-                mealCategory = MealCategory.LUNCH;
-                break;
-            case Constants.MEAL_CAT_BREAKFAST:
-                mealCategory = MealCategory.BREAKFAST;
-                break;
-            case Constants.MEAL_CAT_APPETIZER:
-                mealCategory = MealCategory.APPETIZER;
-                break;
-            case Constants.MEAL_CAT_DESSERT:
-                mealCategory = MealCategory.DESSERT;
-                break;
-            default:
-                mealCategory = MealCategory.GENERAL;
+        switch (userInput) {
+        case Constants.MEAL_CAT_GENERAL:
+            mealCategory = MealCategory.GENERAL;
+            break;
+        case Constants.MEAL_CAT_DINNER:
+            mealCategory = MealCategory.DINNER;
+            break;
+        case Constants.MEAL_CAT_LUNCH:
+            mealCategory = MealCategory.LUNCH;
+            break;
+        case Constants.MEAL_CAT_BREAKFAST:
+            mealCategory = MealCategory.BREAKFAST;
+            break;
+        case Constants.MEAL_CAT_APPETIZER:
+            mealCategory = MealCategory.APPETIZER;
+            break;
+        case Constants.MEAL_CAT_DESSERT:
+            mealCategory = MealCategory.DESSERT;
+            break;
+        default:
+            mealCategory = MealCategory.GENERAL;
         }
         return mealCategory;
     }

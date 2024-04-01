@@ -3,10 +3,12 @@ package recipeio.commands;
 import recipeio.Constants;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
+import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class FindCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
@@ -28,6 +30,12 @@ public class FindCommand {
             }
             LocalDate date = LocalDate.parse(criteria);
             findDate(date, recipes);
+            break;
+        case (Constants.FIND_BY_MEAL):
+            if (!CommandValidator.isMealCat(criteria)){
+                return;
+            }
+            findMeal(criteria, recipes);
             break;
         default:
             System.out.println("\tSorry, please follow one of the find command formats.");
@@ -65,4 +73,23 @@ public class FindCommand {
         UI.printRecipes(matches);
     }
 
+    /**
+     * Show a list of recipes with a given meal category
+     * @param meal the user's meal search from the terminal
+     * @param recipes the current recipe list
+     */
+    public static void findMeal(String meal, ArrayList<Recipe> recipes) {
+        MealCategory mealCategory = InputParser.parseMealCriteria(meal);
+        ArrayList<Recipe> matches = (ArrayList<Recipe>) recipes.stream()
+                .filter(recipe -> recipe.category == mealCategory)
+                .collect(Collectors.toList());
+
+        if (matches.isEmpty()) {
+            System.out.println("\tThere's no recipe with category " + meal);
+            return;
+        }
+
+        System.out.println("\tThese recipes have the category " + meal);
+        UI.printRecipes(matches);
+    }
 }
