@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+hide empty members
+
+skinparam classAttributeIconSize 0
+class RecipeList {
+
+    +executeCommand(String command, String userInput) : void
+    +saveRecipes() : void
+}
+class Recipe {
+    +String name
+    +int cookTime
+    +int calories
+    +ArrayList<String> allergies
+    +String url
+    +LocaleDate dateAdded
+    +toString()
+}
+
+note left of Recipe::"toString()"
+    Overridden method
+end note
+
+RecipeList *--> "recipe *" Recipe : contains >
+
+Recipe --> "mealCategory 1" MealCategory
+
+enum MealCategory <<enumeration>> {
+    GENERAL, BREAKFAST,
+    LUNCH, DINNER,
+    APPETIZER, DESSERT
+}
+
+@enduml
