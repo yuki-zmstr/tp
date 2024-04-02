@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import recipeio.enums.MealCategory;
+import recipeio.constants.InputParserConstants;
 
-import static recipeio.Constants.INDEX_COMMAND;
-import static recipeio.Constants.INDEX_ID;
-import static recipeio.Constants.INTEGER_NEEDED_ERROR_MESSAGE;
-import static recipeio.Constants.INVALID_TASK_FORMAT_ERROR_MESSAGE;
-import static recipeio.Constants.MEAL_CATEGORY_ERROR_MESSAGE;
-import static recipeio.Constants.RECIPE_DELIMETER;
-
+import static recipeio.constants.InputParserConstants.INDEX_COMMAND;
+import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
+import static recipeio.constants.InputParserConstants.ARRAY_START_INDEX;
+import static recipeio.constants.InputParserConstants.FIND_TYPE_INDEX;
+import static recipeio.constants.InputParserConstants.FIND_CRITERIA_INDEX;
+import static recipeio.constants.InputParserConstants.FIND_ALLERGY_INDEX;
+import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
+import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 
 /**
  * Methods to parse input by the user.
@@ -41,7 +43,7 @@ public class InputParser {
     public static Integer parseID(String userInput) {
         String id = "";
         try {
-            id = userInput.trim().split(" ")[INDEX_ID];
+            id = userInput.trim().split(" ")[InputParserConstants.INDEX_ID];
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\tIndex not given, please enter an index");
             return null;
@@ -60,41 +62,41 @@ public class InputParser {
     public static String[] parseDetails(String userInput){
         String[] words = userInput.trim().split(" ");
         // Ignore the first word and join the remaining words into a string
-        String remainingInput = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
+        String remainingInput = String.join(" ", Arrays.copyOfRange(words, ARRAY_START_INDEX, words.length));
         return remainingInput.trim().split(" ");
     }
 
     public static String parseFindType(String userInput) {
-        return parseDetails(userInput)[0];
+        return parseDetails(userInput)[FIND_TYPE_INDEX];
     }
 
     public static String parseFindCriteria(String userInput) {
-        return parseDetails(userInput)[1];
+        return parseDetails(userInput)[FIND_CRITERIA_INDEX];
     }
 
     public static String parseAllergyCriteria(String userInput) {
-        return parseDetails(userInput)[0];
+        return parseDetails(userInput)[FIND_ALLERGY_INDEX];
     }
 
     public static MealCategory parseMealCriteria(String userInput) {
         MealCategory mealCategory;
         switch (userInput) {
-        case Constants.MEAL_CAT_GENERAL:
+        case InputParserConstants.MEAL_CAT_GENERAL:
             mealCategory = MealCategory.GENERAL;
             break;
-        case Constants.MEAL_CAT_DINNER:
+        case InputParserConstants.MEAL_CAT_DINNER:
             mealCategory = MealCategory.DINNER;
             break;
-        case Constants.MEAL_CAT_LUNCH:
+        case InputParserConstants.MEAL_CAT_LUNCH:
             mealCategory = MealCategory.LUNCH;
             break;
-        case Constants.MEAL_CAT_BREAKFAST:
+        case InputParserConstants.MEAL_CAT_BREAKFAST:
             mealCategory = MealCategory.BREAKFAST;
             break;
-        case Constants.MEAL_CAT_APPETIZER:
+        case InputParserConstants.MEAL_CAT_APPETIZER:
             mealCategory = MealCategory.APPETIZER;
             break;
-        case Constants.MEAL_CAT_DESSERT:
+        case InputParserConstants.MEAL_CAT_DESSERT:
             mealCategory = MealCategory.DESSERT;
             break;
         default:
@@ -107,30 +109,30 @@ public class InputParser {
         String[] words = userInput.trim().split(" ");
         // Ignore the first word and join the remaining words into a string
         //add pizza/34/340/eggs/dinner/www.food.com
-        String[] remainingInput = words[1].trim().split(RECIPE_DELIMETER);
+        String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
         assert remainingInput.length > 0;
-        if (remainingInput.length != 6) {
-            throw new Exception(INVALID_TASK_FORMAT_ERROR_MESSAGE);
+        if (remainingInput.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
+            throw new Exception(InputParserConstants.INVALID_TASK_FORMAT_ERROR_MESSAGE);
         }
-        String recipeName = remainingInput[0].trim();
+        String recipeName = remainingInput[InputParserConstants.RECIPE_NAME_INDEX].trim();
         try {
-            Integer.parseInt(remainingInput[1].trim());
-            Integer.parseInt(remainingInput[2].trim());
+            Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
+            Integer.parseInt(remainingInput[InputParserConstants.CALORIES_INDEX].trim());
         } catch (NumberFormatException e){
-            throw new Exception(INTEGER_NEEDED_ERROR_MESSAGE);
+            throw new Exception(InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE);
         }
-        int cookTime = Integer.parseInt(remainingInput[1].trim());
-        int calories = Integer.parseInt(remainingInput[2].trim());
-        String[] allergies = remainingInput[3].trim().split(", ");
+        int cookTime = Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
+        int calories = Integer.parseInt(remainingInput[InputParserConstants.CALORIES_INDEX].trim());
+        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().split(", ");
         ArrayList<String> allergiesList = new ArrayList<>();
         Collections.addAll(allergiesList, allergies);
         try {
-            MealCategory.valueOf(remainingInput[4].trim().toUpperCase());
+            MealCategory.valueOf(remainingInput[MEAL_CATEGORY_INDEX].trim().toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new Exception(MEAL_CATEGORY_ERROR_MESSAGE);
+            throw new Exception(InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE);
         }
-        MealCategory category = MealCategory.valueOf(remainingInput[4].trim().toUpperCase());
-        String url = remainingInput[5].trim();
+        MealCategory category = MealCategory.valueOf(remainingInput[MEAL_CATEGORY_INDEX].trim().toUpperCase());
+        String url = remainingInput[InputParserConstants.URL_INDEX].trim();
         return new Recipe(recipeName, cookTime, calories, allergiesList, category, LocalDate.now(), url);
     }
 }
