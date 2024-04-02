@@ -6,6 +6,8 @@ import recipeio.ui.UI;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import static recipeio.constants.CommandConstants.RECIPES_INCLUDED;
+import static recipeio.constants.CommandConstants.RECIPES_EXCLUDED;
 
 public class FilterByAllergyCommand {
 
@@ -24,11 +26,11 @@ public class FilterByAllergyCommand {
                 .collect(Collectors.toList());
 
         if (matches.isEmpty()) {
-            System.out.println("\tAll of your recipes include: " + allergy);
+            System.out.println("\t" + RECIPES_INCLUDED + allergy);
             return;
         }
 
-        System.out.println("\tThese recipes do not include: " + allergy);
+        System.out.println("\t" + RECIPES_EXCLUDED + allergy);
         UI.printRecipes(matches);
     }
 }

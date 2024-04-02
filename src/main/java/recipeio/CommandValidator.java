@@ -1,12 +1,20 @@
 package recipeio;
 
 import recipeio.recipe.Recipe;
+import recipeio.constants.CommandValidatorConstants;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
+
+import static recipeio.constants.CommandValidatorConstants.INPUT_DETAILS_INDEX;
+import static recipeio.constants.CommandValidatorConstants.MAX_RECIPES;
+import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
+import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
+import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
+import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
 
 /**
  * Class containing methods that validate a user's input into the command line.
@@ -49,8 +57,7 @@ public class CommandValidator {
      */
     public static boolean isWord(String input) {
         // Regular expression to match only alphabetic characters
-        String regex = "^[a-zA-Z]+$";
-        if (!input.matches(regex)){
+        if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
             System.out.println("\tParameter cannot be parsed as an word.");
             System.out.println("\tPlease enter a word using lower and upper case alphabets.");
             return false;
@@ -62,12 +69,12 @@ public class CommandValidator {
         String coreInput = input.trim().toLowerCase();
         boolean isCategory;
         switch (coreInput) {
-        case Constants.MEAL_CAT_GENERAL:
-        case Constants.MEAL_CAT_DINNER:
-        case Constants.MEAL_CAT_LUNCH:
-        case Constants.MEAL_CAT_BREAKFAST:
-        case Constants.MEAL_CAT_APPETIZER:
-        case Constants.MEAL_CAT_DESSERT:
+        case CommandValidatorConstants.MEAL_CAT_GENERAL:
+        case CommandValidatorConstants.MEAL_CAT_DINNER:
+        case CommandValidatorConstants.MEAL_CAT_LUNCH:
+        case CommandValidatorConstants.MEAL_CAT_BREAKFAST:
+        case CommandValidatorConstants.MEAL_CAT_APPETIZER:
+        case CommandValidatorConstants.MEAL_CAT_DESSERT:
             isCategory = true;
             break;
         default:
@@ -101,7 +108,7 @@ public class CommandValidator {
      * @return status of check.
      */
     public static boolean isWithinRange(ArrayList<Recipe> recipes, int index) {
-        if (index > recipes.size() || index < 1) {
+        if (index > recipes.size() || index < MAX_RECIPES) {
             System.out.println("\tSorry, there is no recipe at index: " + index);
             System.out.println("\tYou currently have: " + recipes.size() + " recipes");
             return false;
@@ -120,12 +127,12 @@ public class CommandValidator {
      */
     public static boolean isValidDetailCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
-        if (details.length != 1 || details[0].isEmpty()) {
+        if (details.length != VALID_DETAILS_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
             System.out.println("\tThe detail function takes in one parameter: {index}");
             System.out.println("\t\tInput Example: detail 1");
             return false;
         }
-        if (!isParsableAsInteger(details[0])) {
+        if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
             System.out.println("\t\tInput Example: detail 1");
             return false;
         }
@@ -150,12 +157,12 @@ public class CommandValidator {
      */
     public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
-        if (details.length != 1 || details[0].isEmpty()) {
+        if (details.length != VALID_DELETE_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
             System.out.println("\tThe delete function takes in one parameter: {index}");
             System.out.println("\t\tInput Example: delete 1");
             return false;
         }
-        if (!isParsableAsInteger(details[0])) {
+        if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
             System.out.println("\t\tInput Example: delete 1");
             return false;
         }
@@ -177,7 +184,7 @@ public class CommandValidator {
      */
     public static boolean isValidFindCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
-        if (details.length != 2) {
+        if (details.length != VALID_FIND_LENGTH) {
             System.out.println("\tThe find function accepts two parameters: {type} and {criteria}");
             System.out.println("\t\tInput Example: find kw pizza");
             System.out.println("\t\tInput Example: find date 2024-03-28");
@@ -195,12 +202,12 @@ public class CommandValidator {
      */
     public static boolean isValidFilterCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
-        if (details.length != 1 || details[0].isEmpty()) {
+        if (details.length != VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
             System.out.println("\tThe filter function takes in one parameter: {allergy}");
             System.out.println("\t\tInput Example: filter dairy");
             return false;
         }
-        if (!isWord(details[0])) {
+        if (!isWord(details[INPUT_DETAILS_INDEX])) {
             System.out.println("\t\tInput Example: filter dairy");
             return false;
         }
