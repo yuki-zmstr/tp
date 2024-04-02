@@ -1,14 +1,26 @@
 package recipeio.commands;
 
-import recipeio.Constants;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import static recipeio.constants.CommandConstants.FIND_BY_KEYWORD;
+import static recipeio.constants.CommandConstants.FIND_BY_MEAL;
+import static recipeio.constants.CommandConstants.FIND_BY_DATE;
+import static recipeio.constants.CommandConstants.INVALID_MEAL_ERROR;
+import static recipeio.constants.CommandConstants.INVALID_FIND_ERROR;
+import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
+import static recipeio.constants.CommandConstants.NO_MATCHES_PROMPT;
+import static recipeio.constants.CommandConstants.VALID_KEYWORD_MATCHES;
+import static recipeio.constants.CommandConstants.VALID_DATE_MATCHES;
+import static recipeio.constants.CommandConstants.NO_CATEGORY_MATCHES;
+import static recipeio.constants.CommandConstants.VALID_CATEGORY_MATCHES;
 
 public class FindCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
@@ -18,30 +30,29 @@ public class FindCommand {
         String findType = InputParser.parseFindType(userInput);
         String criteria = InputParser.parseFindCriteria(userInput);
         switch (findType) {
-        case (Constants.FIND_BY_KEYWORD):
+        case (FIND_BY_KEYWORD):
             if (!CommandValidator.isWord(criteria)) {
                 return;
             }
             findKeyword(criteria, recipes);
             break;
-        case (Constants.FIND_BY_DATE):
+        case (FIND_BY_DATE):
             if (!CommandValidator.isParsableAsDate(criteria)) {
                 return;
             }
             LocalDate date = LocalDate.parse(criteria);
             findDate(date, recipes);
             break;
-        case (Constants.FIND_BY_MEAL):
+        case (FIND_BY_MEAL):
             if (!CommandValidator.isMealCat(criteria)) {
-                System.out.println("Invalid meal category!");
+                System.out.println(INVALID_MEAL_ERROR);
                 UI.printValidMealCategories();
                 return;
             }
             findMeal(criteria, recipes);
             break;
         default:
-            System.out.println("\tSorry, please follow one of the find command formats.");
-            System.out.println("\tAccepted find parameters are: 'kw' and 'date'.");
+            System.out.println(INVALID_FIND_ERROR);
         }
     }
     public static void findKeyword(String keyword, ArrayList<Recipe> recipes) {
@@ -52,11 +63,11 @@ public class FindCommand {
             }
         }
         if (matches.isEmpty()) {
-            System.out.println(Constants.NO_MATCHES_ERROR_MESSAGE);
-            System.out.println("\tPlease ensure that you have inputted a full word.");
+            System.out.println(NO_MATCHES_ERROR);
+            System.out.println(NO_MATCHES_PROMPT);
             return;
         }
-        System.out.println("\tHere are your matches with keyword: " + keyword);
+        System.out.println(VALID_KEYWORD_MATCHES + keyword);
         UI.printRecipes(matches);
     }
 
@@ -68,10 +79,10 @@ public class FindCommand {
             }
         }
         if (matches.isEmpty()) {
-            System.out.println(Constants.NO_MATCHES_ERROR_MESSAGE);
+            System.out.println(NO_MATCHES_ERROR);
             return;
         }
-        System.out.println("\tHere are your matches with date: " + date);
+        System.out.println(VALID_DATE_MATCHES + date);
         UI.printRecipes(matches);
     }
 
@@ -87,11 +98,11 @@ public class FindCommand {
                 .collect(Collectors.toList());
 
         if (matches.isEmpty()) {
-            System.out.println("\tThere's no recipe with category " + meal);
+            System.out.println(NO_CATEGORY_MATCHES + meal);
             return;
         }
 
-        System.out.println("\tThese recipes have the category " + meal);
+        System.out.println(VALID_CATEGORY_MATCHES + meal);
         UI.printRecipes(matches);
     }
 }
