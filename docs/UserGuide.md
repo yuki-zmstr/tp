@@ -12,7 +12,7 @@ In particular, it allows users to keep track of the URL at which he or she found
 - **Add Recipe:** Add new recipe through the command line by providing a recipe description.
 - **Delete Recipe:** Delete a recipe from the recipe book.
 - **View Recipe Book:** List all recipes in recipe book.
-- **Find Recipe:** Find a recipe using a keyword or date.
+- **Find Recipe:** Find a recipe using a keyword, date or meal category.
 - **Filter Recipe:** Show recipes that do not contain a certain allergy.
 
 ### 2. Command-Line Interface
@@ -82,14 +82,17 @@ Format: `detail LIST_NUMBER`
 Searches for all recipes that meet a certain criteria.
 
 Format: `find TYPE CRITERIA`
-* The `TYPE` must be either `kw` (search by keyword), or `date` (search by date).
+* The `TYPE` must be either `kw` (search by keyword), `date` (search by date), or `meal` (search by meal category).
 * If type `kw` is given, `CRITERIA` must be a word. This searches for an exact match of the word in the recipe name.
 * If type `date` is given, `CRITERIA` must be a date in yyyy-MM-dd format. This searches for recipes added on this date.
+* If type `meal` is given, `CRITERIA` must be a valid meal category. There are 6 meal categories: `general`, `breakfast`, `lunch`, `dinner`, `appetizer`, and `dessert`.
 
 Example of usage:
 `find kw pizza`
 
 `find date 2024-03-28`
+
+`find meal breakfast`
 
 ### 7. Filter recipes by allergy : `filter`
 Shows recipes that do not contain a given allergy.
@@ -114,6 +117,7 @@ Format: `exit`
 * Show details `detail LIST_NUMBER`
 * Find by keyword `find kw pizza`
 * Find by date `find date 2024-03-28`
+* Find by meal category `find meal breakfast`
 * Filter by allergy `filter dairy`
 * Exit program `exit`
 
