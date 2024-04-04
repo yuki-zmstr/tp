@@ -106,11 +106,14 @@ public class InputParser {
         return mealCategory;
     }
 
-    public static Recipe parseAdd(String userInput) throws Exception {
+    public static String[] splitUpAddInput(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
+        return remainingInput;
+    }
+    public static Recipe parseAdd(String userInput) throws Exception {
+        String[] remainingInput = splitUpAddInput(userInput);
         assert remainingInput.length > 0 : "Add additional parameters to add command";
-        checkCorrectAddFormat(remainingInput);
         return breakUpRemainingInput(remainingInput);
     }
 
@@ -124,22 +127,5 @@ public class InputParser {
         String url = remainingInput[InputParserConstants.URL_INDEX].trim();
         System.out.println(url);
         return new Recipe(recipeName, cookTime, calories, allergiesList, category, LocalDate.now(), url);
-    }
-
-    public static void checkCorrectAddFormat(String[] remainingInput) throws Exception {
-        if (remainingInput.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
-            throw new Exception(InputParserConstants.INVALID_TASK_FORMAT_ERROR_MESSAGE);
-        }
-        try {
-            Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
-            Integer.parseInt(remainingInput[InputParserConstants.CALORIES_INDEX].trim());
-        } catch (NumberFormatException e){
-            throw new Exception(InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE);
-        }
-        try {
-            MealCategory.valueOf(remainingInput[MEAL_CATEGORY_INDEX].trim().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new Exception(InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE);
-        }
     }
 }

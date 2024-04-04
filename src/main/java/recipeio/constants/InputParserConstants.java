@@ -24,7 +24,7 @@ public class InputParserConstants {
     public static final String MEAL_CAT_DESSERT = "dessert";
 
     public static final String INTEGER_NEEDED_ERROR_MESSAGE = "Make sure you enter an integer for cook time and" +
-            "calories!";
+            " calories!";
     public static final String INVALID_TASK_FORMAT_ERROR_MESSAGE = "Sorry. I couldn't understand. Please follow the " +
             "correct format.";
 

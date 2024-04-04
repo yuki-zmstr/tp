@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 
 import static recipeio.InputParser.parseAdd;
+import static recipeio.InputParser.splitUpAddInput;
 import static recipeio.constants.RecipeListConstants.LIST_COMMAND;
 import static recipeio.constants.RecipeListConstants.DETAIL_COMMAND;
 import static recipeio.constants.RecipeListConstants.ADD_COMMAND;
@@ -122,7 +123,9 @@ public class RecipeList {
      * @param userInput input from the user in the command line.
      */
     public void add(String userInput) {
-        assert(recipes.size() < MAX_RECIPES);
+        if (!CommandValidator.isValidAddCommand(userInput)){
+            return;
+        }
         try {
             Recipe newRecipe = parseAdd(userInput);
             AddRecipeCommand.execute(newRecipe, recipes);

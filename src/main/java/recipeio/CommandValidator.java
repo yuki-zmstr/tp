@@ -1,5 +1,7 @@
 package recipeio;
 
+import recipeio.constants.InputParserConstants;
+import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.constants.CommandValidatorConstants;
 
@@ -9,12 +11,19 @@ import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
 
+import static recipeio.InputParser.splitUpAddInput;
 import static recipeio.constants.CommandValidatorConstants.INPUT_DETAILS_INDEX;
 import static recipeio.constants.CommandValidatorConstants.MAX_RECIPES;
 import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
+import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
+import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
+import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.INVALID_TASK_FORMAT_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 
 /**
  * Class containing methods that validate a user's input into the command line.
@@ -188,6 +197,31 @@ public class CommandValidator {
             System.out.println("\tThe find function accepts two parameters: {type} and {criteria}");
             System.out.println("\t\tInput Example: find kw pizza");
             System.out.println("\t\tInput Example: find date 2024-03-28");
+            System.out.println("\\t\\tInput Example: find meal dinner");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidAddCommand(String userInput) {
+        String[] details = InputParser.parseDetails(userInput);
+        if (details.length < InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
+            System.out.println("\tThe add function accepts 6 parameters: {name} {cook time} {calories}\n\t {singular " +
+                    "space separated allergies} {meal category} {url}");
+            System.out.println("\t\tInput Example: add pizza, 34, 340, egg dairy, dinner, www.food.com");
+            return false;
+        }
+        String[] remainingInput = splitUpAddInput(userInput);
+        if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            return false;
+        }
+        if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            return false;
+        }
+        if (!isMealCat(remainingInput[MEAL_CATEGORY_INDEX])) {
+            System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
         }
         return true;
