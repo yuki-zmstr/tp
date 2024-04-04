@@ -39,7 +39,7 @@ The bulk of the app's work is done by the following five components:
 * `CommandValidator`: The command validator.
 * `Storage`: Reads data from, and writes data to, the hard disk.
 
-the `commands`package represents a collection of commands used by **`RecipeList`**
+The `commands`package represents a collection of commands used by **`RecipeList`**.
 
 **How the architecture components interact with each other**
 
@@ -49,7 +49,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ### RecipeList Component
 
-The **API** of this component is specified in [RecipeList.java](https://github.com/AY2324S2-CS2113-W14-2/tp/tree/master/src/recipeio/recipe/RecipeList.java)
+The **API** of this component is specified in [RecipeList.java](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/src/main/java/recipeio/recipe/RecipeList.java)
 
 ![Structure of the UI Component](images/RecipeListDiagram.png)
 
@@ -143,72 +143,72 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+**Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.</div>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 ### Adding a recipe
 
-1. **Test case** `add pizza/34/340/eggs/dinner/www.food.com
+1. **Test case** `add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com`
    * **Expected**: Mentioned recipe is added to the list of recipes.
-   * **Console output** providing a brief description of the added recipe 
-   and total number recipes present in list 
+   * **Console output**: Provides a brief description of the added recipe 
+   and total number recipes present in list.
 
-2. **Test case** `add pizza/34/340/www.food.com`
-   * **Expected**: Recipe is not added to the list due to format error.
-   * **Console output** stating for the user to follow the correct format.
+2. **Test case** `add pizza, 34, 340, egg nut dairy gluten, dinner`
+   * **Expected**: Recipe is not added to the list due to missing parameter.
+   * **Console output**: Asks the user to input 6 parameters.
 
-3. **Test case** `add pizza/aa/aa/eggs/dinner/www.food.com`
+3. **Test case** `add pizza, abc, def, egg nut dairy gluten, dinner, www.food.com`
    * **Expected**: Recipe is not added to list due to incorrect input types.
-   * **Console output** asking for user to use integer for fields of cook time
-   and calories
+   * **Console output**: Asks the user to use integer for fields of cook time
+   and calories.
 
-4. **Test case** `add pizza/30/30/eggs/dinnerTest/www.food.com`
+4. **Test case** `add pizza, 34, 340, egg nut dairy gluten, capybara, www.food.com`
    * **Expected**: Recipe is not added to the list due to invalid meal categories.
-   * **Console output** asking for user select correct meal category from options of
-   breakfast, lunch, dinner, appetizer and dessert
+   * **Console output**: Asks the user to select correct meal category from options of
+   breakfast, lunch, dinner, appetizer and dessert.
 
 ### Deleting a recipe
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
-2. **Test case**: `delete 1`
+1. **Test case**: `delete 1`
    * **Expected**: First recipe is deleted from the list. 
-   * **Console output** saying which recipe was deleted with a brief description.
+   * *Console output*: Says which recipe was deleted with a brief description.
 
-3. **Test case**: `delete 0`
+2. **Test case**: `delete 0`
    * **Expected**: No recipe is deleted due to index given being out of bounds.
-   * **Console output** tells you to input a number within the range of the recipe list numbers.
+   * *Console output*: Asks the user to input a number within the range of the recipe list numbers.
 
-4. **Test case**: `delete xyz`
+3. **Test case**: `delete xyz`
    * **Expected**: No recipe is deleted. 
-   * **Console output** tells you to input an integer instead of other data types.
+   * *Console output*: Asks the user to input an integer instead of other data types.
 
-5. **Test case**: `delete`
+4. **Test case**: `delete`
    * **Expected**: No recipe is deleted due to given index. 
-   * **Console output** tells you to use an index parameter for the delete function.
+   * *Console output* Asks the user to use an index parameter for the delete function.
 
 ### Finding a recipe by keyword
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
    At least one with "soup" in recipe name.
 
-2. **Test case**: `find kw soup`
+1. **Test case**: `find kw soup`
    * **Expected**: Matching recipes are found. 
-   * **Console output** shows you which recipes have the word "soup" in its name.
+   * *Console output*: Shows the user which recipes have the word "soup" in its name.
 
-3. **Test case**: `find kw sou`
+2. **Test case**: `find kw sou`
    * **Expected**: No matching recipe is found. 
-   * **Console output** tells you to attempt to search for another ingredient.
+   * *Console output*: Asks the user to attempt to search for another ingredient.
 
-4. **Test case**: `find kw`
+3**Test case**: `find kw`
    * **Expected**: No matching recipe is found due to lack of search keywords.
-   * **Console output** tells you to check that you inputted two arguments to the find method.
+   * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
 
-5. **Test case**: `find kw 1`
+4**Test case**: `find kw 1`
    * **Expected**: No matching recipes is found due to invalid keyword. 
-   * **Console output** tells you to ensure the keyword is an alphabet
+   * *Console output*: Asks the user to ensure the keyword uses alphabets.
 
 ### Finding a recipe by date
 
@@ -217,22 +217,22 @@ testers are expected to do more *exploratory* testing.</div>
 
 2. **Test case**: `find date 2024-03-30`
    * **Expected**: Matching recipes are found with a valid date given. 
-   * **Console output** shows you which recipes were added on 2024-03-30.
+   * *Console output*: Shows the user which recipes were added on 2024-03-30.
 
 3. **Test case**: `find date 2024-01-03`
    * **Expected**: No matching recipes are found despite a valid date given. 
-   * **Console output** shows you that no recipes were added on 2024-01-03 as a 
-   valid gate is given without any matching recipes
+   * *Console output*: Reports that no recipes were added on 2024-01-03 as a 
+   valid gate is given without any matching recipes.
 
 4. **Test case**: `find date xyx`
    * **Expected**: No recipe is found due to invalid date format or not following the
    correct date convention. 
-   * **Console output** tells you that the parameter cannot be parsed as a valid date. 
-   * **Console output** also hints the user to use the format of YYYY-MM-DD.
+   * *Console output*: Reports that the parameter cannot be parsed as a valid date. 
+   * *Console output*: Also hints at the user to use the format of YYYY-MM-DD.
 
 5. **Test case**: `find date`
    * **Expected**: No recipe is found due to the lack of a given date. 
-   * **Console output** tells you to check that you inputted two arguments to the find method.
+   * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
 
 ---
 
