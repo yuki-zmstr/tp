@@ -1,4 +1,4 @@
-q# User Guide to Recipe.io
+# User Guide to Recipe.io
 
 ## Introduction
 
