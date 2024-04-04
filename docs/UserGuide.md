@@ -38,7 +38,7 @@ Follow these steps to get started with Recipe.io
 ## Commands 
 
 ### 1. Viewing help : `help`
-Shows instructions to use the chatbot.
+Shows instructions to use RecipeIO's chatbot.
 
 Format: `help`
 
@@ -108,6 +108,10 @@ Exits program gracefully.
 
 Format: `exit`
 
+Upon exiting, a file named `recipe.txt` will be saved containing your recipe book.
+When rerunning the program the next time, RecipeIO will look for this saved file, to load your previously recorded 
+recipes once again. 
+
 ## Command Summary
 
 * Show list of instructions `help`
@@ -121,6 +125,6 @@ Format: `exit`
 * Filter by allergy `filter ALLERGY`
 * Exit program `exit`
 
-More instructions can also be found using the `help` command.
+More instructions can also be found at any time using the `help` command.
 
-Have fun with the chatbot!
+Have fun with RecipeIO!
