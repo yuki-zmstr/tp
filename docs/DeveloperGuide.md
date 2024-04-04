@@ -2,7 +2,7 @@
 
 ## Acknowledgements
 
-* This application is built in partial fulfillment of the requirements of CS2113.<br>
+* This application is built in partial fulfillment of the requirements of CS2113.
 * Knowledge and ideas are adapted from the CS2113 textbook, as well as SE-EDU textbook.
 
 ---
@@ -21,7 +21,7 @@ Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.
 
 <img src="images/ArchitectureDiagram.png" width="350" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the application.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -33,13 +33,13 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the app's work is done by the following five components:
 
-* **`UI`** The UI of the App.
-* **`RecipeList`**: The command executor and holder of data of the app.
-* **`InputParser`**: Extracts information from the user input into the command line.
-* **`CommandValidator`**: The command validator.
-* **`Storage`**: Reads data from, and writes data to, the hard disk.
+* `UI` The UI of the App.
+* `RecipeList`: The command executor and holder of data of the app.
+* `InputParser`: Extracts information from the user input into the command line.
+* `CommandValidator`: The command validator.
+* `Storage`: Reads data from, and writes data to, the hard disk.
 
-**`commands`** represents a collection of commands used by **`RecipeList`**
+the `commands`package represents a collection of commands used by **`RecipeList`**
 
 **How the architecture components interact with each other**
 
@@ -47,26 +47,53 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/DeleteRecipe.png" width="800" />
 
+### RecipeList Component
+
+The **API** of this component is specified in [RecipeList.java](https://github.com/AY2324S2-CS2113-W14-2/tp/tree/master/src/recipeio/recipe/RecipeList.java)
+
+![Structure of the UI Component](images/RecipeListDiagram.png)
+
+The `RecipeList` contains many `Recipe`s, which has attributes:
+* `name` : String
+* `cookTime` : int
+* `calories` : int
+* `allergies` : ArrayList<String>
+* `mealCategory` : MealCategory
+* `url` : String
+* `dateAdded` : LocaleDate
+
+How the component works:
+
+* Upon `executeCommand` call, the `RecipeList` will identify the command given in the user input (e.g. `list`), 
+* It will then call the corresponding `list()` method defined in `RecipeList`. 
+* This `list()` method in turn calls the `ListRecipeCommand.execute()` command. 
+* The reason for such a structure is to allow for command validation *before* the real execution. A good example is the `find()` command. 
+* Thus, `RecipeList` contains an intermediate method for each functionality (add, find, delete, so on) , and serves as a command validator.
+  * **Note:** these methods have been omitted in the class diagram for brevity.
+* In `add()` and `delete()`, the `saveRecipes()` method is called to save the recipeBook after the modification.
+
+
+
 ---
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ## Product scope
 
 ### Target user profile
 
 * Has a need to manage a significant number of recipes.
-* e.g. Professional culinary practitioners, students who love to cook.
-* can type fast 
+  * For example, professional culinary practitioners, students who love to cook.
+* Can type fast 
 * People having special dietary restrictions.
 * People who would like easily access the recipes they found online.
 
 ### Value proposition
 
-The user will be able to add, access, and list recipes.
-He can also filter recipes based on ingredients, time required, dietary restrictions, etc.
-The saved recipes will be loaded in a recipe text file for easy sharing with friends.
-The user can put the recipes into different categories.
+* The user will be able to add, access, and list recipes.
+* He can also filter recipes based on ingredients, time required, dietary restrictions, etc.
+* The saved recipes will be loaded in a recipe text file for easy sharing with friends.
+* The user can put the recipes into different categories.
 
 ## User Stories
 
@@ -84,20 +111,22 @@ The user can put the recipes into different categories.
 
 (For all use cases below, the **System** is the `RecipeIO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a recipe**
 
 1.  User requests to list recipes
 2.  RecipeIO shows a list of recipes
 3.  User requests to delete a specific recipe in the list
 4.  AddressBook deletes the person
 
-    Use case ends.
+Use case ends.
 
 ## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
-## Commands Glossary
+---
+
+## Appendix: Commands Glossary
 
 * *add [NAME, MINUTES, KCALS, ALLERGIES, CATEGORY, URL]* - This is the command a user can call to add a recipe. 
 * *help* - This shows the user all the available commands. 
@@ -121,85 +150,95 @@ testers are expected to do more *exploratory* testing.</div>
 
 ### Adding a recipe
 
-1. **Test case** `add pizza/34/340/eggs/dinner/www.food.com`<br>
-   * **Expected**: Mentioned recipe is added to the list of recipes. <br>
-   Console output providing a brief description of the added recipe <br>
+1. **Test case** `add pizza/34/340/eggs/dinner/www.food.com
+   * **Expected**: Mentioned recipe is added to the list of recipes.
+   * **Console output** providing a brief description of the added recipe 
    and total number recipes present in list 
 
-2. **Test case** `add pizza/34/340/www.food.com`<br>
-   * **Expected**: Recipe is not added to the list due to format error.<br>
-   Console output stating for the user to follow the correct format.
+2. **Test case** `add pizza/34/340/www.food.com`
+   * **Expected**: Recipe is not added to the list due to format error.
+   * **Console output** stating for the user to follow the correct format.
 
-3. **Test case** `add pizza/aa/aa/eggs/dinner/www.food.com`<br>
-   * **Expected**: Recipe is not added to list due to incorrect input types.<br>
-   Console output asking for user to use integer for fields of cook time <br>
+3. **Test case** `add pizza/aa/aa/eggs/dinner/www.food.com`
+   * **Expected**: Recipe is not added to list due to incorrect input types.
+   * **Console output** asking for user to use integer for fields of cook time
    and calories
 
-4. **Test case** `add pizza/30/30/eggs/dinnerTest/www.food.com`<br>
-   * **Expected**: Recipe is not added to the list due to invalid meal categories.<br>
-   Console output asking for user select correct meal category from options of <br>
+4. **Test case** `add pizza/30/30/eggs/dinnerTest/www.food.com`
+   * **Expected**: Recipe is not added to the list due to invalid meal categories.
+   * **Console output** asking for user select correct meal category from options of
    breakfast, lunch, dinner, appetizer and dessert
 
 ### Deleting a recipe
 
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
-2. **Test case**: `delete 1`<br>
-   * **Expected**: First recipe is deleted from the list. Console output <br>
-   saying which recipe was deleted with a brief description.
+2. **Test case**: `delete 1`
+   * **Expected**: First recipe is deleted from the list. 
+   * **Console output** saying which recipe was deleted with a brief description.
 
-3. **Test case**: `delete 0`<br>
-   * **Expected**: No recipe is deleted due to index given being out of bounds. <br>
-   Console output tells you to input a number within the range of the recipe list numbers.
+3. **Test case**: `delete 0`
+   * **Expected**: No recipe is deleted due to index given being out of bounds.
+   * **Console output** tells you to input a number within the range of the recipe list numbers.
 
-4. **Test case**: `delete xyz`<br>
-   * **Expected**: No recipe is deleted. Console output tells you to input <br>
-   an integer instead of other data types.
+4. **Test case**: `delete xyz`
+   * **Expected**: No recipe is deleted. 
+   * **Console output** tells you to input an integer instead of other data types.
 
-5. **Test case**: `delete`<br>
-   * **Expected**: No recipe is deleted due to given index. Console output <br>
-   tells you to use a index parameter for the delete function.
+5. **Test case**: `delete`
+   * **Expected**: No recipe is deleted due to given index. 
+   * **Console output** tells you to use an index parameter for the delete function.
 
 ### Finding a recipe by keyword
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.<br>
+1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
    At least one with "soup" in recipe name.
 
-2. **Test case**: `find kw soup`<br>
-   * **Expected**: Matching recipes are found. Console output shows you which <br>
-   recipes have the word "soup" in its name.
+2. **Test case**: `find kw soup`
+   * **Expected**: Matching recipes are found. 
+   * **Console output** shows you which recipes have the word "soup" in its name.
 
-3. **Test case**: `find kw sou`<br>
-   * **Expected**: No matching recipe is found. Console output tells you to attempt <br>
-   to search for another ingredient.
+3. **Test case**: `find kw sou`
+   * **Expected**: No matching recipe is found. 
+   * **Console output** tells you to attempt to search for another ingredient.
 
-4. **Test case**: `find kw`<br>
-   * **Expected**: No matching recipe is found due to lack of search keywords. <br>
-   Console output tells you to check that you inputted two arguments to the find method.
+4. **Test case**: `find kw`
+   * **Expected**: No matching recipe is found due to lack of search keywords.
+   * **Console output** tells you to check that you inputted two arguments to the find method.
 
-5. **Test case**: `find kw 1`<br>
-   * **Expected**: No matching recipes is found due to invalid keyword. Console output <br> 
-   tells you to ensure the keyword is an alphabet
+5. **Test case**: `find kw 1`
+   * **Expected**: No matching recipes is found due to invalid keyword. 
+   * **Console output** tells you to ensure the keyword is an alphabet
 
 ### Finding a recipe by date
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list. <br>
+1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
    At least one with date as 2024-03-30 but none with 2024-01-03.
 
-2. **Test case**: `find date 2024-03-30`<br>
-   * **Expected**: Matching recipes are found with a valid date given. Console output <br>
-   shows you which recipes were added on 2024-03-30.
+2. **Test case**: `find date 2024-03-30`
+   * **Expected**: Matching recipes are found with a valid date given. 
+   * **Console output** shows you which recipes were added on 2024-03-30.
 
-3. **Test case**: `find date 2024-01-03`<br>
-   * **Expected**: No matching recipes are found despite a valid date given. Console output <br>
-   shows you that no recipes were added on 2024-01-03 as a valid gate is given without any <br>
-   matching recipes
+3. **Test case**: `find date 2024-01-03`
+   * **Expected**: No matching recipes are found despite a valid date given. 
+   * **Console output** shows you that no recipes were added on 2024-01-03 as a 
+   valid gate is given without any matching recipes
 
-4. **Test case**: `find date xyx`<br>
-   * **Expected**: No recipe is found due to invalid date format or not following the <br> 
-   correct date convention. Console output tells you that the parameter cannot be parsed <br> 
-   as a valid date. Console output also hints the user to use the format of YYYY-MM-DD.
+4. **Test case**: `find date xyx`
+   * **Expected**: No recipe is found due to invalid date format or not following the
+   correct date convention. 
+   * **Console output** tells you that the parameter cannot be parsed as a valid date. 
+   * **Console output** also hints the user to use the format of YYYY-MM-DD.
 
-5. **Test case**: `find date`<br>
-   * **Expected**: No recipe is found due to the lack of a given date. Console output tells <br> 
-   you to check that you inputted two arguments to the find method.
+5. **Test case**: `find date`
+   * **Expected**: No recipe is found due to the lack of a given date. 
+   * **Console output** tells you to check that you inputted two arguments to the find method.
+
+---
+
+## Appendix: Area of Improvement
+
+1. **Having the CommandValidator return the parsed input, if the command is valid.**
+   * `CommandValidator` evaluates the inputs from the user, but only returns a boolean value of whether the command is valid.
+   * If the command is valid, there is an additional call to `InputParser` to get the inputs again.
+   * **Recommendation**: The `CommandValidator` could return the input together if the command is valid, and `null` otherwise.

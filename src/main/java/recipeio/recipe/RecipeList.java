@@ -1,6 +1,5 @@
 package recipeio.recipe;
 
-import recipeio.Constants;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
 import recipeio.commands.AddRecipeCommand;
@@ -16,8 +15,17 @@ import recipeio.ui.UI;
 
 import java.util.ArrayList;
 
-import static recipeio.Constants.MAX_RECIPES;
+
 import static recipeio.InputParser.parseAdd;
+import static recipeio.constants.RecipeListConstants.LIST_COMMAND;
+import static recipeio.constants.RecipeListConstants.DETAIL_COMMAND;
+import static recipeio.constants.RecipeListConstants.ADD_COMMAND;
+import static recipeio.constants.RecipeListConstants.DELETE_COMMAND;
+import static recipeio.constants.RecipeListConstants.FIND_COMMAND;
+import static recipeio.constants.RecipeListConstants.FILTER_COMMAND;
+import static recipeio.constants.RecipeListConstants.HELP_COMMAND;
+import static recipeio.constants.RecipeListConstants.NO_RECIPES_ERROR_MESSAGE;
+
 
 public class RecipeList {
     /**
@@ -50,25 +58,25 @@ public class RecipeList {
      */
     public void executeCommand(String command, String userInput){
         switch (command) {
-        case Constants.LIST_COMMAND:
+        case LIST_COMMAND:
             listRecipes();
             break;
-        case Constants.DETAIL_COMMAND:
+        case DETAIL_COMMAND:
             showDetails(userInput);
             break;
-        case Constants.ADD_COMMAND:
+        case ADD_COMMAND:
             add(userInput);
             break;
-        case Constants.DELETE_COMMAND:
+        case DELETE_COMMAND:
             delete(userInput);
             break;
-        case Constants.FIND_COMMAND:
+        case FIND_COMMAND:
             find(userInput);
             break;
-        case Constants.FILTER_COMMAND:
+        case FILTER_COMMAND:
             filter(userInput);
             break;
-        case Constants.HELP_COMMAND:
+        case HELP_COMMAND:
             UI.printInstructions();
             break;
         default:
@@ -113,7 +121,9 @@ public class RecipeList {
      * @param userInput input from the user in the command line.
      */
     public void add(String userInput) {
-        assert(recipes.size() < MAX_RECIPES);
+        if (!CommandValidator.isValidAddCommand(userInput)){
+            return;
+        }
         try {
             Recipe newRecipe = parseAdd(userInput);
             AddRecipeCommand.execute(newRecipe, recipes);
@@ -152,7 +162,7 @@ public class RecipeList {
      */
     public void find(String userInput) {
         if (recipes.isEmpty()) {
-            System.out.println(Constants.NO_RECIPES_ERROR_MESSAGE);
+            System.out.println(NO_RECIPES_ERROR_MESSAGE);
             return;
         }
         FindCommand.execute(userInput, recipes);
@@ -167,7 +177,7 @@ public class RecipeList {
      */
     public void filter(String userInput) {
         if (recipes.isEmpty()) {
-            System.out.println(Constants.NO_RECIPES_ERROR_MESSAGE);
+            System.out.println(NO_RECIPES_ERROR_MESSAGE);
             return;
         }
         if (!CommandValidator.isValidFilterCommand(userInput)){

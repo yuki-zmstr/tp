@@ -10,6 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static  recipeio.constants.RecipeIOConstants.MESSAGE_ASK_INPUT;
+import static  recipeio.constants.RecipeIOConstants.EXIT_COMMAND;
+
 /**
  * Main entry-point for the Recipe.IO application.
  */
@@ -41,15 +44,15 @@ public class RecipeIO {
      * Asks user for input. While the command is not 'exit', passes the input to RecipeList class to handle.
      */
     public void runCommandLoopUntilExitCommand() {
-        logger.log(Level.INFO, Constants.MESSAGE_ASK_INPUT);
+        logger.log(Level.INFO, MESSAGE_ASK_INPUT);
         String userInput = ui.getUserInput();
         String parsedCommand = InputParser.parseCommand(userInput);
         assert !userInput.isEmpty() : "user input empty";
 
-        while (!parsedCommand.equals(Constants.EXIT_COMMAND)) {
+        while (!parsedCommand.equals(EXIT_COMMAND)) {
             logger.log(Level.INFO, "Executing command: "+ userInput);
             recipeList.executeCommand(parsedCommand, userInput);
-            logger.log(Level.INFO, Constants.MESSAGE_ASK_INPUT);
+            logger.log(Level.INFO, MESSAGE_ASK_INPUT);
             userInput = ui.getUserInput();
             parsedCommand = InputParser.parseCommand(userInput);
         }
