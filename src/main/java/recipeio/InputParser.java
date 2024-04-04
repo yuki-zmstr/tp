@@ -109,9 +109,12 @@ public class InputParser {
     public static String[] splitUpAddInput(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
+        for (int i = 0; i < remainingInput.length; i++) {
+            remainingInput[i] = remainingInput[i].trim();
+        }
         return remainingInput;
     }
-    public static Recipe parseAdd(String userInput) throws Exception {
+    public static Recipe parseAdd(String userInput) {
         String[] remainingInput = splitUpAddInput(userInput);
         assert remainingInput.length > 0 : "Add additional parameters to add command";
         return breakUpRemainingInput(remainingInput);
