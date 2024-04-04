@@ -38,25 +38,25 @@ Follow these steps to get started with Recipe.io
 ## Commands 
 
 ### 1. Viewing help : `help`
-Shows instructions to use the chatbot.
+Shows instructions to use RecipeIO's chatbot.
 
 Format: `help`
 
 ### 2. Adding a recipe : `add`
-Adds recipe with description. The application saves your recipe book in a .txt file everytime this command is run.
+Adds recipe with a comma separated description. The application saves your recipe book in a .txt file everytime this command is run.
 
-Format: `add NAME/MINUTES/KCALS/ALLERGIES/CATEGORY/URL`
+Format: `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 
 * The `NAME` can include multiple words.
 * The `MINUTES` must be an integer.
 * The `KCALS` must be an integer.
-* The `ALLERGIES` can take multiple allergies, separated by a comma. e.g. `eggs,dairy`
+* The `ALLERGIES` can take multiple allergies, separated by a space. e.g. `eggs dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
 * The `CATEGORY` must be one of: `breakfast`, `lunch`, `dinner`, `appetizer`, `dessert`.
 * The `URL` must be a string, that leads to the website that contains the full recipe.
 
 Example of usage: 
 
-`add pizza/34/340/eggs/dinner/www.food.com`
+`add pizza, 34, 340, egg dairy, dinner, www.food.com`
 
 ### 3. Deleting a recipe : `delete`
 Deletes a recipe at a given index. The application saves your recipe book in a .txt file everytime this command is run.
@@ -95,32 +95,36 @@ Example of usage:
 `find meal breakfast`
 
 ### 7. Filter recipes by allergy : `filter`
-Shows recipes that do not contain a given allergy.
+Shows recipes that do not contain a given allergy. 
 
 Format: `filter CRITERIA`
-* The `CRITERIA` must be a word.
+* The `CRITERIA` must be a word. Ensure that the criteria is singular tense (eg. `egg` NOT `eggs`)
 
 Example of usage:
-`filter eggs`
+`filter egg`
 
 ### 8. Exit program: `exit`
 Exits program gracefully.
 
 Format: `exit`
 
+Upon exiting, a file named `recipe.txt` will be saved containing your recipe book.
+When rerunning the program the next time, RecipeIO will look for this saved file, to load your previously recorded 
+recipes once again. 
+
 ## Command Summary
 
 * Show list of instructions `help`
-* Add recipe `add NAME/MINUTES/KCALS/ALLERGIES/CATEGORY/URL`
+* Add recipe `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 * Delete recipe `delete LIST_NUMBER`
 * List recipe book `list`
 * Show details `detail LIST_NUMBER`
-* Find by keyword `find kw pizza`
-* Find by date `find date 2024-03-28`
-* Find by meal category `find meal breakfast`
-* Filter by allergy `filter dairy`
+* Find by keyword `find kw NAME_KEYWORD`
+* Find by date `find date YYYY-MM-DD`
+* Find by meal category `find meal MEAL_CATEGORY`
+* Filter by allergy `filter ALLERGY`
 * Exit program `exit`
 
-More instructions can also be found using the `help` command.
+More instructions can also be found at any time using the `help` command.
 
-Have fun with the chatbot!
+Have fun with RecipeIO!
