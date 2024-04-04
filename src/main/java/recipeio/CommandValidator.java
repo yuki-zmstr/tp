@@ -1,7 +1,6 @@
 package recipeio;
 
 import recipeio.constants.InputParserConstants;
-import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.constants.CommandValidatorConstants;
 
@@ -21,7 +20,6 @@ import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
 import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
-import static recipeio.constants.InputParserConstants.INVALID_TASK_FORMAT_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 
