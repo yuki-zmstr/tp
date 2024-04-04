@@ -88,11 +88,11 @@ Format: `find TYPE CRITERIA`
 * If type `meal` is given, `CRITERIA` must be a valid meal category. There are 6 meal categories: `general`, `breakfast`, `lunch`, `dinner`, `appetizer`, and `dessert`.
 
 Example of usage:
-`find kw pizza`
+* `find kw pizza`
 
-`find date 2024-03-28`
+* `find date 2024-03-28`
 
-`find meal breakfast`
+* `find meal breakfast`
 
 ### 7. Filter recipes by allergy : `filter`
 Shows recipes that do not contain a given allergy. 

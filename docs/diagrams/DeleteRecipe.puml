@@ -24,7 +24,7 @@ activate validator VALIDATOR_COLOR
 validator -[VALIDATOR_COLOR]-> logic : valid
 deactivate validator
 
-alt valid
+opt valid
 
     logic -> parser : parseID("delete 1")
     activate parser PARSER_COLOR
