@@ -13,7 +13,7 @@ public class InputParserConstants {
     public static final int CALORIES_INDEX = 2;
     public static final int ALLERGIES_INDEX = 3;
     public static final int MEAL_CATEGORY_INDEX = 4;
-    public static final int URL_INDEX = 4;
+    public static final int URL_INDEX = 5;
     public static final int TOTAL_INGREDIENTS_INDEX = 6;
 
     public static final String MEAL_CAT_GENERAL = "general";
@@ -30,5 +30,5 @@ public class InputParserConstants {
 
     public static final String MEAL_CATEGORY_ERROR_MESSAGE = "Please enter a valid meal category. Here are your" +
             "options:\n BREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
-    public static final String RECIPE_DELIMETER = "\\";
+    public static final String RECIPE_DELIMETER = ",";
 }
