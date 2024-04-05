@@ -1,9 +1,8 @@
+
 Storage client says: No input file found, will create a new one.
------------------------------
-Welcome to Recipe.io!
------------------------------
-Enter command:
-[Command entered: exit]
------------------------------
-See you again chef!
------------------------------
+---------------------------------------------------
+Welcome to Recipe.io! How can I help you today chef?
+---------------------------------------------------
+	---------------------------------------------------
+Okay, thanks for using RecipeIO! See you later chef!
+---------------------------------------------------

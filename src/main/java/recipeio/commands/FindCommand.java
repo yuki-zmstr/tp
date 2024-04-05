@@ -9,7 +9,6 @@ import recipeio.ui.UI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 import static recipeio.constants.CommandConstants.FIND_BY_KEYWORD;
 import static recipeio.constants.CommandConstants.FIND_BY_MEAL;

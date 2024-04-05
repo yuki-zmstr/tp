@@ -137,7 +137,7 @@ public class UI {
      * Bids farewell to the user.
      */
     public static void bye() {
-        System.out.println("Okay, thanks for using me! See you later chef!");
+        System.out.println("Okay, thanks for using RecipeIO! See you later chef!");
         printLine();
     }
 }
