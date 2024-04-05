@@ -1,8 +1,8 @@
 package recipeio.constants;
 
 public class CommandConstants {
-    public static final String RECIPES_INCLUDED = "All your recipes include:";
-    public static final String RECIPES_EXCLUDED = "These recipes do not include:";
+    public static final String RECIPES_INCLUDED = "All your recipes include: ";
+    public static final String RECIPES_EXCLUDED = "These recipes do not include: ";
     public static final String FIND_BY_MEAL = "meal";
     public static final String FIND_BY_KEYWORD = "kw";
     public static final String FIND_BY_DATE = "date";
@@ -14,11 +14,11 @@ public class CommandConstants {
     public static final String VALID_KEYWORD_MATCHES = "Here are your matches with keyword: ";
     public static final String VALID_DATE_MATCHES = "Here are your matches with date: ";
     public static final String NO_CATEGORY_MATCHES = "There's no recipe with category ";
-    public static final String VALID_CATEGORY_MATCHES = "These recipes have the category ";
+    public static final String VALID_CATEGORY_MATCHES = "These recipes have the category: ";
     public static final String EMPTY_RECIPE_ERROR = "Sorry, there are no recipes in your recipe book to print.";
     public static final String RECIPE_SUMMARY = "Here is a summary of your recipe book.";
     public static final String RECIPE_DETAILS_PROMPT = "\nTo find out more about a particular recipe," +
             " try the 'detail {index}' command.";
-
+    public static final int STARTING_COUNT = 1;
 
 }

@@ -19,7 +19,7 @@ public class ShowDetailsCommand {
         String allergiesNoBrackets = allergiesWithBrackets.substring(1, allergiesWithBrackets.length() - 1);
         System.out.print(allergiesNoBrackets);
         System.out.println("\n\tCategory: " + recipe.category);
-        System.out.println("\tDateAdded: " + recipe.dateAdded.toString());
+        System.out.println("\tDate Added: " + recipe.dateAdded.toString());
         System.out.println("\tURL: " + recipe.url);
     }
 }

@@ -2,6 +2,7 @@ package recipeio.commands;
 
 import recipeio.InputParser;
 import recipeio.CommandValidator;
+import recipeio.constants.CommandConstants;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
@@ -23,6 +24,7 @@ import static recipeio.constants.CommandConstants.NO_CATEGORY_MATCHES;
 import static recipeio.constants.CommandConstants.VALID_CATEGORY_MATCHES;
 
 public class FindCommand {
+
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
         if (!CommandValidator.isValidFindCommand(userInput)) {
             return;
@@ -57,33 +59,41 @@ public class FindCommand {
     }
     public static void findKeyword(String keyword, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
+        ArrayList<Integer> listNumbers = new ArrayList<>();
+        Integer count = CommandConstants.STARTING_COUNT;
         for (Recipe recipe : recipes) {
             if (CommandValidator.splitName(recipe.getName()).contains(keyword)) {
                 matches.add(recipe);
+                listNumbers.add(count);
             }
+            count ++;
         }
         if (matches.isEmpty()) {
             System.out.println(NO_MATCHES_ERROR);
             System.out.println(NO_MATCHES_PROMPT);
             return;
         }
-        System.out.println(VALID_KEYWORD_MATCHES + keyword);
-        UI.printRecipes(matches);
+        System.out.println(VALID_KEYWORD_MATCHES + keyword + "\n");
+        UI.printRecipes(matches, listNumbers);
     }
 
     public static void findDate(LocalDate date, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
+        ArrayList<Integer> listNumbers = new ArrayList<>();
+        Integer count = CommandConstants.STARTING_COUNT;
         for (Recipe recipe : recipes) {
             if (recipe.dateAdded.isEqual(date)) {
                 matches.add(recipe);
+                listNumbers.add(count);
             }
+            count ++;
         }
         if (matches.isEmpty()) {
             System.out.println(NO_MATCHES_ERROR);
             return;
         }
-        System.out.println(VALID_DATE_MATCHES + date);
-        UI.printRecipes(matches);
+        System.out.println(VALID_DATE_MATCHES + date + "\n");
+        UI.printRecipes(matches, listNumbers);
     }
 
     /**
@@ -93,16 +103,23 @@ public class FindCommand {
      */
     public static void findMeal(String meal, ArrayList<Recipe> recipes) {
         MealCategory mealCategory = InputParser.parseMealCriteria(meal);
-        ArrayList<Recipe> matches = (ArrayList<Recipe>) recipes.stream()
-                .filter(recipe -> recipe.category == mealCategory)
-                .collect(Collectors.toList());
+        ArrayList<Recipe> matches = new ArrayList<>();
+        ArrayList<Integer> listNumbers = new ArrayList<>();
+        Integer count = CommandConstants.STARTING_COUNT;
+        for (Recipe recipe : recipes) {
+            if (recipe.category.equals(mealCategory)) {
+                matches.add(recipe);
+                listNumbers.add(count);
+            }
+            count ++;
+        }
 
         if (matches.isEmpty()) {
             System.out.println(NO_CATEGORY_MATCHES + meal);
             return;
         }
 
-        System.out.println(VALID_CATEGORY_MATCHES + meal);
-        UI.printRecipes(matches);
+        System.out.println(VALID_CATEGORY_MATCHES + meal + "\n");
+        UI.printRecipes(matches, listNumbers);
     }
 }

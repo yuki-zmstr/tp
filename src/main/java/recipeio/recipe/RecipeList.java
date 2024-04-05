@@ -81,7 +81,6 @@ public class RecipeList {
             break;
         default:
             UI.printInvalidCommandWarning();
-            UI.printInstructions();
             break;
         }
     }

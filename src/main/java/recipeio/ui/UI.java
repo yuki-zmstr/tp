@@ -93,7 +93,7 @@ public class UI {
      * Prints list of accepted instructions.
      */
     public static void printInstructions(){
-        System.out.println("Accepted commands are:");
+        System.out.println("Here are all of my accepted commands:\n");
         System.out.println("help: shows available commands\n");
         System.out.println("list: shows you list of recipes");
         System.out.println("\tInput Example: list\n");
@@ -107,7 +107,7 @@ public class UI {
         System.out.println("find date YYYY-MM-DD: finds recipes added on a given date");
         System.out.println("\tInput Example: find date 2024-03-28\n");
         System.out.println("find meal MEAL_CATEGORY: finds recipes with a particular meal category");
-        System.out.println("\tInput Example: find meal dinner");
+        System.out.println("\tInput Example: find meal dinner\n");
         System.out.println("filter ALLERGY: lists the recipes that do not contain this allergen");
         System.out.println("\tInput Example: filter dairy\n");
         System.out.println("exit: to leave the program");
@@ -117,15 +117,19 @@ public class UI {
     /**
      * Prints list of recipes. Refer to toString() method in Recipe class for implementation.
      */
-    public static void printRecipes(ArrayList<Recipe> matches) {
-        matches.forEach(recipe -> System.out.println("\t" + recipe));
+    public static void printRecipes(ArrayList<Recipe> matches, ArrayList<Integer> listNumbers) {
+        for (int i = 0; i < matches.size(); i++) {
+            int number = listNumbers.get(i);
+            Recipe recipe = matches.get(i);
+            System.out.println("Recipe " + number + ". " + recipe);
+        }
     }
 
     /**
      * Prints warning when an unrecognised command is entered.
      */
     public static void printInvalidCommandWarning() {
-        System.out.println("The command you entered is invalid." +
+        System.out.println("The command you entered is invalid.\n" +
                 "Please try another command, or enter 'help' to see all possible commands.");
     }
 

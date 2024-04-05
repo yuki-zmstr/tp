@@ -5,7 +5,8 @@ import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import static recipeio.constants.CommandConstants.RECIPES_INCLUDED;
 import static recipeio.constants.CommandConstants.RECIPES_EXCLUDED;
 
@@ -20,17 +21,24 @@ public class FilterByAllergyCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
 
         String allergy = InputParser.parseAllergyCriteria(userInput);
+        ArrayList<Integer> listNumbers = new ArrayList<>();
+        ArrayList<Recipe> matches = new ArrayList<>();
 
-        ArrayList<Recipe> matches = (ArrayList<Recipe>) recipes.stream()
-                .filter(recipe -> !recipe.allergies.contains(allergy))
-                .collect(Collectors.toList());
+        IntStream.range(0, recipes.size())
+                .forEach(i -> {
+                    Recipe recipe = recipes.get(i);
+                    if (!recipe.allergies.contains(allergy)) {
+                        matches.add(recipe);
+                        listNumbers.add(i + 1);
+                    }
+                });
 
         if (matches.isEmpty()) {
             System.out.println(RECIPES_INCLUDED + allergy);
             return;
         }
 
-        System.out.println(RECIPES_EXCLUDED + allergy);
-        UI.printRecipes(matches);
+        System.out.println(RECIPES_EXCLUDED + allergy + "\n");
+        UI.printRecipes(matches, listNumbers);
     }
 }
