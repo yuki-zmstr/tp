@@ -50,8 +50,8 @@ public class CommandValidator {
             Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("\tParameter cannot be parsed as an integer.");
-            System.out.println("\tPlease enter an integer from 1 onwards.");
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            System.out.println("Please enter an integer from 1 onwards.");
             return false;
         }
     }
@@ -202,24 +202,21 @@ public class CommandValidator {
     }
 
     public static boolean isValidAddCommand(String userInput) {
-        String[] details = InputParser.parseDetails(userInput);
-        if (details.length < InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
+        String[] details = InputParser.splitUpAddInput(userInput);
+        if (details.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
             System.out.println("The add function accepts 6 parameters: {name} {cook time} {calories}\n\t {singular " +
                     "space separated allergies} {meal category} {url}");
-            System.out.println("\tInput Example: add pizza, 34, 340, egg dairy, dinner, www.food.com");
+            System.out.println("Input Example: add pizza, 34, 340, egg dairy, dinner, www.food.com");
             return false;
         }
         String[] remainingInput = splitUpAddInput(userInput);
         if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
-            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             return false;
         }
         if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
-            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             return false;
         }
         if (!isMealCat(remainingInput[MEAL_CATEGORY_INDEX])) {
-            System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
         }
         return true;
