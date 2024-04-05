@@ -134,7 +134,7 @@ public class UI {
      * Bids farewell to the user.
      */
     public static void bye() {
-        System.out.println("See you again chef!");
+        System.out.println("Okay, thanks for using me! See you later chef!");
         printLine();
     }
 }
