@@ -46,7 +46,7 @@ public class InputParser {
         try {
             id = userInput.trim().split(" ")[InputParserConstants.INDEX_ID];
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("\tIndex not given, please enter an index");
+            System.out.println("Index not given, please enter an index");
             return null;
         }
         if (!CommandValidator.isParsableAsInteger(id)) {

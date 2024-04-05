@@ -11,14 +11,14 @@ public class ShowDetailsCommand {
      */
     public static void execute(Recipe recipe) {
 
-        System.out.println("\tHere are the details:");
-        System.out.println("\t\tName: " + recipe.name);
-        System.out.println("\t\tCook time: " + recipe.cookTime + " min");
-        System.out.println("\t\tCalories: " + recipe.calories + " kcal");
-        System.out.print("\t\tAllergies: ");
+        System.out.println("Here are the details:");
+        System.out.println("\tName: " + recipe.name);
+        System.out.println("\tCook time: " + recipe.cookTime + " min");
+        System.out.println("\tCalories: " + recipe.calories + " kcal");
+        System.out.print("\tAllergies: ");
         recipe.allergies.forEach(System.out::print);
-        System.out.println("\n\t\tCategory: " + recipe.category);
-        System.out.println("\t\tDateAdded: " + recipe.dateAdded.toString());
-        System.out.println("\t\tURL: " + recipe.url);
+        System.out.println("\n\tCategory: " + recipe.category);
+        System.out.println("\tDateAdded: " + recipe.dateAdded.toString());
+        System.out.println("\tURL: " + recipe.url);
     }
 }
