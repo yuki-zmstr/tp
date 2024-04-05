@@ -127,7 +127,8 @@ public class UI {
      * Prints warning when an unrecognised command is entered.
      */
     public static void printInvalidCommandWarning() {
-        System.out.println("Invalid command.");
+        System.out.println("The command you entered is invalid." +
+                "Please try another command, or enter 'help' to see all possible commands.");
     }
 
     /**
