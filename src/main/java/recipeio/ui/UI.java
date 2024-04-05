@@ -29,8 +29,6 @@ public class UI {
     public String getUserInput() {
         printLine();
         System.out.print("\t");
-        System.out.println("Enter command:");
-        System.out.print("\t");
         String fullInputLine = in.nextLine();
         printLine();
         return fullInputLine;
