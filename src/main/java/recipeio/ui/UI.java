@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
-    public static final String SEPARATOR = "-----------------------------";
+    public static final String SEPARATOR = "---------------------------------------------------";
 
     private final Scanner in;
 
@@ -28,10 +28,10 @@ public class UI {
      */
     public String getUserInput() {
         printLine();
+        System.out.print("\t");
         System.out.println("Enter command:");
+        System.out.print("\t");
         String fullInputLine = in.nextLine();
-
-        System.out.println("[Command entered: " + fullInputLine + "]");
         printLine();
         return fullInputLine;
     }
@@ -41,7 +41,7 @@ public class UI {
      */
     public static void sayHi() {
         printLine();
-        System.out.println("Welcome to Recipe.io!");
+        System.out.println("Welcome to Recipe.io! How can I help you today chef?");
     }
 
     public static void printMessage(String message) {

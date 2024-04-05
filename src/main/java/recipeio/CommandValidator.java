@@ -204,7 +204,7 @@ public class CommandValidator {
     public static boolean isValidAddCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length < InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
-            System.out.println("\tThe add function accepts 6 parameters: {name} {cook time} {calories}\n\t {singular " +
+            System.out.println("The add function accepts 6 parameters: {name} {cook time} {calories}\n\t {singular " +
                     "space separated allergies} {meal category} {url}");
             System.out.println("\tInput Example: add pizza, 34, 340, egg dairy, dinner, www.food.com");
             return false;
