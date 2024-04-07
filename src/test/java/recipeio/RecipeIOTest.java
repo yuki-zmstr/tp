@@ -1,3 +1,5 @@
+package recipeio;
+
 import org.junit.jupiter.api.Test;
 import recipeio.commands.AddRecipeCommand;
 import recipeio.commands.DeleteRecipeCommand;
