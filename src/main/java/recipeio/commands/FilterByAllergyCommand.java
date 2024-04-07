@@ -1,12 +1,11 @@
 package recipeio.commands;
 
 import recipeio.InputParser;
+import recipeio.constants.CommandConstants;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 
 import java.util.ArrayList;
-import java.util.stream.IntStream;
-
 import static recipeio.constants.CommandConstants.RECIPES_INCLUDED;
 import static recipeio.constants.CommandConstants.RECIPES_EXCLUDED;
 
@@ -19,19 +18,18 @@ public class FilterByAllergyCommand {
      * @param recipes The list of current recipes.
      */
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
-
         String allergy = InputParser.parseAllergyCriteria(userInput);
         ArrayList<Integer> listNumbers = new ArrayList<>();
         ArrayList<Recipe> matches = new ArrayList<>();
+        Integer count = CommandConstants.STARTING_COUNT;
 
-        IntStream.range(0, recipes.size())
-                .forEach(i -> {
-                    Recipe recipe = recipes.get(i);
-                    if (!recipe.allergies.contains(allergy)) {
-                        matches.add(recipe);
-                        listNumbers.add(i + 1);
-                    }
-                });
+        for (Recipe recipe : recipes) {
+            if (!recipe.allergies.contains(allergy)) {
+                matches.add(recipe);
+                listNumbers.add(count);
+            }
+            count ++;
+        }
 
         if (matches.isEmpty()) {
             System.out.println(RECIPES_INCLUDED + allergy);
