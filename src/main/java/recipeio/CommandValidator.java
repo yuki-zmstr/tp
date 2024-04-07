@@ -64,8 +64,8 @@ public class CommandValidator {
     public static boolean isWord(String input) {
         // Regular expression to match only alphabetic characters
         if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
-            System.out.println("Parameter cannot be parsed as an word.");
-            System.out.println("Please enter a word using lower and upper case alphabets.");
+            System.out.println("Sorry, I was unable to detect a word.");
+            System.out.println("Please make sure to enter a word using lower and upper case alphabets.");
             return false;
         }
         return true;
@@ -100,8 +100,8 @@ public class CommandValidator {
             LocalDate date = LocalDate.parse(input);
             return true;
         } catch (DateTimeParseException e) {
-            System.out.println("Parameter cannot be parsed as a date.");
-            System.out.println("Please enter a date in the format yyyy-MM-dd");
+            System.out.println("Make sure you enter a valid date!");
+            System.out.println("Please enter your date in the format yyyy-MM-dd");
             System.out.println("\tInput Example: find date 2024-03-28");
             return false;
         }
