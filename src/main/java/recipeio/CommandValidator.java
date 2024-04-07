@@ -134,7 +134,7 @@ public class CommandValidator {
     public static boolean isValidDetailCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DETAILS_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The detail function takes in one parameter: {index}");
+            System.out.println("The detail function takes in one parameter: {recipe number}");
             System.out.println("\tInput Example: detail 1");
             return false;
         }
@@ -164,7 +164,7 @@ public class CommandValidator {
     public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DELETE_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The delete function takes in one parameter: {index}");
+            System.out.println("The delete function takes in one parameter: {recipe number}");
             System.out.println("\tInput Example: delete 1");
             return false;
         }
@@ -191,7 +191,7 @@ public class CommandValidator {
     public static boolean isValidFindCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_FIND_LENGTH) {
-            System.out.println("The find function accepts two parameters: {type} and {criteria}");
+            System.out.println("The find function accepts two parameters: {type} and {criteria}.");
             System.out.println("\tInput Example: find kw pizza");
             System.out.println("\tInput Example: find date 2024-03-28");
             System.out.println("\tInput Example: find meal dinner");

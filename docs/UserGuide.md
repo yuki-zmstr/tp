@@ -59,12 +59,13 @@ Example of usage:
 `add pizza, 34, 340, egg dairy, dinner, www.food.com`
 
 ### 3. Deleting a recipe : `delete`
-Deletes a recipe at a given index. The application saves your recipe book in a .txt file everytime this command is run.
+Deletes a recipe at a given recipe number. The application saves your recipe book in a .txt file everytime this command is run.
 
-Format: `delete LIST_NUMBER`
+Format: `delete RECIPE_NUMBER`
 
-* The `LIST_NUMBER` must be within the number of recipes already added.
-* Use the `list` command to see your list of recipes.
+* The `RECIPE_NUMBER` must be within the number of recipes already added.
+* A recipe's number can be found in the `list`, `find`, or `filter` commands.
+
 
 ### 4. Listing recipe book : `list`
 Lists a summarized version of your recipe book.
@@ -74,9 +75,9 @@ Format: `list`
 ### 5. Showing details of a recipe : `detail`
 Shows all details of a recipe.
 
-Format: `detail LIST_NUMBER`
-* The `LIST_NUMBER` must be within the number of recipes already added.
-* Use the `list` command to see your list of recipes.
+Format: `detail RECIPE_NUMBER`
+* The `RECIPE_NUMBER` must be within the number of recipes already added.
+* A recipe's number can be found in the `list`, `find`, or `filter` commands.
 
 ### 6. Find recipes : `find`
 Searches for all recipes that meet a certain criteria.
@@ -116,9 +117,9 @@ recipes once again.
 
 * Show list of instructions `help`
 * Add recipe `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
-* Delete recipe `delete LIST_NUMBER`
+* Delete recipe `delete RECIPE_NUMBER`
 * List recipe book `list`
-* Show details `detail LIST_NUMBER`
+* Show details `detail RECIPE_NUMBER`
 * Find by keyword `find kw NAME_KEYWORD`
 * Find by date `find date YYYY-MM-DD`
 * Find by meal category `find meal MEAL_CATEGORY`
