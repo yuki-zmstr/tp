@@ -7,6 +7,20 @@
 
 ---
 
+# Table of Contents
+
+1. [Setting up, getting started](#setting-up-getting-started)
+2. [Design & Implementation](#design--implementation)
+   1. [Architecture](#architecture)
+   2. [UI Component](#ui-component)
+   3. [RecipeList Component](#recipelist-component)
+3. [Appendix - Requirements](#appendix-requirements)
+4. [Appendix - Commands Glossary](#appendix-commands-glossary)
+5. [Appendix - Manual Testing](#appendix-instructions-for-manual-testing)
+6. [Appendix - Area of Improvement](#appendix-area-of-improvement)
+
+---
+
 ## Setting up, getting started
 
 Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.html.
@@ -14,8 +28,6 @@ Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.
 ---
 
 ## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Architecture
 
@@ -47,11 +59,34 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/DeleteRecipe.png" width="800" />
 
+### UI Component
+
+The **API** of this component is specified in [UI.java](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/src/main/java/recipeio/ui/UI.java)
+
+![Structure of the UI Component](images/UIDiagram.png)
+
+The `UI` has an class-level attribute `SEPARATOR`, which is a line of dashes that can be used in console output.
+
+The `UI` the following methods
+* `getUserInput` : asks the user for an input through the command line.
+* `sayHi` (class-level): greets the user.
+* `printInstructions` (class-level) : prints a list of accepted commands.
+* `printInvalidCommandWarning` (class-level) : warns the user of an invalid command.
+* `bye` (class-level) : bids farewell to the user.
+
+How the component works:
+
+* Upon starting of the app, `RecipeIO` will create an instance of the `UI` class.
+* The instance will be asking the user for his or her input, via the `getUserInput` method.
+* During the execution of the app, it will also give the user some console feedback.
+  * For example, the `printInstructions` method is called when the user inputs `help`.
+
+
 ### RecipeList Component
 
 The **API** of this component is specified in [RecipeList.java](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/src/main/java/recipeio/recipe/RecipeList.java)
 
-![Structure of the UI Component](images/RecipeListDiagram.png)
+![Structure of the RecipeList Component](images/RecipeListDiagram.png)
 
 The `RecipeList` contains many `Recipe`s, which has attributes:
 * `name` : String
@@ -71,8 +106,6 @@ How the component works:
 * Thus, `RecipeList` contains an intermediate method for each functionality (add, find, delete, so on) , and serves as a command validator.
   * **Note:** these methods have been omitted in the class diagram for brevity.
 * In `add()` and `delete()`, the `saveRecipes()` method is called to save the recipeBook after the modification.
-
-
 
 ---
 

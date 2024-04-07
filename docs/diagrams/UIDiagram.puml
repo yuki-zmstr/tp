@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+hide empty members
+
+skinparam classAttributeIconSize 0
+class RecipeIO {
+}
+
+
+class UI {
+    +{static} SEPARATOR: String
+    +getUserInput(): String
+    +{static} sayHi(): void
+    +{static} printInstructions(): void
+    +{static} printInvalidCommandWarning(): void
+    +{static} bye(): void
+}
+
+RecipeIO --> "ui 1 " UI
+
+@enduml
