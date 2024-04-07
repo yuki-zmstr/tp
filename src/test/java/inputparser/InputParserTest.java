@@ -1,13 +1,14 @@
-package recipeio;
+package inputparser;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import recipeio.InputParser;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class InputParserTest {
@@ -35,7 +36,7 @@ public class InputParserTest {
     @Test
     public void parseID_idGiven_expectIdReturned() {
         String userInput = "details 1";
-        assertEquals(1, InputParser.parseID(userInput));
+        Assertions.assertEquals(1, InputParser.parseID(userInput));
     }
 
     @Test
