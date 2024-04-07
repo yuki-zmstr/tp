@@ -3,7 +3,6 @@ package recipeio.commands;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
 import recipeio.constants.CommandConstants;
-import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 
@@ -19,8 +18,6 @@ import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
 import static recipeio.constants.CommandConstants.NO_MATCHES_PROMPT;
 import static recipeio.constants.CommandConstants.VALID_KEYWORD_MATCHES;
 import static recipeio.constants.CommandConstants.VALID_DATE_MATCHES;
-import static recipeio.constants.CommandConstants.NO_CATEGORY_MATCHES;
-import static recipeio.constants.CommandConstants.VALID_CATEGORY_MATCHES;
 
 public class FindCommand {
 
