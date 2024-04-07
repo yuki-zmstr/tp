@@ -79,7 +79,7 @@ public class FindCommandTest {
 
     @Test
     public void testFindByMealNotExistItem() {
-        String expected = "There's no recipe with category: Appetizer" +
+        String expected = "There's no recipe with category: appetizer" +
                 System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
