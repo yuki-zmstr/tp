@@ -11,13 +11,13 @@ class RecipeList {
     +saveRecipes() : void
 }
 class Recipe {
-    +String name
-    +int cookTime
-    +int calories
-    +ArrayList<String> allergies
-    +String url
-    +LocaleDate dateAdded
-    +toString()
+    +name: String
+    +cookTime: int
+    +calories: int
+    +allergies: ArrayList<String>
+    +url: String
+    +dateAdded: LocaleDate
+    +toString(): String
 }
 
 note left of Recipe::"toString()"
