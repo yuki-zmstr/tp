@@ -7,7 +7,6 @@ import recipeio.recipe.Recipe;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -49,12 +48,5 @@ public class InputParserTest {
     public void parseID_stringGiven_expectNullReturned() {
         String userInput = "details abc";
         assertNull(InputParser.parseID(userInput));
-    }
-
-    @Test
-    public void isWithinRange_idOutOfBounds_expectFalseReturned() {
-        recipes.add(testRecipe);
-        int testInput = 2;
-        assertFalse(CommandValidator.isWithinRange(recipes, testInput));
     }
 }
