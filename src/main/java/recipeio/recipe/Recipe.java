@@ -24,9 +24,9 @@ public class Recipe {
         this.cookTime = cookTime;
         this.calories = calories;
         this.allergies = allergies;
-        this.url = url;
         this.category = Objects.requireNonNullElse(category, MealCategory.GENERAL);
         this.dateAdded = dateAdded;
+        this.url = url;
     }
 
     public String getName() {

@@ -26,7 +26,7 @@ public class UITest {
     public void testUISayHi(){
 
         String expected = UI.SEPARATOR + System.lineSeparator() +
-                "Welcome to Recipe.io!" + System.lineSeparator();
+                "Welcome to Recipe.io! How can I help you today chef?" + System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
@@ -63,7 +63,7 @@ public class UITest {
         System.setOut(printStream);
 
         String expected =
-                "See you again chef!" + System.lineSeparator() +
+                "Okay, thanks for using RecipeIO! See you later chef!" + System.lineSeparator() +
                 UI.SEPARATOR + System.lineSeparator();
 
         UI.bye();
