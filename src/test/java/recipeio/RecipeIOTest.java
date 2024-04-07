@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class RecipeIOTest {
+public class RecipeIOTest {
 
     ArrayList<Recipe> recipes;
     ArrayList<String> allergies;
     Recipe testRecipe;
-
 
     public RecipeIOTest() {
         this.recipes = new ArrayList<>();

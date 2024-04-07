@@ -72,7 +72,7 @@ public class InputParser {
     }
 
     public static String parseFindCriteria(String userInput) {
-        return parseDetails(userInput)[FIND_CRITERIA_INDEX];
+        return parseDetails(userInput)[FIND_CRITERIA_INDEX].trim().toLowerCase();
     }
 
     public static String parseAllergyCriteria(String userInput) {
