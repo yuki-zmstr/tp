@@ -1,5 +1,3 @@
-package recipeio;
-
 import org.junit.jupiter.api.Test;
 import recipeio.commands.AddRecipeCommand;
 import recipeio.commands.DeleteRecipeCommand;
@@ -12,12 +10,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class RecipeIOTest {
+public class RecipeIOTest {
 
     ArrayList<Recipe> recipes;
     ArrayList<String> allergies;
     Recipe testRecipe;
-
 
     public RecipeIOTest() {
         this.recipes = new ArrayList<>();
