@@ -204,8 +204,7 @@ public class CommandValidator {
     /**
      * Check if the entries of the add command contains the write delimiter.
      * @param userInput The user's input from the CLI.
-     * @return false if the entries in the add command contain the write delimiter
-     * and true otherwise.
+     * @return false if the entries in the add command contain the write delimiter and true otherwise.
      */
     public static boolean isValidAddEntries(String userInput) {
         String entries = userInput.substring(ADD_COMMAND_ENRIES_START_INDEX);
