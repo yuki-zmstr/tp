@@ -1,3 +1,0 @@
- | 1 mins | 1 kcals |  | LUNCH | 2024-04-09 | q
-hot dog | 10 mins | 10 kcals | none | LUNCH | 2024-04-09 | www.com
-hot dog | 10 mins | 10 kcals | nil | LUNCH | 2024-04-09 | www.com
