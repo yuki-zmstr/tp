@@ -75,7 +75,7 @@ public class CommandValidator {
     }
 
     public static boolean isName(String input) {
-        if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
+        if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
             System.out.println("Sorry, I was unable to detect a name for your recipe.");
             System.out.println("Please make sure to enter a name using upper and lower case alphabets.");
             return false;
@@ -84,9 +84,12 @@ public class CommandValidator {
     }
 
     public static boolean isAllergies(String input) {
-        if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
+        if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
             System.out.println("Sorry, I was unable to detect any allergies for your recipe.");
-            System.out.println("Please make sure to enter allergies using upper and lower case alphabets.");
+            System.out.println("Please make sure to enter allergies using upper and lower case alphabets, spaces," +
+                    "and numbers\n");
+            System.out.println("Ensure that while your allergies can include numbers, that they are not JUST " +
+                    "a number.");
             System.out.println("If there are no allergies, please type 'none' instead.");
             return false;
         }
