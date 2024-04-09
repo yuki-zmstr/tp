@@ -50,7 +50,7 @@ Format: `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 * The `NAME` can include multiple words.
 * The `MINUTES` must be an integer.
 * The `KCALS` must be an integer.
-* The `ALLERGIES` can take multiple allergies, separated by a space. e.g. `eggs dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
+* The `ALLERGIES` can take multiple allergies, separated by a space. e.g. `egg dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
 * The `CATEGORY` must be one of: `breakfast`, `lunch`, `dinner`, `appetizer`, `dessert`.
 * The `URL` must be a string, that leads to the website that contains the full recipe.
 
