@@ -17,10 +17,13 @@ import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
+import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
 import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
+import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
 
 /**
  * Class containing methods that validate a user's input into the command line.
@@ -66,6 +69,25 @@ public class CommandValidator {
         if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
             System.out.println("Sorry, I was unable to detect a word.");
             System.out.println("Please make sure to enter a word using lower and upper case alphabets.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isName(String input) {
+        if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
+            System.out.println("Sorry, I was unable to detect a name for your recipe.");
+            System.out.println("Please make sure to enter a name using upper and lower case alphabets.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isAllergies(String input) {
+        if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
+            System.out.println("Sorry, I was unable to detect any allergies for your recipe.");
+            System.out.println("Please make sure to enter allergies using upper and lower case alphabets.");
+            System.out.println("If there are no allergies, please type 'none' instead.");
             return false;
         }
         return true;
@@ -209,13 +231,20 @@ public class CommandValidator {
             return false;
         }
         String[] remainingInput = splitUpAddInput(userInput);
+        if (!isName(remainingInput[RECIPE_NAME_INDEX])) {
+            return false;
+        }
         if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
             return false;
         }
         if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
             return false;
         }
+        if (!isAllergies(remainingInput[ALLERGIES_INDEX])) {
+            return false;
+        }
         if (!isMealCat(remainingInput[MEAL_CATEGORY_INDEX])) {
+            System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
         }
         return true;

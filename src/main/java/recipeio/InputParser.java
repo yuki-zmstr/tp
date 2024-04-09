@@ -32,7 +32,7 @@ public class InputParser {
      * @return the command keyword. e.g. add, delete.
      */
     public static String parseCommand(String userInput) {
-        return userInput.trim().split(" ")[INDEX_COMMAND];
+        return userInput.trim().split(" ")[INDEX_COMMAND].toLowerCase();
     }
 
     /**
@@ -46,7 +46,7 @@ public class InputParser {
         try {
             id = userInput.trim().split(" ")[InputParserConstants.INDEX_ID];
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Recipe number not given, please enter an integer representing a recipe number");
+            System.out.println("Recipe number not given, please enter an integer representing a recipe number.");
             return null;
         }
         if (!CommandValidator.isParsableAsInteger(id)) {
