@@ -18,7 +18,7 @@ In particular, it allows users to keep track of the URL at which he or she found
 ### 2. Command-Line Interface
 - **User-Friendly Commands:** Intuitive and easy-to-use commands for seamless interaction.
 - **Efficient and Concise Commands** Quick and precise commands allows users to be efficient 
-    in recipe management with some practice.
+    in recipe management with some adequate practice.
 
 ## Getting Started
 
