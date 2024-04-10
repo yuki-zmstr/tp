@@ -8,6 +8,8 @@ import recipeio.constants.CommandValidatorConstants;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.time.format.DateTimeParseException;
 
@@ -18,13 +20,7 @@ import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
-import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
-import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
-import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
-import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
-import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
-import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
-import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
+import static recipeio.constants.InputParserConstants.*;
 
 /**
  * Class containing methods that validate a user's input into the command line.
@@ -266,6 +262,9 @@ public class CommandValidator {
             System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
         }
+        if (!isValidURL(remainingInput[URL_INDEX])) {
+            return false;
+        }
         return true;
     }
 
@@ -288,5 +287,33 @@ public class CommandValidator {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Checks whether the url entered is valid by checking with URLValidator
+     * Valid urls starts with 'http://', 'https://', or 'www.'
+     * Valid urls must also follow domain naming conventions
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
+    public static boolean isValidURL(String userInput) {
+        String details = userInput.trim();
+        boolean isValid = true;
+        String domainRegex = "\\w+([\\-\\.]{1}[\\w]+)*\\.[a-zA-Z]{2,}";
+
+        // Validate URL subdomain
+        if (!details.startsWith("http://") && !details.startsWith("https://") && !details.startsWith("www.")) {
+            System.out.println("URL must start with 'http://', 'https://', or 'www.'");
+            System.out.println("Example: \"www.food.com\" or \" https://www.example.com\" ");
+            isValid = false;
+        }
+        // Validate domain name and TLD
+        else if (!details.matches("^(http://www\\.|https://www\\.|http://|https://|www\\.)" + domainRegex + ".*$")) {
+            System.out.println("URL domain name or TLD is invalid.");
+            System.out.println("Example: \"www.food.com\" or \" https://www.example.com\" ");
+            isValid = false;
+        }
+        return isValid;
     }
 }
