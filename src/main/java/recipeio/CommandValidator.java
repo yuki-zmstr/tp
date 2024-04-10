@@ -53,15 +53,19 @@ public class CommandValidator {
 
 
     /**
-     * Checks if an input can be parsed as an integer.
+     * Checks if an input can be parsed as an integer more than zero.
      *
      * @param input the String to check.
      * @return status of check.
      */
     public static boolean isParsableAsInteger(String input) {
         try {
-            Integer.parseInt(input);
-            return true;
+            int result = Integer.parseInt(input);
+            if (result > 0) {
+                return true;
+            }
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            return false;
         } catch (NumberFormatException e) {
             System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             return false;
