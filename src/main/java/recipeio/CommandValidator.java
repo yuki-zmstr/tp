@@ -18,10 +18,13 @@ import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
+import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
 import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
+import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
 
 /**
  * Class containing methods that validate a user's input into the command line.
@@ -67,6 +70,28 @@ public class CommandValidator {
         if (!input.matches(CommandValidatorConstants.MATCH_WORD_REGEX)){
             System.out.println("Sorry, I was unable to detect a word.");
             System.out.println("Please make sure to enter a word using lower and upper case alphabets.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isName(String input) {
+        if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
+            System.out.println("Sorry, I was unable to detect a name for your recipe.");
+            System.out.println("Please make sure to enter a name using upper and lower case alphabets.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isAllergies(String input) {
+        if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
+            System.out.println("Sorry, I was unable to detect any allergies for your recipe.");
+            System.out.println("Please make sure to enter allergies using upper and lower case alphabets, spaces," +
+                    "and numbers\n");
+            System.out.println("Ensure that while your allergies can include numbers, that they are not JUST " +
+                    "a number.");
+            System.out.println("If there are no allergies, please type 'none' instead.");
             return false;
         }
         return true;
@@ -135,7 +160,7 @@ public class CommandValidator {
     public static boolean isValidDetailCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DETAILS_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The detail function takes in one parameter: {index}");
+            System.out.println("The detail function takes in one parameter: {recipe number}");
             System.out.println("\tInput Example: detail 1");
             return false;
         }
@@ -165,7 +190,7 @@ public class CommandValidator {
     public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DELETE_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The delete function takes in one parameter: {index}");
+            System.out.println("The delete function takes in one parameter: {recipe number}");
             System.out.println("\tInput Example: delete 1");
             return false;
         }
@@ -192,7 +217,7 @@ public class CommandValidator {
     public static boolean isValidFindCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_FIND_LENGTH) {
-            System.out.println("The find function accepts two parameters: {type} and {criteria}");
+            System.out.println("The find function accepts two parameters: {type} and {criteria}.");
             System.out.println("\tInput Example: find kw pizza");
             System.out.println("\tInput Example: find date 2024-03-28");
             System.out.println("\tInput Example: find meal dinner");
@@ -225,13 +250,20 @@ public class CommandValidator {
             return false;
         }
         String[] remainingInput = splitUpAddInput(userInput);
+        if (!isName(remainingInput[RECIPE_NAME_INDEX])) {
+            return false;
+        }
         if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
             return false;
         }
         if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
             return false;
         }
+        if (!isAllergies(remainingInput[ALLERGIES_INDEX])) {
+            return false;
+        }
         if (!isMealCat(remainingInput[MEAL_CATEGORY_INDEX])) {
+            System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
         }
         return true;

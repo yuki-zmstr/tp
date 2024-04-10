@@ -100,7 +100,9 @@ public class UI {
         System.out.println("add NAME, MINUTES, KCALS, SINGULAR-TENSE SPACE-SEPARATED ALLERGIES, CATEGORY, " +
                 "URL: adds a recipe");
         System.out.println("\tInput Example: add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com\n");
-        System.out.println("delete LIST_NUMBER: deletes a recipe at a given index");
+        System.out.println("detail RECIPE_NUMBER: shows you a detailed view of a recipe");
+        System.out.println("\tInput Example: detail 1");
+        System.out.println("delete RECIPE_NUMBER: deletes a recipe with a given recipe number");
         System.out.println("\tInput Example: delete 1\n");
         System.out.println("find kw KEYWORD: finds recipes with a given keyword");
         System.out.println("\tInput Example: find kw pizza\n");
