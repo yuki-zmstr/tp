@@ -18,6 +18,7 @@ import static recipeio.constants.InputParserConstants.FIND_ALLERGY_INDEX;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
 import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
+import static recipeio.constants.InputParserConstants.INVALID_LIST_ERROR;
 
 /**
  * Methods to parse input by the user.
@@ -26,12 +27,19 @@ public class InputParser {
 
     /**
      * Returns command entered by the user, expected to be at beginning of string.
-     * Error handling in TaskList.java
+     * Most error handling in TaskList.java, with an exception for the list command.
+     * Checks are made for any trailing characters following the list command and returns an invalid command
+     * if any of such characters are found
      *
      * @param userInput input from the user in the command line.
      * @return the command keyword. e.g. add, delete.
      */
     public static String parseCommand(String userInput) {
+        //if list command with other characters trailing, returns an invalid command
+        if (userInput.startsWith("list") && userInput.length() != 4) {
+            System.out.println(INVALID_LIST_ERROR);
+            return "invalid";
+        }
         return userInput.trim().split(" ")[INDEX_COMMAND].toLowerCase();
     }
 
