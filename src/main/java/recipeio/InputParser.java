@@ -59,6 +59,7 @@ public class InputParser {
      * Splits the description into components, such as name and time
      *
      * @param userInput input from the user in the command line.
+     * @return an array of description extracted from the user input
      */
     public static String[] parseDetails(String userInput){
         String[] words = userInput.trim().split(" ");
@@ -67,14 +68,32 @@ public class InputParser {
         return remainingInput.trim().split(" ");
     }
 
+    /**
+     * Return the type of find the user is using from selection of keyword and date
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of the type of find command
+     */
     public static String parseFindType(String userInput) {
         return parseDetails(userInput)[FIND_TYPE_INDEX];
     }
 
+    /**
+     * Return the criteria the user is searching with after processing
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of appropriate criteria
+     */
     public static String parseFindCriteria(String userInput) {
         return parseDetails(userInput)[FIND_CRITERIA_INDEX].trim().toLowerCase();
     }
 
+    /**
+     * Return the description of allergies from the user input
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of allergies
+     */
     public static String parseAllergyCriteria(String userInput) {
         return parseDetails(userInput)[FIND_ALLERGY_INDEX];
     }

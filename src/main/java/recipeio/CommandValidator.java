@@ -247,6 +247,14 @@ public class CommandValidator {
         return !entries.contains(StorageConstants.WRITE_DELIMITER);
     }
 
+    /**
+     * Checks if an add recipe command is valid
+     * The input is initially checked against the expected total number of ingredients and subsequently all the
+     * other input parameters to ensure that they are of the expected format.
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
     public static boolean isValidAddCommand(String userInput) {
         String[] details = InputParser.splitUpAddInput(userInput);
         if (details.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
