@@ -18,9 +18,15 @@ import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
-import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_ERROR;
-import static recipeio.constants.CommandValidatorConstants.URL_INVALID_DOMAIN;
-import static recipeio.constants.CommandValidatorConstants.URL_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.SUB_DOMAIN_MATCHES;
+import static recipeio.constants.CommandValidatorConstants.DOMAIN_REGEX;
+import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_PROMPT;
+import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_PROMPT;
+import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_PROMPT;
+import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.DATE_TIME_PARSE_ERROR;
 import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
@@ -58,7 +64,6 @@ public class CommandValidator {
             return true;
         } catch (NumberFormatException e) {
             System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
-            System.out.println("Please enter an integer from 1 onwards.");
             return false;
         }
     }
@@ -130,9 +135,7 @@ public class CommandValidator {
             LocalDate date = LocalDate.parse(input);
             return true;
         } catch (DateTimeParseException e) {
-            System.out.println("Make sure you enter a valid date!");
-            System.out.println("Please enter your date in the format yyyy-MM-dd");
-            System.out.println("\tInput Example: find date 2024-03-28");
+            System.out.println(DATE_TIME_PARSE_ERROR);
             return false;
         }
     }
@@ -164,12 +167,12 @@ public class CommandValidator {
     public static boolean isValidDetailCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DETAILS_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The detail function takes in one parameter: {recipe number}");
-            System.out.println("\tInput Example: detail 1");
+            System.out.println(VALID_DETAILS_PROMPT);
+            System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
         if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
-            System.out.println("\tInput Example: detail 1");
+            System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
         Integer index = InputParser.parseID(userInput);
@@ -194,12 +197,12 @@ public class CommandValidator {
     public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DELETE_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The delete function takes in one parameter: {recipe number}");
-            System.out.println("\tInput Example: delete 1");
+            System.out.println(VALID_DELETE_PROMPT);
+            System.out.println(VALID_DELETE_EXAMPLE);
             return false;
         }
         if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
-            System.out.println("\tInput Example: delete 1");
+            System.out.println(VALID_DELETE_PROMPT);
             return false;
         }
         Integer index = InputParser.parseID(userInput);
@@ -286,12 +289,12 @@ public class CommandValidator {
     public static boolean isValidFilterCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The filter function takes in one parameter: {allergy}");
-            System.out.println("\tInput Example: filter dairy");
+            System.out.println(VALID_FILTER_PROMPT);
+            System.out.println(VALID_FILTER_EXAMPLE);
             return false;
         }
         if (!isWord(details[INPUT_DETAILS_INDEX])) {
-            System.out.println("\tInput Example: filter dairy");
+            System.out.println(VALID_FILTER_EXAMPLE);
             return false;
         }
         return true;
@@ -308,18 +311,17 @@ public class CommandValidator {
     public static boolean isValidURL(String userInput) {
         String details = userInput.trim();
         boolean isValid = true;
-        String domainRegex = "\\w+([\\-\\.]{1}[\\w]+)*\\.[a-zA-Z]{2,}";
 
         // Validate URL subdomain
         if (!details.startsWith("http://") && !details.startsWith("https://") && !details.startsWith("www.")) {
-            System.out.println(URL_SUBDOMAIN_ERROR);
-            System.out.println(URL_EXAMPLE);
+            System.out.println(CommandValidatorConstants.URL_SUBDOMAIN_ERROR);
+            System.out.println(CommandValidatorConstants.URL_EXAMPLE);
             isValid = false;
         }
         // Validate domain name and TLD
-        else if (!details.matches("^(http://www\\.|https://www\\.|http://|https://|www\\.)" + domainRegex + ".*$")) {
-            System.out.println(URL_INVALID_DOMAIN);
-            System.out.println(URL_EXAMPLE);
+        else if (!details.matches(SUB_DOMAIN_MATCHES + DOMAIN_REGEX + ".*$")) {
+            System.out.println(CommandValidatorConstants.URL_INVALID_DOMAIN);
+            System.out.println(CommandValidatorConstants.URL_EXAMPLE);
             isValid = false;
         }
         return isValid;

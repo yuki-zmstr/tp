@@ -46,7 +46,7 @@ public class InputParser {
         try {
             id = userInput.trim().split(" ")[InputParserConstants.INDEX_ID];
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Recipe number not given, please enter an integer representing a recipe number.");
+            System.out.println(InputParserConstants.PARSE_ID_ERROR);
             return null;
         }
         if (!CommandValidator.isParsableAsInteger(id)) {

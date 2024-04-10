@@ -24,8 +24,10 @@ public class InputParserConstants {
     public static final String MEAL_CAT_DESSERT = "dessert";
 
     public static final String INTEGER_NEEDED_ERROR_MESSAGE = "Make sure you enter an integer for cook time and" +
-            " calories!";
+            " calories! " + "\nPlease enter an integer from 1 onwards.";
     public static final String MEAL_CATEGORY_ERROR_MESSAGE = "Please enter a valid meal category. Here are your " +
             "options:\nBREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
     public static final String RECIPE_DELIMETER = ",";
+    public static final String PARSE_ID_ERROR = "Recipe number not given, please enter an integer representing a " +
+            "recipe number.";
 }

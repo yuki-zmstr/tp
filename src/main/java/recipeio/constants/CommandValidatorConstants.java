@@ -18,5 +18,16 @@ public class CommandValidatorConstants {
     public static final String URL_SUBDOMAIN_ERROR = "URL must start with 'http://', 'https://', or 'www.'";
     public static final String URL_INVALID_DOMAIN = "URL domain name or TLD is invalid.";
     public static final String URL_EXAMPLE = "Example: \"www.food.com\" or \" https://www.example.com\" ";
+    public static final String DOMAIN_REGEX = "\\w+([\\-\\.]{1}[\\w]+)*\\.[a-zA-Z]{2,}";
+    public static final String SUB_DOMAIN_MATCHES = "^(http://www\\.|https://www\\.|http://|https://|www\\.)";
+    public static final String DATE_TIME_PARSE_ERROR = "Make sure you enter a valid date!" +
+            "\nPlease enter your date in the format yyyy-MM-dd" + "\n\tInput Example: find date 2024-03-28";
+    public static final String VALID_DETAILS_PROMPT = "The detail function takes in one parameter: {recipe number}";
+    public static final String VALID_DETAILS_EXAMPLE = "\tInput Example: detail 1";
+    public static final String VALID_DELETE_PROMPT = "The delete function takes in one parameter: {recipe number}";
+    public static final String VALID_DELETE_EXAMPLE = "\tInput Example: delete 1";
+    public static final String VALID_FILTER_PROMPT = "The filter function takes in one parameter: {allergy}";
+    public static final String VALID_FILTER_EXAMPLE = "\tInput Example: filter dairy";
+
 
 }
