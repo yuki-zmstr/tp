@@ -1,7 +1,6 @@
 package commands;
 
 import org.junit.jupiter.api.Test;
-import recipeio.InputParser;
 import recipeio.commands.*;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
@@ -9,10 +8,9 @@ import recipeio.recipe.Recipe;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortCommandsTest {
     public static final String TEST1= "add pizza, 34, 340, dairy, dinner, www.url.com";
@@ -25,11 +23,16 @@ public class SortCommandsTest {
 
     void initRecipes() {
         ArrayList<String> allergies = new ArrayList<>();
-        Recipe testRecipe1 = new Recipe("pizza", 34, 340, allergies, MealCategory.DINNER, LocalDate.parse("2024-04-10"), "www.url.com");
-        Recipe testRecipe2 = new Recipe("pho", 100, 600, allergies, MealCategory.BREAKFAST, LocalDate.parse("2024-03-12"), "www.pho.com");
-        Recipe testRecipe3 = new Recipe("banh mi", 5, 500, allergies, MealCategory.BREAKFAST, LocalDate.parse("2022-01-12"), "www.banhmi.com");
-        Recipe testRecipe4 = new Recipe("bun bo hue", 480, 600, allergies, MealCategory.LUNCH, LocalDate.parse("2013-04-12"), "www.bunbohue.com");
-        Recipe testRecipe5 = new Recipe("tra da", 2, 10, allergies, MealCategory.DESSERT, LocalDate.parse("2024-01-12"), "www.trada.com");
+        Recipe testRecipe1 = new Recipe("pizza", 34, 340, allergies,
+                MealCategory.DINNER, LocalDate.parse("2024-04-10"), "www.url.com");
+        Recipe testRecipe2 = new Recipe("pho", 100, 600, allergies,
+                MealCategory.BREAKFAST, LocalDate.parse("2024-03-12"), "www.pho.com");
+        Recipe testRecipe3 = new Recipe("banh mi", 5, 500, allergies,
+                MealCategory.BREAKFAST, LocalDate.parse("2022-01-12"), "www.banhmi.com");
+        Recipe testRecipe4 = new Recipe("bun bo hue", 480, 600, allergies,
+                MealCategory.LUNCH, LocalDate.parse("2013-04-12"), "www.bunbohue.com");
+        Recipe testRecipe5 = new Recipe("tra da", 2, 10, allergies,
+                MealCategory.DESSERT, LocalDate.parse("2024-01-12"), "www.trada.com");
 
         recipes.add(testRecipe1);
         recipes.add(testRecipe2);

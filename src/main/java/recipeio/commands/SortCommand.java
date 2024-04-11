@@ -15,17 +15,17 @@ public class SortCommand {
     public static ArrayList<Recipe> execute(ArrayList<Recipe> recipes, SortType sortType) {
         ArrayList<Recipe> temp;
         switch (sortType) {
-            case DATE:
-                temp = SortAscendingDateAdded.execute(recipes);
-                break;
-            case COOK_TIME:
-                temp = SortAscendingCookTime.execute(recipes);
-                break;
-            case CAlORIES:
-                temp = SortAscendingCalories.execute(recipes);
-                break;
-            default:
-                temp = SortAscendingNames.execute(recipes);
+        case DATE:
+            temp = SortAscendingDateAdded.execute(recipes);
+            break;
+        case COOK_TIME:
+            temp = SortAscendingCookTime.execute(recipes);
+            break;
+        case CAlORIES:
+            temp = SortAscendingCalories.execute(recipes);
+            break;
+        default:
+            temp = SortAscendingNames.execute(recipes);
         }
         return temp;
     }
