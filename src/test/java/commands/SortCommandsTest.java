@@ -5,6 +5,7 @@ import recipeio.commands.SortAscendingNames;
 import recipeio.commands.SortAscendingCalories;
 import recipeio.commands.SortAscendingCookTime;
 import recipeio.commands.SortAscendingDateAdded;
+import recipeio.commands.ListRecipeCommand;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 
