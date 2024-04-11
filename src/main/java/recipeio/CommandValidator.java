@@ -27,6 +27,9 @@ import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_EXAMPLE;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_PROMPT;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_EXAMPLE;
 import static recipeio.constants.CommandValidatorConstants.DATE_TIME_PARSE_ERROR;
+import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_HTTP;
+import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_HTTPS;
+import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_WWW;
 import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
@@ -325,7 +328,8 @@ public class CommandValidator {
         boolean isValid = true;
 
         // Validate URL subdomain
-        if (!details.startsWith("http://") && !details.startsWith("https://") && !details.startsWith("www.")) {
+        if (!details.startsWith(URL_SUBDOMAIN_HTTP) && !details.startsWith(URL_SUBDOMAIN_HTTPS)
+                && !details.startsWith(URL_SUBDOMAIN_WWW)) {
             System.out.println(CommandValidatorConstants.URL_SUBDOMAIN_ERROR);
             System.out.println(CommandValidatorConstants.URL_EXAMPLE);
             isValid = false;

@@ -36,7 +36,7 @@ public class InputParser {
      */
     public static String parseCommand(String userInput) {
         //if list command with other characters trailing, returns an invalid command
-        if (userInput.startsWith("list") && userInput.length() != 4) {
+        if ((userInput.toLowerCase().startsWith("list")) && userInput.trim().length() != 4) {
             System.out.println(INVALID_LIST_ERROR);
             return "invalid";
         }

@@ -28,6 +28,9 @@ public class CommandValidatorConstants {
     public static final String VALID_DELETE_EXAMPLE = "\tInput Example: delete 1";
     public static final String VALID_FILTER_PROMPT = "The filter function takes in one parameter: {allergy}";
     public static final String VALID_FILTER_EXAMPLE = "\tInput Example: filter dairy";
+    public static final String URL_SUBDOMAIN_HTTP = "http://";
+    public static final String URL_SUBDOMAIN_HTTPS = "https://";
+    public static final String URL_SUBDOMAIN_WWW = "www.";
 
 
 }
