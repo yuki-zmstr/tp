@@ -18,9 +18,22 @@ import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_LENGTH;
 import static recipeio.constants.CommandValidatorConstants.VALID_FIND_LENGTH;
+import static recipeio.constants.CommandValidatorConstants.SUB_DOMAIN_MATCHES;
+import static recipeio.constants.CommandValidatorConstants.DOMAIN_REGEX;
+import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_PROMPT;
+import static recipeio.constants.CommandValidatorConstants.VALID_DETAILS_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_PROMPT;
+import static recipeio.constants.CommandValidatorConstants.VALID_DELETE_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_PROMPT;
+import static recipeio.constants.CommandValidatorConstants.VALID_FILTER_EXAMPLE;
+import static recipeio.constants.CommandValidatorConstants.DATE_TIME_PARSE_ERROR;
+import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_HTTP;
+import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_HTTPS;
+import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_WWW;
 import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
+import static recipeio.constants.InputParserConstants.URL_INDEX;
 import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
@@ -43,18 +56,21 @@ public class CommandValidator {
 
 
     /**
-     * Checks if an input can be parsed as an integer.
+     * Checks if an input can be parsed as an integer more than zero.
      *
      * @param input the String to check.
      * @return status of check.
      */
     public static boolean isParsableAsInteger(String input) {
         try {
-            Integer.parseInt(input);
-            return true;
+            int result = Integer.parseInt(input);
+            if (result > 0) {
+                return true;
+            }
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            return false;
         } catch (NumberFormatException e) {
             System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
-            System.out.println("Please enter an integer from 1 onwards.");
             return false;
         }
     }
@@ -126,9 +142,7 @@ public class CommandValidator {
             LocalDate date = LocalDate.parse(input);
             return true;
         } catch (DateTimeParseException e) {
-            System.out.println("Make sure you enter a valid date!");
-            System.out.println("Please enter your date in the format yyyy-MM-dd");
-            System.out.println("\tInput Example: find date 2024-03-28");
+            System.out.println(DATE_TIME_PARSE_ERROR);
             return false;
         }
     }
@@ -160,12 +174,12 @@ public class CommandValidator {
     public static boolean isValidDetailCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DETAILS_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The detail function takes in one parameter: {recipe number}");
-            System.out.println("\tInput Example: detail 1");
+            System.out.println(VALID_DETAILS_PROMPT);
+            System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
         if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
-            System.out.println("\tInput Example: detail 1");
+            System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
         Integer index = InputParser.parseID(userInput);
@@ -190,12 +204,12 @@ public class CommandValidator {
     public static boolean isValidDeleteCommand(String userInput, ArrayList<Recipe> recipes) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_DELETE_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The delete function takes in one parameter: {recipe number}");
-            System.out.println("\tInput Example: delete 1");
+            System.out.println(VALID_DELETE_PROMPT);
+            System.out.println(VALID_DELETE_EXAMPLE);
             return false;
         }
         if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
-            System.out.println("\tInput Example: delete 1");
+            System.out.println(VALID_DELETE_PROMPT);
             return false;
         }
         Integer index = InputParser.parseID(userInput);
@@ -226,6 +240,14 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if an add recipe command is valid
+     * The input is initially checked against the expected total number of ingredients and subsequently all the
+     * other input parameters to ensure that they are of the expected format.
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
     public static boolean isValidAddCommand(String userInput) {
         String[] details = InputParser.splitUpAddInput(userInput);
         if (details.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
@@ -252,6 +274,9 @@ public class CommandValidator {
             System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
         }
+        if (!isValidURL(remainingInput[URL_INDEX])) {
+            return false;
+        }
         return true;
     }
 
@@ -265,14 +290,42 @@ public class CommandValidator {
     public static boolean isValidFilterCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
         if (details.length != VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
-            System.out.println("The filter function takes in one parameter: {allergy}");
-            System.out.println("\tInput Example: filter dairy");
+            System.out.println(VALID_FILTER_PROMPT);
+            System.out.println(VALID_FILTER_EXAMPLE);
             return false;
         }
         if (!isWord(details[INPUT_DETAILS_INDEX])) {
-            System.out.println("\tInput Example: filter dairy");
+            System.out.println(VALID_FILTER_EXAMPLE);
             return false;
         }
         return true;
+    }
+
+    /**
+     * Checks whether the url entered is valid by checking with URLValidator
+     * Valid urls starts with 'http://', 'https://', or 'www.'
+     * Valid urls must also follow domain naming conventions
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
+    public static boolean isValidURL(String userInput) {
+        String details = userInput.trim();
+        boolean isValid = true;
+
+        // Validate URL subdomain
+        if (!details.startsWith(URL_SUBDOMAIN_HTTP) && !details.startsWith(URL_SUBDOMAIN_HTTPS)
+                && !details.startsWith(URL_SUBDOMAIN_WWW)) {
+            System.out.println(CommandValidatorConstants.URL_SUBDOMAIN_ERROR);
+            System.out.println(CommandValidatorConstants.URL_EXAMPLE);
+            isValid = false;
+        }
+        // Validate domain name and TLD
+        else if (!details.matches(SUB_DOMAIN_MATCHES + DOMAIN_REGEX + ".*$")) {
+            System.out.println(CommandValidatorConstants.URL_INVALID_DOMAIN);
+            System.out.println(CommandValidatorConstants.URL_EXAMPLE);
+            isValid = false;
+        }
+        return isValid;
     }
 }

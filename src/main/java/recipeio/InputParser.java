@@ -18,6 +18,7 @@ import static recipeio.constants.InputParserConstants.FIND_ALLERGY_INDEX;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
 import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
+import static recipeio.constants.InputParserConstants.INVALID_LIST_ERROR;
 
 /**
  * Methods to parse input by the user.
@@ -26,12 +27,19 @@ public class InputParser {
 
     /**
      * Returns command entered by the user, expected to be at beginning of string.
-     * Error handling in TaskList.java
+     * Most error handling in TaskList.java, with an exception for the list command.
+     * Checks are made for any trailing characters following the list command and returns an invalid command
+     * if any of such characters are found
      *
      * @param userInput input from the user in the command line.
      * @return the command keyword. e.g. add, delete.
      */
     public static String parseCommand(String userInput) {
+        //if list command with other characters trailing, returns an invalid command
+        if ((userInput.trim().toLowerCase().startsWith("list")) && userInput.trim().length() != 4) {
+            System.out.println(INVALID_LIST_ERROR);
+            return "invalid";
+        }
         return userInput.trim().split(" ")[INDEX_COMMAND].toLowerCase();
     }
 
@@ -46,7 +54,7 @@ public class InputParser {
         try {
             id = userInput.trim().split(" ")[InputParserConstants.INDEX_ID];
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Recipe number not given, please enter an integer representing a recipe number.");
+            System.out.println(InputParserConstants.PARSE_ID_ERROR);
             return null;
         }
         if (!CommandValidator.isParsableAsInteger(id)) {
@@ -59,6 +67,7 @@ public class InputParser {
      * Splits the description into components, such as name and time
      *
      * @param userInput input from the user in the command line.
+     * @return an array of description extracted from the user input
      */
     public static String[] parseDetails(String userInput){
         String[] words = userInput.trim().split(" ");
@@ -67,14 +76,32 @@ public class InputParser {
         return remainingInput.trim().split(" ");
     }
 
+    /**
+     * Return the type of find the user is using from selection of keyword and date
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of the type of find command
+     */
     public static String parseFindType(String userInput) {
         return parseDetails(userInput)[FIND_TYPE_INDEX];
     }
 
+    /**
+     * Return the criteria the user is searching with after processing
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of appropriate criteria
+     */
     public static String parseFindCriteria(String userInput) {
         return parseDetails(userInput)[FIND_CRITERIA_INDEX].trim().toLowerCase();
     }
 
+    /**
+     * Return the description of allergies from the user input
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of allergies
+     */
     public static String parseAllergyCriteria(String userInput) {
         return parseDetails(userInput)[FIND_ALLERGY_INDEX];
     }
