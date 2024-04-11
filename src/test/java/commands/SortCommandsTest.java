@@ -50,7 +50,9 @@ public class SortCommandsTest {
                 "\t3. pho / added on 2024-03-12 / url: www.pho.com" + System.lineSeparator() +
                 "\t4. pizza / added on 2024-04-10 / url: www.url.com" + System.lineSeparator() +
                 "\t5. tra da / added on 2024-01-12 / url: www.trada.com" + System.lineSeparator() +
-                System.lineSeparator() + "To find out more about a particular recipe, try the 'detail {recipe number}' command." + System.lineSeparator();
+                System.lineSeparator() +
+                "To find out more about a particular recipe, try the 'detail {recipe number}' command."
+                + System.lineSeparator();
 
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
@@ -74,7 +76,9 @@ public class SortCommandsTest {
                 "\t3. tra da / added on 2024-01-12 / url: www.trada.com" + System.lineSeparator() +
                 "\t4. pho / added on 2024-03-12 / url: www.pho.com" + System.lineSeparator() +
                 "\t5. pizza / added on 2024-04-10 / url: www.url.com" + System.lineSeparator() +
-                System.lineSeparator() + "To find out more about a particular recipe, try the 'detail {recipe number}' command." + System.lineSeparator();
+                System.lineSeparator() +
+                "To find out more about a particular recipe, try the 'detail {recipe number}' command."
+                + System.lineSeparator();
 
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
@@ -99,7 +103,9 @@ public class SortCommandsTest {
                 "\t3. banh mi / added on 2022-01-12 / url: www.banhmi.com" + System.lineSeparator() +
                 "\t4. pho / added on 2024-03-12 / url: www.pho.com" + System.lineSeparator() +
                 "\t5. bun bo hue / added on 2013-04-12 / url: www.bunbohue.com" + System.lineSeparator() +
-                System.lineSeparator() + "To find out more about a particular recipe, try the 'detail {recipe number}' command." + System.lineSeparator();
+                System.lineSeparator() +
+                "To find out more about a particular recipe, try the 'detail {recipe number}' command."
+                + System.lineSeparator();
 
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
@@ -123,7 +129,9 @@ public class SortCommandsTest {
                 "\t3. pizza / added on 2024-04-10 / url: www.url.com" + System.lineSeparator() +
                 "\t4. pho / added on 2024-03-12 / url: www.pho.com" + System.lineSeparator() +
                 "\t5. bun bo hue / added on 2013-04-12 / url: www.bunbohue.com" + System.lineSeparator() +
-                System.lineSeparator() + "To find out more about a particular recipe, try the 'detail {recipe number}' command." + System.lineSeparator();
+                System.lineSeparator() +
+                "To find out more about a particular recipe, try the 'detail {recipe number}' command."
+                + System.lineSeparator();
 
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
