@@ -1,7 +1,10 @@
 package commands;
 
 import org.junit.jupiter.api.Test;
-import recipeio.commands.*;
+import recipeio.commands.SortAscendingNames;
+import recipeio.commands.SortAscendingCalories;
+import recipeio.commands.SortAscendingCookTime;
+import recipeio.commands.SortAscendingDateAdded;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 
@@ -13,11 +16,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortCommandsTest {
-    public static final String TEST1= "add pizza, 34, 340, dairy, dinner, www.url.com";
-    public static final String TEST2= "add pho, 100, 600, beef, breakfast, www.pho.com";
-    public static final String TEST3= "add banh mi, 5, 500, cilantro, breakfast, www.banhmi.com";
-    public static final String TEST4= "add bun bo hue, 480, 600, pork, lunch, www.bunbohue.com";
-    public static final String TEST5= "add tra da, 2, 10, tea, dessert, www.trada.com";
 
     ArrayList<Recipe> recipes = new ArrayList<>();
 

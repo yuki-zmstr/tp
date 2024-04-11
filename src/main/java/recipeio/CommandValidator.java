@@ -1,7 +1,6 @@
 package recipeio;
 
 import recipeio.constants.InputParserConstants;
-import recipeio.constants.StorageConstants;
 import recipeio.recipe.Recipe;
 import recipeio.constants.CommandValidatorConstants;
 
