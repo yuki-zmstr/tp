@@ -226,16 +226,6 @@ public class CommandValidator {
         return true;
     }
 
-    /**
-     * Check if the entries of the add command contains the write delimiter.
-     * @param userInput The user's input from the CLI.
-     * @return false if the entries in the add command contain the write delimiter and true otherwise.
-     */
-    public static boolean isValidAddEntries(String userInput) {
-        String entries = userInput.substring(ADD_COMMAND_ENRIES_START_INDEX);
-        return !entries.contains(StorageConstants.WRITE_DELIMITER);
-    }
-
     public static boolean isValidAddCommand(String userInput) {
         String[] details = InputParser.splitUpAddInput(userInput);
         if (details.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
@@ -245,10 +235,6 @@ public class CommandValidator {
             return false;
         }
 
-        if (!isValidAddEntries(userInput)) {
-            System.out.println("Please remove the '|' character from the data entries.");
-            return false;
-        }
         String[] remainingInput = splitUpAddInput(userInput);
         if (!isName(remainingInput[RECIPE_NAME_INDEX])) {
             return false;
