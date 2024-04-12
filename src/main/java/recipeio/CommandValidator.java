@@ -42,7 +42,6 @@ import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
  * Class containing methods that validate a user's input into the command line.
  */
 public class CommandValidator {
-    public static final int ADD_COMMAND_ENRIES_START_INDEX = 3;
     /**
      * Splits a recipe name into individual words.
      *
