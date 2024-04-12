@@ -21,7 +21,7 @@ public class SortCommand {
         case COOK_TIME:
             temp = SortAscendingCookTime.execute(recipes);
             break;
-        case CAlORIES:
+        case CALORIES:
             temp = SortAscendingCalories.execute(recipes);
             break;
         default:
