@@ -1,7 +1,6 @@
 package recipeio;
 
 import recipeio.constants.InputParserConstants;
-import recipeio.enums.SortType;
 import recipeio.recipe.Recipe;
 import recipeio.constants.CommandValidatorConstants;
 import recipeio.ui.UI;

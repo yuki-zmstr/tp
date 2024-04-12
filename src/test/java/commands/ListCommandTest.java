@@ -5,7 +5,6 @@ import recipeio.constants.CommandValidatorConstants;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.recipe.RecipeList;
-import recipeio.ui.UI;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,11 +20,11 @@ public class ListCommandTest {
     private static final String TEST2 = "list srt";
 
     private static final String SORT_TYPE_LIST =
-    "These are the valid sort type inputs:" + System.lineSeparator()
-    + "\tsortname: Sort the list by name in lexicographically ascending order" + System.lineSeparator()
-    + "\tsortdate: Sort the list by date in ascending order i.e. from oldest to newest" + System.lineSeparator()
-    + "\tsortcooktime: Sort the list by cook time in ascending order" + System.lineSeparator()
-    + "\tsortcalories: Sort the list by calories in ascending order" + System.lineSeparator();
+        "These are the valid sort type inputs:" + System.lineSeparator()
+        + "\tsortname: Sort the list by name in lexicographically ascending order" + System.lineSeparator()
+        + "\tsortdate: Sort the list by date in ascending order i.e. from oldest to newest" + System.lineSeparator()
+        + "\tsortcooktime: Sort the list by cook time in ascending order" + System.lineSeparator()
+        + "\tsortcalories: Sort the list by calories in ascending order" + System.lineSeparator();
 
     ArrayList<Recipe> recipes = new ArrayList<>();
     Recipe testRecipe1;
