@@ -3,6 +3,7 @@ package recipeio.commands;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
 import recipeio.constants.CommandConstants;
+import recipeio.constants.CommandValidatorConstants;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 
@@ -12,12 +13,14 @@ import java.util.ArrayList;
 import static recipeio.constants.CommandConstants.FIND_BY_KEYWORD;
 import static recipeio.constants.CommandConstants.FIND_BY_MEAL;
 import static recipeio.constants.CommandConstants.FIND_BY_DATE;
+import static recipeio.constants.CommandConstants.FIND_BY_URL;
 import static recipeio.constants.CommandConstants.INVALID_MEAL_ERROR;
 import static recipeio.constants.CommandConstants.INVALID_FIND_ERROR;
 import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
 import static recipeio.constants.CommandConstants.NO_MATCHES_PROMPT;
 import static recipeio.constants.CommandConstants.VALID_KEYWORD_MATCHES;
 import static recipeio.constants.CommandConstants.VALID_DATE_MATCHES;
+import static recipeio.constants.CommandConstants.VALID_URL_MATCHES;
 
 public class FindCommand {
 
@@ -48,6 +51,12 @@ public class FindCommand {
                 return;
             }
             FindMeal.execute(criteria, recipes);
+            break;
+        case (FIND_BY_URL):
+            if (!CommandValidator.isValidURL(criteria)) {
+                return;
+            }
+            findURL(criteria, recipes);
             break;
         default:
             System.out.println(INVALID_FIND_ERROR);
@@ -91,6 +100,29 @@ public class FindCommand {
         System.out.println(VALID_DATE_MATCHES + date + "\n");
         UI.printRecipes(matches, listNumbers);
     }
-
+    /**
+     * Tries to find any matching URL
+     *
+     * @param url User's url to be found
+     * @param recipes List of available recipes to search through
+     */
+    public static void findURL(String url, ArrayList<Recipe> recipes) {
+        ArrayList<Integer> listNumbers = new ArrayList<>();
+        ArrayList<Recipe> urlMatches = new ArrayList<>();
+        Integer count = CommandConstants.STARTING_COUNT;
+        for (Recipe recipe : recipes) {
+            if (CommandValidator.splitName(recipe.getURL()).contains(url)) {
+                urlMatches.add(recipe);
+                listNumbers.add(count);
+            }
+            count ++;
+        }
+        if (urlMatches.isEmpty()) {
+            System.out.println(NO_MATCHES_ERROR);
+            return;
+        }
+        System.out.println(VALID_URL_MATCHES + url + "\n");
+        UI.printRecipes(urlMatches, listNumbers);
+    }
 
 }

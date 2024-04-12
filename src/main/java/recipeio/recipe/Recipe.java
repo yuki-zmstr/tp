@@ -45,6 +45,10 @@ public class Recipe {
         return cookTime;
     }
 
+    public String getURL() {
+        return url;
+    }
+
     @Override
     public String toString() {
         return name + " / added on " + dateAdded + " / url: " + url;

@@ -12,12 +12,12 @@ In particular, it allows users to keep track of the URL at which he or she found
 - **Add Recipe:** Add new recipe through the command line by providing a recipe description.
 - **Delete Recipe:** Delete a recipe from the recipe book.
 - **View Recipe Book:** List all recipes in recipe book.
-- **Find Recipe:** Find a recipe using a keyword, date or meal category.
+- **Find Recipe:** Find a recipe using a keyword, date, meal category or url.
 - **Filter Recipe:** Show recipes that do not contain a certain allergy.
 
 ### 2. Command-Line Interface
 - **User-Friendly Commands:** Intuitive and easy-to-use commands for seamless interaction.
-- **Efficient and Concise Commands** Quick and precise commands allows users to be efficient 
+- **Efficient and Concise Commands:** Quick and precise commands allows users to be efficient 
     in recipe management with some adequate practice.
 
 ## Getting Started
@@ -54,7 +54,7 @@ Format: `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 * The `ALLERGIES` can take multiple allergies, separated by a space. e.g. `egg dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
 * The `CATEGORY` must be one of: `breakfast`, `lunch`, `dinner`, `appetizer`, `dessert`.
 * The `URL` must be a string, that leads to the website that contains the full recipe.
-  It should contain subdomains of "www" , "http" or "https" and a valid domain.
+  It should contain subdomains of `"www"` , `"http"` or `"https"` and a valid domain.
 
 Example of usage: 
 
@@ -90,10 +90,12 @@ Format: `detail RECIPE_NUMBER`
 Searches for all recipes that meet a certain criteria.
 
 Format: `find TYPE CRITERIA`
-* The `TYPE` must be either `kw` (search by keyword), `date` (search by date), or `meal` (search by meal category).
+* The `TYPE` must be either `kw` (search by keyword), `date` (search by date), `meal` (search by meal category)
+    or `url` (search by url)
 * If type `kw` is given, `CRITERIA` must be a word. This searches for an exact match of the word in the recipe name.
 * If type `date` is given, `CRITERIA` must be a date in yyyy-MM-dd format. This searches for recipes added on this date.
 * If type `meal` is given, `CRITERIA` must be a valid meal category. There are 6 meal categories: `general`, `breakfast`, `lunch`, `dinner`, `appetizer`, and `dessert`.
+* If type `url` is given, `CRITERIA` must be a valid url. This searches for an exact match of the target url in the all the recipes' url.
 
 Example of usage:
 * `find kw pizza`
@@ -101,6 +103,8 @@ Example of usage:
 * `find date 2024-03-28`
 
 * `find meal breakfast`
+
+* `find url www.food.com`
 
 ### 7. Filter recipes by allergy : `filter`
 Shows recipes that do not contain a given allergy. 

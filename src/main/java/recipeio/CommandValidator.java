@@ -234,6 +234,7 @@ public class CommandValidator {
             System.out.println("\tInput Example: find kw pizza");
             System.out.println("\tInput Example: find date 2024-03-28");
             System.out.println("\tInput Example: find meal dinner");
+            System.out.println("\tInput Example: find url www.food.com");
             return false;
         }
         return true;
