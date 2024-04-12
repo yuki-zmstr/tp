@@ -27,7 +27,7 @@ public class ListRecipeWithSortCommand {
         case CALORIES:
         case COOK_TIME:
         case DATE:
-            ArrayList<Recipe> listToBePrinted = SortCommand.execute(recipes, sortType);
+            ArrayList<Recipe> listToBePrinted = SortList.execute(recipes, sortType);
             printSortedList(listToBePrinted);
             break;
         default:
