@@ -95,7 +95,8 @@ Format: `find TYPE CRITERIA`
 * If type `kw` is given, `CRITERIA` must be a word. This searches for an exact match of the word in the recipe name.
 * If type `date` is given, `CRITERIA` must be a date in yyyy-MM-dd format. This searches for recipes added on this date.
 * If type `meal` is given, `CRITERIA` must be a valid meal category. There are 6 meal categories: `general`, `breakfast`, `lunch`, `dinner`, `appetizer`, and `dessert`.
-* If type `url` is given, `CRITERIA` must be a valid url. This searches for an exact match of the target url in the all the recipes' url.
+* If type `url` is given, `CRITERIA` must be a valid url. This searches in the recipe list for a match in domain of the 
+    url, or an exact match if url path is given
 
 Example of usage:
 * `find kw pizza`

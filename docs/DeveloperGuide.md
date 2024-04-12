@@ -203,8 +203,8 @@ testers are expected to do more *exploratory* testing.</div>
    breakfast, lunch, dinner, appetizer and dessert.
 
 5. **Test case** `add pizza, 34, 340, egg nut dairy gluten, lunch, food.com`
-   * **Expected**: Recipe is not added to the list due to missing subdomain
-   * **Console output**: Asks the user to utilise proper subdomains with examples
+   * **Expected**: Recipe is not added to the list due to missing protocol.
+   * **Console output**: Asks the user to utilise proper protocols with examples
 
 6. **Test case** `add pizza, 34, 340, egg nut dairy gluten, lunch, www.food`
    * **Expected**: Recipe is not added to the list due to invalid domain or TLD
@@ -278,10 +278,10 @@ testers are expected to do more *exploratory* testing.</div>
 ### Finding a recipe by url
 
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
-   At least one recipe with url of `www.food.com` but none with url of `www.food.net`.
+   At least one recipe with url of `www.food.com/fish` but none with url of `www.food.net`.
 
 2. **Test case**: `find url www.food.com`
-   * **Expected**: Matching recipes with valid urls are given
+   * **Expected**: Matching recipes containing valid urls are given, including `www.food.com/fish`
    * *Console output*: Shows the user which recipes match the url of `www.food.com`
    
 3. **Test case**: `find url`
@@ -304,6 +304,10 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: No matching recipes are found despite a valid url given.
    * *Console output*: Reports that no recipes matches `www.food.net` as a
      valid url is given without any matching recipes.
+
+8. **Test case**: `find url www.food.com/fish`
+   * **Expected**: Recipes matching the whole url including path will be matched, thus excluding `www.food.com` recipes
+   * *Console output*: Shows the user which recipes match the url of `www.food.com/fish`
 
 ---
 
