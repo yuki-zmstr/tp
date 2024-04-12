@@ -33,6 +33,18 @@ public class Recipe {
         return name;
     }
 
+    public LocalDate getDateAdded() {
+        return dateAdded;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public int getCookTime() {
+        return cookTime;
+    }
+
     @Override
     public String toString() {
         return name + " / added on " + dateAdded + " / url: " + url;
