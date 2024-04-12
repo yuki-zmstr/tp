@@ -2,14 +2,10 @@ package recipeio.recipe;
 
 import recipeio.InputParser;
 import recipeio.CommandValidator;
-import recipeio.commands.AddRecipeCommand;
-import recipeio.commands.DeleteRecipeCommand;
-import recipeio.commands.FilterByAllergyCommand;
-import recipeio.commands.FindCommand;
-import recipeio.commands.ListRecipeCommand;
-import recipeio.commands.ShowDetailsCommand;
+import recipeio.commands.*;
 
 import recipeio.constants.StorageConstants;
+import recipeio.enums.SortType;
 import recipeio.storage.Storage;
 
 import recipeio.ui.UI;
@@ -18,6 +14,7 @@ import java.util.ArrayList;
 
 
 import static recipeio.InputParser.parseAdd;
+import static recipeio.InputParser.parseListCommand;
 import static recipeio.constants.RecipeListConstants.LIST_COMMAND;
 import static recipeio.constants.RecipeListConstants.DETAIL_COMMAND;
 import static recipeio.constants.RecipeListConstants.ADD_COMMAND;
@@ -60,7 +57,7 @@ public class RecipeList {
     public void executeCommand(String command, String userInput){
         switch (command) {
         case LIST_COMMAND:
-            listRecipes();
+            listRecipes(userInput);
             break;
         case DETAIL_COMMAND:
             showDetails(userInput);
@@ -90,8 +87,12 @@ public class RecipeList {
      * Lists the recipes in the recipe book.
      * Calls the execute method in ListRecipeCommand.
      */
-    public void listRecipes() {
-        ListRecipeCommand.execute(recipes);
+    public void listRecipes(String userInput) {
+        if (!CommandValidator.isValidListCommand(userInput)) {
+            return;
+        }
+        SortType sortType = InputParser.parseListCommand(userInput);
+        ListRecipeWithSortCommand.execute(recipes, sortType);
     }
 
     /**

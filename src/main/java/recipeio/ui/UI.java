@@ -1,3 +1,4 @@
+//@@author PDHung1104
 package recipeio.ui;
 
 import recipeio.recipe.Recipe;
@@ -115,6 +116,14 @@ public class UI {
         System.out.println("exit: to leave the program");
     }
 
+
+    public static void printSortTypes() {
+        System.out.println("These are the valid sort type inputs:");
+        System.out.println("\tsortname: Sort the list by name in lexicographically ascending order");
+        System.out.println("\tsortdate: Sort the list by date in ascending order i.e. from oldest to newest");
+        System.out.println("\tsortcooktime: Sort the list by cook time in ascending order");
+        System.out.println("\tsortcalories: Sort the list by calories in ascending order");
+    }
 
     /**
      * Prints list of recipes. Refer to toString() method in Recipe class for implementation.

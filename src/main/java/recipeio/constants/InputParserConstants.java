@@ -31,4 +31,8 @@ public class InputParserConstants {
     public static final String PARSE_ID_ERROR = "Recipe number not given, please enter an integer representing a " +
             "recipe number.";
     public static final String INVALID_LIST_ERROR = "List command should not have any trailing characters";
+    public static final String SORT_NAME = "sortname";
+    public static final String SORT_DATE_ADDED = "sortdate";
+    public static final String SORT_CALORIES = "sortcalories";
+    public static final String SORT_COOK_TIME = "sortcooktime";
 }

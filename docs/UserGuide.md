@@ -11,7 +11,7 @@ In particular, it allows users to keep track of the URL at which he or she found
 ### 1. Recipe Book Management
 - **Add Recipe:** Add new recipe through the command line by providing a recipe description.
 - **Delete Recipe:** Delete a recipe from the recipe book.
-- **View Recipe Book:** List all recipes in recipe book.
+- **View Recipe Book:** List all recipes in recipe book in a certain order.
 - **Find Recipe:** Find a recipe using a keyword, date or meal category.
 - **Filter Recipe:** Show recipes that do not contain a certain allergy.
 
@@ -70,21 +70,23 @@ Deletes a recipe at a given recipe number. The application saves your recipe boo
 Format: `delete RECIPE_NUMBER`
 
 * The `RECIPE_NUMBER` must be within the number of recipes already added.
-* A recipe's number can be found in the `list`, `find`, or `filter` commands.
+* A recipe's number can be found in the `list` (with no `SORT_TYPE` specifed), `find`, or `filter` commands.
 
 
 ### 4. Listing recipe book : `list`
 Lists a summarized version of your recipe book. This summarized version includes the
 recipes' name, date added, and url in the order they were added
 
-Format: `list`
+Format: `list {SORT_TYPE}`
+* The `SORT_TYPE` flag is optional and must be either `sortname` (sort the list by name), `sortdate` (sort the list by date added), `sortcooktime` (sort the list by cooktime), or `sortcalories` (sort the list by calories).
+* When `SORT_TYPE` is specified in the command, RecipeIO will sort the list in ascending order (from older to newer for `sortdate`).
 
 ### 5. Showing details of a recipe : `detail`
 Shows all details of a recipe.
 
 Format: `detail RECIPE_NUMBER`
 * The `RECIPE_NUMBER` must be within the number of recipes already added.
-* A recipe's number can be found in the `list`, `find`, or `filter` commands.
+* A recipe's number can be found in the `list` (with no `SORT_TYPE` specifed), `find`, or `filter` commands.
 
 ### 6. Find recipes : `find`
 Searches for all recipes that meet a certain criteria.
@@ -125,7 +127,7 @@ recipes once again.
 * Show list of instructions `help`
 * Add recipe `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 * Delete recipe `delete RECIPE_NUMBER`
-* List recipe book `list`
+* List recipe book `list {SORT_TYPE}`
 * Show details `detail RECIPE_NUMBER`
 * Find by keyword `find kw NAME_KEYWORD`
 * Find by date `find date YYYY-MM-DD`
