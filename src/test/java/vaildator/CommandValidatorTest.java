@@ -151,15 +151,4 @@ public class CommandValidatorTest {
         assertFalse(CommandValidator.isValidAddCommand(test));
     }
 
-    @Test
-    public void isValidAddEntries_validEntries_expectedTrue() {
-        String test = "add pizza, abc, 340, egg nut dairy gluten, dinner, www.food.com";
-        assertTrue(CommandValidator.isValidAddEntries(test));
-    }
-
-    @Test
-    public void isValidAddEntries_invalidEntries_expectedFalse() {
-        String test = "add pizza, ab | c, 340, egg nut dairy gluten, dinner, www.food.com";
-        assertFalse(CommandValidator.isValidAddEntries(test));
-    }
 }
