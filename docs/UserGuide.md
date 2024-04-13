@@ -3,23 +3,22 @@
 ## Introduction
 
 Recipe.io is a command line application that helps people who love to cook, be it professional culinary practitioners, 
-or even students, to manage their recipes.
+or even students, to manage and access their recipes.
 
-In particular, it allows users to keep track of the URL at which he or she found the recipe.
+In particular, it allows users to keep track of the URL at which he or she found or wrote down the recipe.
 
 ## Features
 ### 1. Recipe Book Management
 - **Add Recipe:** Add new recipe through the command line by providing a recipe description.
 - **Delete Recipe:** Delete a recipe from the recipe book.
 - **View Recipe Book:** List all recipes in recipe book in a certain order.
-- **Find Recipe:** Find a recipe using a keyword, date or meal category.
 - **View Recipe Book:** List all recipes in recipe book.
 - **Find Recipe:** Find a recipe using a keyword, date, meal category or url.
 - **Filter Recipe:** Show recipes that do not contain a certain allergy.
 
 ### 2. Command-Line Interface
 - **User-Friendly Commands:** Intuitive and easy-to-use commands for seamless interaction.
-- **Efficient and Concise Commands:** Quick and precise commands allows users to be efficient 
+- **Efficient and Concise Commands:** Quick and precise commands allows fast-typing users to be efficient 
     in recipe management with some adequate practice.
 
 ## Getting Started
@@ -40,6 +39,7 @@ Follow these steps to get started with Recipe.io
 
 ## Commands 
 
+### Disclaimer 
 In this document, parameters inside `[]` are compulsory, while those inside `{}` are optional.
 
 ### 1. Viewing help : `help`
@@ -118,6 +118,8 @@ Shows recipes that do not contain a given allergy.
 
 Format: `filter CRITERIA`
 * The `CRITERIA` must be a word. Ensure that the criteria is singular tense (eg. `egg` NOT `eggs`)
+* While inputting plural allergies will still work, it is for your own benefit to input singular allergies
+* as the find command will work as expected this way. 
 
 Example of usage:
 `filter egg`
@@ -129,7 +131,33 @@ Format: `exit`
 
 Upon exiting, a file named `recipe.txt` will be saved containing your recipe book.
 When rerunning the program the next time, RecipeIO will look for this saved file, to load your previously recorded 
-recipes once again. 
+recipes once again.
+
+### Troubleshooting
+#### If you encounter issues while using Recipe.io, here are some common problems and their solutions:
+
+##### Java Version Compatibility: 
+* Ensure that you have Java 11 or later installed. You can check your Java version by running `java -version` in your command line. If you have an earlier version, please update Java.
+
+##### Problems Executing the JAR File: 
+* Make sure you are in the correct directory where the JAR file is downloaded. Use the command `java -jar tp.jar` in your command line. If the file does not execute, check for any typos in the command or re-download the JAR file to ensure it isn't corrupted.
+
+Errors in Command Syntax: If your commands are not executing as expected, check the command syntax in the `Commands` section of this guide. Make sure all parameters are correctly formatted and separated as described.
+
+### FAQs
+#### Q: How do I install Recipe.io?
+A: Follow the steps in the 'Getting Started' section of this guide, which include installing Java, downloading the JAR file, and running it via command line.
+
+#### Q: How can I backup my recipes?
+A: Recipe.io automatically saves your recipes in a recipe.txt file upon exit. Ensure you exit the program using the exit command to trigger the save. You can even keep a backup of this file in another location for extra security.
+
+#### Q: How do I update Recipe.io?
+A: Download the latest JAR file from the official github website and replace the existing one. Your recipes are stored separately in recipe.txt and won't be affected by the update.
+
+### Tips and Best Practices
+* ##### Organizing Recipes: 
+  * Use the sortname or sortdate options in the list command to view your recipes in alphabetical order or by the date added, making them easier to find.
+  * Utilize the find command to locate recipes based on specific criteria such as keywords or dates. Use the filter command to exclude recipes containing certain allergens.
 
 ## Command Summary
 
@@ -146,4 +174,4 @@ recipes once again.
 
 More instructions can also be found at any time using the `help` command.
 
-Have fun with RecipeIO!
+Have fun with RecipeIO! 
