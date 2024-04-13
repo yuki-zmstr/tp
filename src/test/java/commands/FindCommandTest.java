@@ -118,8 +118,8 @@ public class FindCommandTest {
 
     @Test
     public void testValidURL() {
-        String expected = "Here are your matches with url:  www.food.com" +
-                System.lineSeparator() + System.lineSeparator() +
+        String expected = "Here are your matches with url:  www.food.com\n" +
+                System.lineSeparator() +
                 "Recipe 1. Cream Spaghetti / added on 2024-03-20 / url: www.food.com/spaghetti" +
                 System.lineSeparator() +
                 "Recipe 2. Pho / added on 2024-04-01 / url: www.food.com/pho" +
@@ -154,7 +154,7 @@ public class FindCommandTest {
 
     @Test
     public void testValidURLPath() {
-        String expected = "Here are your matches with url:  www.food.com/spaghetti" + System.lineSeparator() +
+        String expected = "Here are your matches with url:  www.food.com/spaghetti\n" +
                 System.lineSeparator() +
                 "Recipe 1. Cream Spaghetti / added on 2024-03-20 / url: www.food.com/spaghetti" +
                 System.lineSeparator();
