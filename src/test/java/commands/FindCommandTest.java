@@ -126,8 +126,7 @@ public class FindCommandTest {
                 System.lineSeparator() +
                 "Recipe 3. Laksa / added on 2024-04-01 / url: www.food.com" +
                 System.lineSeparator();
-
-                ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
@@ -143,7 +142,7 @@ public class FindCommandTest {
     public void testInvalidURL() {
         String expected = "URL must start with 'http://', 'https://', or 'www.'" + System.lineSeparator() +
                 "Example: \"www.food.com\" or \" https://www.example.com\" " + System.lineSeparator();
-                ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
         System.setOut(printStream);
 
