@@ -146,6 +146,11 @@ public class InputParser {
     }
     public static String[] splitUpAddInput(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
+        try {
+            String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new String[0];
+        }
         String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
         for (int i = 0; i < remainingInput.length; i++) {
             remainingInput[i] = remainingInput[i].trim();

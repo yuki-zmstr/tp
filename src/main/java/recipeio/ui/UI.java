@@ -102,7 +102,7 @@ public class UI {
                 "URL: adds a recipe");
         System.out.println("\tInput Example: add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com\n");
         System.out.println("detail RECIPE_NUMBER: shows you a detailed view of a recipe");
-        System.out.println("\tInput Example: detail 1");
+        System.out.println("\tInput Example: detail 1\n");
         System.out.println("delete RECIPE_NUMBER: deletes a recipe with a given recipe number");
         System.out.println("\tInput Example: delete 1\n");
         System.out.println("find kw KEYWORD: finds recipes with a given keyword");

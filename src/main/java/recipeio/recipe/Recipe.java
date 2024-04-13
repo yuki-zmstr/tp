@@ -48,6 +48,11 @@ public class Recipe {
     public String getURL() {
         return url;
     }
+    public ArrayList<String> getAllergies() {
+        return allergies;
+    }
+
+    public MealCategory getCategory() { return category; }
 
     @Override
     public String toString() {
