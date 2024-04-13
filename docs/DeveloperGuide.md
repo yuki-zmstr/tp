@@ -127,6 +127,7 @@ How the component works:
 * He can also filter recipes based on ingredients, time required, dietary restrictions, etc.
 * The saved recipes will be loaded in a recipe text file for easy sharing with friends.
 * The user can put the recipes into different categories.
+* THe user can view his recipes in different orders.
 
 ## User Stories
 
@@ -139,6 +140,7 @@ How the component works:
 | v2.0    | foodie   | save and load recipes                      | share recipes with friends conveniently                       |
 | v2.0    | user     | find recipes without a certain ingredient  | save time finding recipes that I can eat                      |
 | v2.0    | user     | find a recipe by date                      | find a recipe if I don't remember its name                    |
+| v2.1 | user | see a my recipe list in a certain way | make decisions quicker |
 
 ### Use cases
 
@@ -163,7 +165,7 @@ Use case ends.
 
 * *add [NAME, MINUTES, KCALS, ALLERGIES, CATEGORY, URL]* - This is the command a user can call to add a recipe. 
 * *help* - This shows the user all the available commands. 
-* *list* - This lists out a users recipebook for them. 
+* *list {SORT_TYPE}* - This lists out a users recipebook for them. 
 * *delete* - This deletes a recipe at a given valid index. If not valid, it will return an error message.
 * *find kw [KEYWORD]* - This finds recipes with a user-given keyword.
 * *find date [YYYY-MM-DD]* - This finds recipes added on a user-given date. The date is auto-added when adding. 
@@ -275,6 +277,15 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: No recipe is found due to the lack of a given date. 
    * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
 
+### Show the recipe list
+1. **Test case**: `list sortname sortdate`
+   * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
+   * *Console output*: Reports that there are redundant details for the command
+
+2. **Test case**: `list srt`
+   * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
+   * *Console output*: Reports that `SORT_TYPE` is incorrect.
+   * *Console output*: Also display available options for `SORT_TYPE` to the user.
 ### Finding a recipe by url
 
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.

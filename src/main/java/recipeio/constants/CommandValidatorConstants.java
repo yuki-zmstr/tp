@@ -32,5 +32,8 @@ public class CommandValidatorConstants {
     public static final String URL_SUBDOMAIN_HTTPS = "https://";
     public static final String URL_SUBDOMAIN_WWW = "www.";
 
+    public static final String INVALID_SORT_TYPE_ERROR_MESSAGE = "Invalid sort type.";
+
+    public static final String EXCESS_DETAILS_ERROR = "There seems to be more details than needed.";
 
 }
