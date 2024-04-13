@@ -373,22 +373,4 @@ public class CommandValidator {
         }
         return true;
     }
-
-    /**
-     * Returns the path of a given url if present, and returns an empty otherwise
-     * If only forward slash is present, return non-empty String
-     *
-     * @param userInput User's url in the command line.
-     * @return path of url, if any
-     */
-    public static String getPath(String userInput) {
-        try {
-            if (userInput.endsWith("/")) {
-                return "/";
-            }
-            return userInput.split("/")[1];
-        } catch (Exception e) {
-            return "";
-        }
-    }
 }
