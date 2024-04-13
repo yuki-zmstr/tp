@@ -17,7 +17,7 @@ public class FindKeyword {
         ArrayList<Integer> listNumbers = new ArrayList<>();
         Integer count = CommandConstants.STARTING_COUNT;
         for (Recipe recipe : recipes) {
-            if (CommandValidator.splitName(recipe.getName()).contains(keyword)) {
+            if (recipe.getName().contains(keyword)) {
                 matches.add(recipe);
                 listNumbers.add(count);
             }
