@@ -340,14 +340,15 @@ public class CommandValidator {
         }
         //if the sort type is incorrect, return false
         if (!(words[1].equals(InputParserConstants.SORT_NAME) ||
-            words[1].equals(InputParserConstants.SORT_DATE_ADDED) ||
-            words[1].equals(InputParserConstants.SORT_CALORIES) ||
-            words[1].equals(InputParserConstants.SORT_COOK_TIME))) {
+                words[1].equals(InputParserConstants.SORT_DATE_ADDED) ||
+                words[1].equals(InputParserConstants.SORT_CALORIES) ||
+                words[1].equals(InputParserConstants.SORT_COOK_TIME))) {
             System.out.println(CommandValidatorConstants.INVALID_SORT_TYPE_ERROR_MESSAGE);
             UI.printSortTypes();
             return false;
         }
         return true;
+    }
 
     /**
      * Returns the path of a given url if present, and returns an empty otherwise
@@ -362,7 +363,7 @@ public class CommandValidator {
                 return "/";
             }
             return userInput.split("/")[1];
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
