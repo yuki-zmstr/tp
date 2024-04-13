@@ -38,6 +38,8 @@ Follow these steps to get started with Recipe.io
 
 ## Commands 
 
+In this document, parameters inside `[]` are compulsory, while those inside `{}` are optional.
+
 ### 1. Viewing help : `help`
 Shows instructions to use RecipeIO's chatbot.
 
