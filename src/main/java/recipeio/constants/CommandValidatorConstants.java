@@ -33,5 +33,7 @@ public class CommandValidatorConstants {
     public static final String URL_SUBDOMAIN_WWW = "www.";
     public static final String SAME_RECIPE_MESSAGE = "Sorry, you are attempting to add a same recipe that is already" +
             "in your recipe book.\nTry adding something new!";
+    public static final String INVALID_SORT_TYPE_ERROR_MESSAGE = "Invalid sort type.";
+    public static final String EXCESS_DETAILS_ERROR = "There seems to be more details than needed.";
 
 }

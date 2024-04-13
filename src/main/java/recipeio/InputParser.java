@@ -1,5 +1,6 @@
 package recipeio;
 
+import recipeio.enums.SortType;
 import recipeio.recipe.Recipe;
 
 import java.time.LocalDate;
@@ -18,7 +19,6 @@ import static recipeio.constants.InputParserConstants.FIND_ALLERGY_INDEX;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
 import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
-import static recipeio.constants.InputParserConstants.INVALID_LIST_ERROR;
 
 /**
  * Methods to parse input by the user.
@@ -35,11 +35,6 @@ public class InputParser {
      * @return the command keyword. e.g. add, delete.
      */
     public static String parseCommand(String userInput) {
-        //if list command with other characters trailing, returns an invalid command
-        if ((userInput.trim().toLowerCase().startsWith("list")) && userInput.trim().length() != 4) {
-            System.out.println(INVALID_LIST_ERROR);
-            return "invalid";
-        }
         return userInput.trim().split(" ")[INDEX_COMMAND].toLowerCase();
     }
 
@@ -133,6 +128,22 @@ public class InputParser {
         return mealCategory;
     }
 
+    public static SortType parseListCommand(String userInput) {
+        String[] words = userInput.trim().split(" ");
+        if (words.length == 1) {
+            return SortType.NONE;
+        }
+        if (words[1].equals(InputParserConstants.SORT_NAME)) {
+            return SortType.NAME;
+        } else if (words[1].equals(InputParserConstants.SORT_DATE_ADDED)) {
+            return SortType.DATE;
+        } else if (words[1].equals(InputParserConstants.SORT_CALORIES)) {
+            return SortType.CALORIES;
+        } else if (words[1].equals(InputParserConstants.SORT_COOK_TIME)) {
+            return SortType.COOK_TIME;
+        }
+        return SortType.NONE;
+    }
     public static String[] splitUpAddInput(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         try {
