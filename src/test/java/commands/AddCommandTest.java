@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static recipeio.enums.MealCategory.DINNER;
 
 public class AddCommandTest {
-    public static final String MULTIPLE_ALLERGY_PARAM_INPUT = "add pizza, 34, 340, dairy egg, dinner, www.url.com";
-    public static final String MISSING_NAME_PARAM_INPUT = "add 34, 340, dairy egg, dinner, www.url.com";
-    public static final String MISSING_TIME_PARAM_INPUT = "add pizza, 340, dairy egg, dinner, www.url.com";
-    public static final String MISSING_KCAL_PARAM_INPUT = "add pizza, 34, dairy egg, dinner, www.url.com";
+    public static final String MULTIPLE_ALLERGY_PARAM_INPUT = "add pizza, 34, 340, dairy/egg, dinner, www.url.com";
+    public static final String MISSING_NAME_PARAM_INPUT = "add 34, 340, dairy/egg, dinner, www.url.com";
+    public static final String MISSING_TIME_PARAM_INPUT = "add pizza, 340, dairy/egg, dinner, www.url.com";
+    public static final String MISSING_KCAL_PARAM_INPUT = "add pizza, 34, dairy/egg, dinner, www.url.com";
     public static final String MISSING_ALLERGY_PARAM_INPUT = "add pizza, 34, 340, dinner, www.url.com";
-    public static final String MISSING_MEAL_CAT_PARAM_INPUT = "add pizza, 34, 340, dairy egg, www.url.com";
-    public static final String MISSING_URL_PARAM_INPUT = "add pizza, 34, 340, dairy egg, dinner";
+    public static final String MISSING_MEAL_CAT_PARAM_INPUT = "add pizza, 34, 340, dairy/egg, www.url.com";
+    public static final String MISSING_URL_PARAM_INPUT = "add pizza, 34, 340, dairy / egg, dinner";
     ArrayList<Recipe> recipes = new ArrayList<>();
 
     @Test

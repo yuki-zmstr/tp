@@ -272,31 +272,31 @@ testers are expected to do more *exploratory* testing.</div>
 
 ### Adding a Recipe
 
-1. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com`
+1. **Test case**: `add pizza, 34, 340, egg/nut/dairy/red meat, dinner, www.food.com`
    * **Expected**: The specified recipe is successfully added to the recipe list.
    * **Console output**: Displays a brief description of the added recipe along with the total number of recipes in the list.
 
-2. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, dinner`
+2. **Test case**: `add pizza, 34, 340, egg/nut/dairy/red meat, dinner`
    * **Expected**: The recipe is not added due to a missing required parameter.
    * **Console output**: Prompts the user to provide all 6 required parameters.
 
-3. **Test case**: `add pizza, abc, def, egg nut dairy gluten, dinner, www.food.com`
+3. **Test case**: `add pizza, abc, def, egg/nut/dairy/red meat, dinner, www.food.com`
    * **Expected**: The recipe is not added because the input types for cook time and calories are incorrect.
    * **Console output**: Informs the user that integers are required for cook time and calorie fields.
 
-4. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, capybara, www.food.com`
+4. **Test case**: `add pizza, 34, 340, egg/nut/dairy/red meat, capybara, www.food.com`
    * **Expected**: The recipe is not added due to an unrecognized meal category.
    * **Console output**: Requests the user to select a valid meal category from the provided options: breakfast, lunch, dinner, appetizer, and dessert.
 
-5. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, lunch, food.com`
+5. **Test case**: `add pizza, 34, 340, egg/nut/dairy/red meat, lunch, food.com`
    * **Expected**: The recipe is not added because the URL lacks the required protocol.
    * **Console output**: Urges the user to include a proper protocol in the URL with examples.
 
-6. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, lunch, www.food`
+6. **Test case**: `add pizza, 34, 340, egg/nut/dairy/red meat, lunch, www.food`
    * **Expected**: The recipe is not added due to an invalid domain or top-level domain in the URL.
    * **Console output**: Advises the user to use valid domain names with examples.
 
-7. **Test case**: `add pizza 34, 340, egg nut dairy gluten, lunch, www.food`
+7. **Test case**: `add pizza 34, 340, egg/nut/dairy/red meat, lunch, www.food`
    * **Expected**: The recipe is not added because a comma is missing, leading to incorrect parameter parsing.
    * **Console output**: Alerts the user to provide all 6 parameters correctly and suggests checking for missing commas.
 

@@ -1,6 +1,5 @@
 package recipeio.commands;
 
-import recipeio.CommandValidator;
 import recipeio.constants.CommandConstants;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;

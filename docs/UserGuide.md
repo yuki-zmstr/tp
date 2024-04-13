@@ -56,14 +56,14 @@ Format: `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 * The `NAME` can include multiple words.
 * The `MINUTES` must be an integer.
 * The `KCALS` must be an integer.
-* The `ALLERGIES` can take multiple allergies, separated by a space. e.g. `egg dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
+* The `ALLERGIES` can take multiple allergies, separated by a slash. e.g. `egg/dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
 * The `CATEGORY` must be one of: `breakfast`, `lunch`, `dinner`, `appetizer`, `dessert`.
 * The `URL` must be a string, that leads to the website that contains the full recipe.
   It should contain subdomains of `"www"` , `"http"` or `"https"` and a valid domain.
 
 Example of usage: 
 
-`add pizza, 34, 340, egg dairy, dinner, www.food.com`
+`add pizza, 34, 340, egg/dairy/red meat, dinner, www.food.com`
 
 `add burger, 30, 500, dairy, lunch, https://www.bbcfoods.com`
 

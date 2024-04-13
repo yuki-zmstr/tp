@@ -1,3 +1,6 @@
 eggplantparm 1 | 2 mins | 2 kcals | eggplant | DINNER | 2024-04-13 | www.url.com
 eggplant parm | 1 mins | 3 kcals | eggplant | DINNER | 2024-04-14 | www.url.com
 egg | 3 mins | 1 kcals | dairy | DINNER | 2024-04-15 | www.url.com
+pizza | 34 mins | 34 kcals | dairy/egg | DINNER | 2024-04-14 | www.food.com
+curry | 35 mins | 35 kcals | dairy,red meat | DINNER | 2024-04-14 | www.food.com
+tom yum | 35 mins | 35 kcals | dairy egg | DINNER | 2024-04-14 | www.tom.com

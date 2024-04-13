@@ -100,9 +100,9 @@ public class UI {
         System.out.println("\tInput Example: list\n");
         System.out.println("list {SORT_TYPE}: shows you list of recipes");
         System.out.println("\tInput Example: list\n");
-        System.out.println("add NAME, MINUTES, KCALS, SINGULAR-TENSE SPACE-SEPARATED ALLERGIES, CATEGORY, " +
+        System.out.println("add NAME, MINUTES, KCALS, SINGULAR-TENSE SLASH-SEPARATED ALLERGIES, CATEGORY, " +
                 "URL: adds a recipe");
-        System.out.println("\tInput Example: add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com\n");
+        System.out.println("\tInput Example: add pizza, 34, 340, egg/nut/dairy/red meat, dinner, www.food.com\n");
         System.out.println("detail RECIPE_NUMBER: shows you a detailed view of a recipe");
         System.out.println("\tInput Example: detail 1\n");
         System.out.println("delete RECIPE_NUMBER: deletes a recipe with a given recipe number");

@@ -253,8 +253,8 @@ public class CommandValidator {
         String[] details = InputParser.splitUpAddInput(userInput);
         if (details.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
             System.out.println("The add function accepts 6 parameters: {name} {cook time} {calories}\n\t {singular " +
-                    "space separated allergies} {meal category} {url}");
-            System.out.println("Input Example: add pizza, 34, 340, egg dairy, dinner, www.food.com");
+                    "slash separated allergies} {meal category} {url}");
+            System.out.println("Input Example: add pizza, 34, 340, egg/red meat, dinner, www.food.com");
             System.out.println("Tip: make sure you are not missing a comma anywhere!");
             return false;
         }
