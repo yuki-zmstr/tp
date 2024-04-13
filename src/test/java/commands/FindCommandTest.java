@@ -17,6 +17,9 @@ public class FindCommandTest {
     public static final String COMMAND_INVALID_MEAL_CAT = "find meal fdjsjfsad";
     public static final String COMMAND_EXIST_MEAL = "find meal breakfast";
     public static final String COMMAND_NOT_EXIST_MEAL = "find meal Appetizer";
+    public static final String COMMAND_VALID_URL = "find url www.food.com";
+    public static final String COMMAND_INVALID_URL = "find url food.com";
+    public static final String COMMAND_VALID_URL_WITH_PATH = "find url www.food.com/spaghetti";
     private ArrayList<Recipe> recipes;
     private ArrayList<String> allergies;
 
@@ -33,7 +36,7 @@ public class FindCommandTest {
                 allergies,
                 MealCategory.LUNCH,
                 LocalDate.of(2024, 3, 20),
-                "www.spaghetti.com"
+                "www.food.com/spaghetti"
         );
         recipes.add(this.testRecipe);
 
@@ -44,7 +47,7 @@ public class FindCommandTest {
                 allergies,
                 MealCategory.BREAKFAST,
                 LocalDate.of(2024, 4, 1),
-                "www.pho.com"
+                "www.food.com/pho"
         );
         recipes.add(this.testRecipe);
 
@@ -55,7 +58,7 @@ public class FindCommandTest {
                 allergies,
                 MealCategory.DINNER,
                 LocalDate.of(2024, 4, 1),
-                "www.laksa.com"
+                "www.food.com"
         );
         recipes.add(this.testRecipe);
     }
@@ -64,7 +67,7 @@ public class FindCommandTest {
     public void testFindByMealExistItem() {
         String expected = "These recipes have the category: breakfast\n"
                 + System.lineSeparator()
-                + "Recipe 2. Pho / added on 2024-04-01 / url: www.pho.com"
+                + "Recipe 2. Pho / added on 2024-04-01 / url: www.food.com/pho"
                 + System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
@@ -112,4 +115,59 @@ public class FindCommandTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testValidURL() {
+        String expected = "Here are your matches with url:  www.food.com\n" +
+                System.lineSeparator() +
+                "Recipe 1. Cream Spaghetti / added on 2024-03-20 / url: www.food.com/spaghetti" +
+                System.lineSeparator() +
+                "Recipe 2. Pho / added on 2024-04-01 / url: www.food.com/pho" +
+                System.lineSeparator() +
+                "Recipe 3. Laksa / added on 2024-04-01 / url: www.food.com" +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_VALID_URL, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testInvalidURL() {
+        String expected = "URL must start with 'http://', 'https://', or 'www.'" + System.lineSeparator() +
+                "Example: \"www.food.com\" or \" https://www.example.com\" " + System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_INVALID_URL, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testValidURLPath() {
+        String expected = "Here are your matches with url:  www.food.com/spaghetti\n" +
+                System.lineSeparator() +
+                "Recipe 1. Cream Spaghetti / added on 2024-03-20 / url: www.food.com/spaghetti" +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_VALID_URL_WITH_PATH, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
 }
+
+

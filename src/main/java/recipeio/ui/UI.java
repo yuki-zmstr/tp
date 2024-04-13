@@ -109,6 +109,8 @@ public class UI {
         System.out.println("\tInput Example: find kw pizza\n");
         System.out.println("find date YYYY-MM-DD: finds recipes added on a given date");
         System.out.println("\tInput Example: find date 2024-03-28\n");
+        System.out.println("find url VALID_URL: finds recipes with the valid url given ");
+        System.out.println("\tInput Example: find url www.food.com\n");
         System.out.println("find meal MEAL_CATEGORY: finds recipes with a particular meal category");
         System.out.println("\tInput Example: find meal dinner\n");
         System.out.println("filter ALLERGY: lists the recipes that do not contain this allergen");

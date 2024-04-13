@@ -204,6 +204,14 @@ testers are expected to do more *exploratory* testing.</div>
    * **Console output**: Asks the user to select correct meal category from options of
    breakfast, lunch, dinner, appetizer and dessert.
 
+5. **Test case** `add pizza, 34, 340, egg nut dairy gluten, lunch, food.com`
+   * **Expected**: Recipe is not added to the list due to missing protocol.
+   * **Console output**: Asks the user to utilise proper protocols with examples
+
+6. **Test case** `add pizza, 34, 340, egg nut dairy gluten, lunch, www.food`
+   * **Expected**: Recipe is not added to the list due to invalid domain or TLD
+   * **Console output**: Asks the user to utilise proper domains with examples
+
 ### Deleting a recipe
 
 **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
@@ -237,18 +245,18 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: No matching recipe is found. 
    * *Console output*: Asks the user to attempt to search for another ingredient.
 
-3**Test case**: `find kw`
+3. **Test case**: `find kw`
    * **Expected**: No matching recipe is found due to lack of search keywords.
    * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
 
-4**Test case**: `find kw 1`
+4. **Test case**: `find kw 1`
    * **Expected**: No matching recipes is found due to invalid keyword. 
    * *Console output*: Asks the user to ensure the keyword uses alphabets.
 
 ### Finding a recipe by date
 
 1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
-   At least one with date as 2024-03-30 but none with 2024-01-03.
+   At least one with date as `2024-03-30` but none with `2024-01-03`.
 
 2. **Test case**: `find date 2024-03-30`
    * **Expected**: Matching recipes are found with a valid date given. 
@@ -257,7 +265,7 @@ testers are expected to do more *exploratory* testing.</div>
 3. **Test case**: `find date 2024-01-03`
    * **Expected**: No matching recipes are found despite a valid date given. 
    * *Console output*: Reports that no recipes were added on 2024-01-03 as a 
-   valid gate is given without any matching recipes.
+   valid date is given without any matching recipes.
 
 4. **Test case**: `find date xyx`
    * **Expected**: No recipe is found due to invalid date format or not following the
@@ -278,6 +286,39 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
    * *Console output*: Reports that `SORT_TYPE` is incorrect.
    * *Console output*: Also display available options for `SORT_TYPE` to the user.
+### Finding a recipe by url
+
+1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+   At least one recipe with url of `www.food.com/fish` but none with url of `www.food.net`.
+
+2. **Test case**: `find url www.food.com`
+   * **Expected**: Matching recipes containing valid urls are given, including `www.food.com/fish`
+   * *Console output*: Shows the user which recipes match the url of `www.food.com`
+   
+3. **Test case**: `find url`
+   * **Expected**: No recipe is found due to the lack of a given url.
+   * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
+
+4. **Test case**: `find url 123`
+   * **Expected**: No recipe is found due to an invalid url subdomain.
+   * *Console output*: Reports to the user that a valid subdomain must be given, with valid url examples given.
+
+5. **Test case**: `find url food.com`
+   * **Expected**: No recipe is found due to an invalid url subdomain.
+   * *Console output*: Reports to the user that a valid subdomain must be given, with valid url examples given.
+
+6. **Test case**: `find url www.food`
+   * **Expected**: No recipe is found due to an invalid url domain.
+   * *Console output*: Reports to the user that a valid domain or TLD must be given, with valid url examples given.
+
+7. **Test case**: `find url www.food.net`
+   * **Expected**: No matching recipes are found despite a valid url given.
+   * *Console output*: Reports that no recipes matches `www.food.net` as a
+     valid url is given without any matching recipes.
+
+8. **Test case**: `find url www.food.com/fish`
+   * **Expected**: Recipes matching the whole url including path will be matched, thus excluding `www.food.com` recipes
+   * *Console output*: Shows the user which recipes match the url of `www.food.com/fish`
 
 ---
 
