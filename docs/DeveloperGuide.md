@@ -2,7 +2,7 @@
 
 ## Acknowledgements
 
-* This application is built in partial fulfillment of the requirements of CS2113.
+* This application is built in fulfillment of the requirements of CS2113.
 * Knowledge and ideas are adapted from the CS2113 textbook, as well as SE-EDU textbook.
 
 ---
@@ -23,7 +23,7 @@
 
 ## Setting up, getting started
 
-Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.html.
+Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.html for how to get started with RecipeIO.
 
 ---
 
@@ -114,33 +114,49 @@ How the component works:
 ## Product scope
 
 ### Target user profile
+Recipe.io is designed to cater to a diverse range of users who share a common need to manage and access a significant number of recipes effectively. Here are key characteristics of our target users:
 
-* Has a need to manage a significant number of recipes.
-  * For example, professional culinary practitioners, students who love to cook.
-* Can type fast 
-* People having special dietary restrictions.
-* People who would like easily access the recipes they found online.
+* <h4>Culinary Professionals:</h4> Chefs, culinary students, and other professionals in the food industry who need to store, organize, and access a wide variety of recipes for their culinary creations.
+
+* <h4>Home Chefs and Cooking Enthusiasts:</h4> Individuals who enjoy cooking and experimenting with new recipes at home and wish to expand their culinary repertoire. They appreciate a tool that helps them organize and revisit their favorite recipes.
+
+* <h4>Fast Typers:</h4> Users who are proficient with keyboard use and prefer typing over mouse interactions, making them ideal users of a CLI-based application. They value the efficiency and speed that CLI programs offer.
+
+* <h4>Individuals with Dietary Restrictions:</h4> Users who need to manage dietary restrictions due to health reasons, allergies, or personal choices. They benefit from the ability to filter and search recipes based on specific ingredients or allergens.
+
+* <h4>Tech-Savvy Recipe Collectors:</h4> Users who frequently collect recipes from various online sources and prefer a digital solution to manage and categorize these recipes easily. They require a tool that allows quick access and efficient management of a digital recipe collection.
+
+* <h4>Educational Users:</h4> Cooking instructors and students who use recipes as a teaching and learning tool in culinary courses. They need to access and provide recipes easily during classes and practical sessions.
+
+* <h4> Meal Planners and Preppers: </h4> Individuals who plan meals for the week or month and need to organize recipes based on meal types, ingredients, or nutritional information to streamline their meal preparation process.
+
+
+
 
 ### Value proposition
 
 * The user will be able to add, access, and list recipes.
-* He can also filter recipes based on ingredients, time required, dietary restrictions, etc.
-* The saved recipes will be loaded in a recipe text file for easy sharing with friends.
-* The user can put the recipes into different categories.
-* THe user can view his recipes in different orders.
+* He can also filter recipes based on allergies (i.e. excluding a certain ingredient)
+* The saved recipes will be loaded in a recipe text file for easy access and sharing with friends.
+* The user can put the recipes into different meal categories. 
+* The user can view his recipes in different sorted orders.
+* The user can easily access details of a particular recipe.
 
 ## User Stories
 
-| Version | As a ... | I want to ...                              | So that I can ...                                             |
-|---------|----------|--------------------------------------------|---------------------------------------------------------------|
-| v1.0    | new user | see usage instructions                     | refer to them when I forget how to use the application        |
-| v1.0    | user     | add a recipe                               | curate my own unique recipes for future use                   |
-| v1.0    | user     | delete a recipe                            | remove any outdated or unimportant recipes                    |
-| v2.0    | user     | find a recipe by name                      | locate a recipe without having to go through the entire list  |
-| v2.0    | foodie   | save and load recipes                      | share recipes with friends conveniently                       |
-| v2.0    | user     | find recipes without a certain ingredient  | save time finding recipes that I can eat                      |
-| v2.0    | user     | find a recipe by date                      | find a recipe if I don't remember its name                    |
-| v2.1 | user | see a my recipe list in a certain way | make decisions quicker |
+| Version | As a ... | I want to ...                             | So that I can ...                                                |
+|---------|----------|-------------------------------------------|------------------------------------------------------------------|
+| v1.0    | new user | see usage instructions                    | refer to them when I forget how to use the application           |
+| v1.0    | user     | add a recipe                              | curate my own unique recipes for future use                      |
+| v1.0    | user     | delete a recipe                           | remove any outdated or unimportant recipes                       |
+| v1.0    | user     | view all of my recipes                    | access my recipes and see how many I have easily                 |
+| v2.0    | user     | find a recipe by name                     | locate a recipe without having to go through the entire list     |
+| v2.0    | foodie   | save and load recipes                     | share recipes with friends conveniently                          |
+| v2.0    | user     | find recipes without a certain ingredient | save time finding recipes that I can eat (leave out allergies)   |
+| v2.0    | user     | view details of a particular recipe       | learn more about the recipe that I may have forgotten            |
+| v2.0    | user     | find a recipe by date                     | find a recipe from a particular day if I don't remember its name |
+| v2.1    | user     | see my recipe list in a certain way       | make decisions quicker                                           |
+| v2.1    | user     | find a recipe by url                      | access recipes from a certain website easily                     |
 
 ### Use cases
 
@@ -163,6 +179,7 @@ Use case ends.
 
 ## Appendix: Commands Glossary
 
+Note: `[]` denote mandatory parameters, while `{}` denote optional paramters. 
 * *add [NAME, MINUTES, KCALS, ALLERGIES, CATEGORY, URL]* - This is the command a user can call to add a recipe. 
 * *help* - This shows the user all the available commands. 
 * *list {SORT_TYPE}* - This lists out a users recipebook for them. 
@@ -170,8 +187,7 @@ Use case ends.
 * *find kw [KEYWORD]* - This finds recipes with a user-given keyword.
 * *find date [YYYY-MM-DD]* - This finds recipes added on a user-given date. The date is auto-added when adding. 
 * *find allergy [KEYWORD]* - This finds recipes without a certain ingredient.
-* *exit* - This is the command to leave the program. 
-
+* *exit* - This is the command to leave the program.
 ---
 
 ## **Appendix: Instructions for manual testing**
@@ -183,100 +199,95 @@ testers are expected to do more *exploratory* testing.</div>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
-### Adding a recipe
+### Adding a Recipe
 
-1. **Test case** `add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com`
-   * **Expected**: Mentioned recipe is added to the list of recipes.
-   * **Console output**: Provides a brief description of the added recipe 
-   and total number recipes present in list.
+1. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com`
+   * **Expected**: The specified recipe is successfully added to the recipe list.
+   * **Console output**: Displays a brief description of the added recipe along with the total number of recipes in the list.
 
-2. **Test case** `add pizza, 34, 340, egg nut dairy gluten, dinner`
-   * **Expected**: Recipe is not added to the list due to missing parameter.
-   * **Console output**: Asks the user to input 6 parameters.
+2. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, dinner`
+   * **Expected**: The recipe is not added due to a missing required parameter.
+   * **Console output**: Prompts the user to provide all 6 required parameters.
 
-3. **Test case** `add pizza, abc, def, egg nut dairy gluten, dinner, www.food.com`
-   * **Expected**: Recipe is not added to list due to incorrect input types.
-   * **Console output**: Asks the user to use integer for fields of cook time
-   and calories.
+3. **Test case**: `add pizza, abc, def, egg nut dairy gluten, dinner, www.food.com`
+   * **Expected**: The recipe is not added because the input types for cook time and calories are incorrect.
+   * **Console output**: Informs the user that integers are required for cook time and calorie fields.
 
-4. **Test case** `add pizza, 34, 340, egg nut dairy gluten, capybara, www.food.com`
-   * **Expected**: Recipe is not added to the list due to invalid meal categories.
-   * **Console output**: Asks the user to select correct meal category from options of
-   breakfast, lunch, dinner, appetizer and dessert.
+4. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, capybara, www.food.com`
+   * **Expected**: The recipe is not added due to an unrecognized meal category.
+   * **Console output**: Requests the user to select a valid meal category from the provided options: breakfast, lunch, dinner, appetizer, and dessert.
 
-5. **Test case** `add pizza, 34, 340, egg nut dairy gluten, lunch, food.com`
-   * **Expected**: Recipe is not added to the list due to missing protocol.
-   * **Console output**: Asks the user to utilise proper protocols with examples
+5. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, lunch, food.com`
+   * **Expected**: The recipe is not added because the URL lacks the required protocol.
+   * **Console output**: Urges the user to include a proper protocol in the URL with examples.
 
-6. **Test case** `add pizza, 34, 340, egg nut dairy gluten, lunch, www.food`
-   * **Expected**: Recipe is not added to the list due to invalid domain or TLD
-   * **Console output**: Asks the user to utilise proper domains with examples
+6. **Test case**: `add pizza, 34, 340, egg nut dairy gluten, lunch, www.food`
+   * **Expected**: The recipe is not added due to an invalid domain or top-level domain in the URL.
+   * **Console output**: Advises the user to use valid domain names with examples.
 
-### Deleting a recipe
+7. **Test case**: `add pizza 34, 340, egg nut dairy gluten, lunch, www.food`
+   * **Expected**: The recipe is not added because a comma is missing, leading to incorrect parameter parsing.
+   * **Console output**: Alerts the user to provide all 6 parameters correctly and suggests checking for missing commas.
 
-**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+### Deleting a Recipe
+
+**Prerequisites**: Ensure that multiple recipes are listed using the `list` command.
 
 1. **Test case**: `delete 1`
-   * **Expected**: First recipe is deleted from the list. 
-   * *Console output*: Says which recipe was deleted with a brief description.
+   * **Expected**: The first recipe in the list is successfully deleted.
+   * **Console output**: Confirms which recipe was deleted with a brief description.
 
 2. **Test case**: `delete 0`
-   * **Expected**: No recipe is deleted due to index given being out of bounds.
-   * *Console output*: Asks the user to input a number within the range of the recipe list numbers.
+   * **Expected**: No recipe is deleted because the index provided is out of bounds.
+   * **Console output**: Reminds the user to enter a number within the range of existing recipe numbers.
 
 3. **Test case**: `delete xyz`
-   * **Expected**: No recipe is deleted. 
-   * *Console output*: Asks the user to input an integer instead of other data types.
+   * **Expected**: No recipe is deleted as the input is not an integer.
+   * **Console output**: Instructs the user to input an integer value.
 
 4. **Test case**: `delete`
-   * **Expected**: No recipe is deleted due to given index. 
-   * *Console output* Asks the user to use an index parameter for the delete function.
+   * **Expected**: No recipe is deleted as no index is provided.
+   * **Console output**: Directs the user to provide an index for the delete command.
 
-### Finding a recipe by keyword
+### Finding a Recipe by Keyword
 
-**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
-   At least one with "soup" in recipe name.
+**Prerequisites**: Ensure that multiple recipes are listed, including at least one with "soup" in the recipe name.
 
 1. **Test case**: `find kw soup`
-   * **Expected**: Matching recipes are found. 
-   * *Console output*: Shows the user which recipes have the word "soup" in its name.
+   * **Expected**: Recipes containing the word "soup" in their names are found and listed.
+   * **Console output**: Shows which recipes include the keyword "soup".
 
 2. **Test case**: `find kw sou`
-   * **Expected**: No matching recipe is found. 
-   * *Console output*: Asks the user to attempt to search for another ingredient.
+   * **Expected**: No matching recipe is found as the keyword does not exactly match any recipe names.
+   * **Console output**: Suggests the user try another keyword or check the existing recipe names for exact matches.
 
 3. **Test case**: `find kw`
-   * **Expected**: No matching recipe is found due to lack of search keywords.
-   * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
+   * **Expected**: No recipe is found due to the absence of a keyword.
+   * **Console output**: Prompts the user to ensure two arguments are entered for the find command.
 
 4. **Test case**: `find kw 1`
-   * **Expected**: No matching recipes is found due to invalid keyword. 
-   * *Console output*: Asks the user to ensure the keyword uses alphabets.
+   * **Expected**: No recipe matches because the keyword is not alphabetical.
+   * **Console output**: Reminds the user that the keyword should consist of alphabets only.
 
-### Finding a recipe by date
+### Finding a Recipe by Date
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
-   At least one with date as `2024-03-30` but none with `2024-01-03`.
+**Prerequisites**: List all recipes, ensuring at least one has a date of `2024-03-30` and none on `2024-01-03`.
 
-2. **Test case**: `find date 2024-03-30`
-   * **Expected**: Matching recipes are found with a valid date given. 
-   * *Console output*: Shows the user which recipes were added on 2024-03-30.
+1. **Test case**: `find date 2024-03-30`
+   * **Expected**: Recipes added on `2024-03-30` are successfully found and listed.
+   * **Console output**: Displays the recipes added on the specified date.
 
-3. **Test case**: `find date 2024-01-03`
-   * **Expected**: No matching recipes are found despite a valid date given. 
-   * *Console output*: Reports that no recipes were added on 2024-01-03 as a 
-   valid date is given without any matching recipes.
+2. **Test case**: `find date 2024-01-03`
+   * **Expected**: No recipes are found as no recipes were added on that date, despite the date being valid.
+   * **Console output**: Reports that no recipes were added on `2024-01-03`.
 
-4. **Test case**: `find date xyx`
-   * **Expected**: No recipe is found due to invalid date format or not following the
-   correct date convention. 
-   * *Console output*: Reports that the parameter cannot be parsed as a valid date. 
-   * *Console output*: Also hints at the user to use the format of YYYY-MM-DD.
+3. **Test case**: `find date xyx`
+   * **Expected**: No recipe is found because the input does not conform to a valid date format.
+   * **Console output**: Notifies the user that the date is not valid and suggests using the `YYYY-MM-DD` format.
 
-5. **Test case**: `find date`
-   * **Expected**: No recipe is found due to the lack of a given date. 
-   * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
-
+4. **Test case**: `find date`
+   * **Expected**: No recipe is found due to the lack of a specified date.
+   * **Console output**: Asks the user to ensure that two arguments are entered for the find command.
 ### Show the recipe list
 1. **Test case**: `list sortname sortdate`
    * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
@@ -328,3 +339,5 @@ testers are expected to do more *exploratory* testing.</div>
    * `CommandValidator` evaluates the inputs from the user, but only returns a boolean value of whether the command is valid.
    * If the command is valid, there is an additional call to `InputParser` to get the inputs again.
    * **Recommendation**: The `CommandValidator` could return the input together if the command is valid, and `null` otherwise.
+2. **Enabling `find` and `filter` with various inputs**
+   * Currently, the find and filter only take in one searchable input. Expanding that to include multiple (eg `filter egg dairy`) could increase the potential use case of the app. 
