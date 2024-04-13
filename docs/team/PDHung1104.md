@@ -8,9 +8,19 @@ Recipe IO is a CLI application that allows foodies, chefs, or housewives/husband
 2. **Enhancements**:
    * **Code Structure: Add a `UI` class** that handles the application's user interface.
      * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/17)
+
+   * **Code Structure: Add `SortAscendingCalories`, `SortAscendingDateAdded`, `SortAscendingCookTime`, `SortAscendingName`, `SortList` classes** that handles the `list` command's sorting options.
+     * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/171)
+
+   * **Code Structure: Add `FindMeal` method** that find recipes with a certain meal category.
+     * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/103)
      
    * **Functionality**: Added search by meal category method
      * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/103)
+    
+   * **Functionality**: Added list with sort options
+     * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/171)
+
 
    * **JavaDoc**: Added JavaDoc to some methods.
      * Can be found in the link to my code dashboard
@@ -20,9 +30,11 @@ Recipe IO is a CLI application that allows foodies, chefs, or housewives/husband
 
 3. **Documentation - UG**:
    * Gave description of find by meal category method in UG
+   * Gave description of `list` command and its options
    
 4. **Documentation - DG**:
     * Gave description of find by allergy method
+    * Gave description of `list` method
 
 5. **Contributions to team-based tasks**:
    * Code enhancements

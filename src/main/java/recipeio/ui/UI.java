@@ -98,8 +98,9 @@ public class UI {
         System.out.println("help: shows available commands\n");
         System.out.println("list: shows you list of recipes");
         System.out.println("\tInput Example: list\n");
-        System.out.println("list {SORT_TYPE}: shows you list of recipes");
-        System.out.println("\tInput Example: list\n");
+        System.out.println("list SORT_TYPE: shows list of recipes sorted by different filters");
+        System.out.println("These filters include sortname, sortdate, sortcooktime, sortcalories");
+        System.out.println("\tInput Example: list sortname\n");
         System.out.println("add NAME, MINUTES, KCALS, SINGULAR-TENSE SLASH-SEPARATED ALLERGIES, CATEGORY, " +
                 "URL: adds a recipe");
         System.out.println("\tInput Example: add pizza, 34, 340, egg/nut/dairy/red meat, dinner, www.food.com\n");
@@ -120,7 +121,9 @@ public class UI {
         System.out.println("exit: to leave the program");
     }
 
-
+    /**
+     * Prints list of valid sort types
+     */
     public static void printSortTypes() {
         System.out.println("These are the valid sort type inputs:");
         System.out.println("\tsortname: Sort the list by name in lexicographically ascending order");
