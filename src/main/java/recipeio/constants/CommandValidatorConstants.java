@@ -15,7 +15,7 @@ public class CommandValidatorConstants {
     public static final String MEAL_CAT_DESSERT = "dessert";
     public static final String MATCH_WORD_REGEX = "^[a-zA-Z]+$";
     public static final String ALLOW_SPACES_AND_NUMS_REGEX = "^(?=.*[a-zA-Z])[a-zA-Z0-9 ]+$";
-    public static final String URL_SUBDOMAIN_ERROR = "URL must start with 'http://', 'https://', or 'www.'";
+    public static final String URL_SUBDOMAIN_ERROR = "Make sure your URL starts with 'http://', 'https://', or 'www.'";
     public static final String URL_INVALID_DOMAIN = "URL domain name or TLD is invalid.";
     public static final String URL_EXAMPLE = "Example: \"www.food.com\" or \" https://www.example.com\" ";
     public static final String DOMAIN_REGEX = "\\w+([\\-\\.]{1}[\\w]+)*\\.[a-zA-Z]{2,}";
