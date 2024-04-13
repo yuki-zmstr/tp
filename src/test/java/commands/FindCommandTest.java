@@ -133,8 +133,6 @@ public class FindCommandTest {
         FindCommand.execute(COMMAND_VALID_URL, recipes);
 
         String actual = testOut.toString();
-        actual = actual.replaceAll("\\r\\n", "\n");
-        System.out.println(actual);
 
         assertEquals(expected, actual);
     }
@@ -150,7 +148,7 @@ public class FindCommandTest {
         FindCommand.execute(COMMAND_INVALID_URL, recipes);
 
         String actual = testOut.toString();
-        System.out.println(actual);
+
         assertEquals(expected, actual);
     }
 
@@ -167,7 +165,6 @@ public class FindCommandTest {
         FindCommand.execute(COMMAND_VALID_URL_WITH_PATH, recipes);
 
         String actual = testOut.toString();
-        System.out.println(actual);
 
         assertEquals(expected, actual);
     }
