@@ -21,6 +21,10 @@ or even students, to manage their recipes.
       * **Justification**: Essential component to allow users to save and load recipes instead of starting anew
       * **Credits**: @yuki-zmstr for enhancing and extracting the function to be more object orientated
       * [Initial PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/22/files), [Updated PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/22/files)
+      
+    * **Code Structure**: Find by url function
+      * Allows users to find recipes via their url
+      * **Justification**: Users can view all their saved recipes belonging to a certain url
    
    * **Functionality**: Add error handling for invalid url entries
       * Exception checker for users with invalid domain or subdomain formats

@@ -42,7 +42,6 @@ import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
  * Class containing methods that validate a user's input into the command line.
  */
 public class CommandValidator {
-    public static final int ADD_COMMAND_ENRIES_START_INDEX = 3;
     /**
      * Splits a recipe name into individual words.
      *
@@ -234,6 +233,7 @@ public class CommandValidator {
             System.out.println("\tInput Example: find kw pizza");
             System.out.println("\tInput Example: find date 2024-03-28");
             System.out.println("\tInput Example: find meal dinner");
+            System.out.println("\tInput Example: find url www.food.com");
             return false;
         }
         return true;
@@ -326,5 +326,23 @@ public class CommandValidator {
             isValid = false;
         }
         return isValid;
+    }
+
+    /**
+     * Returns the path of a given url if present, and returns an empty otherwise
+     * If only forward slash is present, return non-empty String
+     *
+     * @param userInput User's url in the command line.
+     * @return path of url, if any
+     */
+    public static String getPath(String userInput) {
+        try {
+            if (userInput.endsWith("/")) {
+                return "/";
+            }
+            return userInput.split("/")[1];
+        } catch (Exception e){
+            return "";
+        }
     }
 }

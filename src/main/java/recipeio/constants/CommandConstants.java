@@ -6,13 +6,15 @@ public class CommandConstants {
     public static final String FIND_BY_MEAL = "meal";
     public static final String FIND_BY_KEYWORD = "kw";
     public static final String FIND_BY_DATE = "date";
+    public static final String FIND_BY_URL = "url";
     public static final String NO_MATCHES_ERROR = "There were no matches. Try searching for something else. ";
     public static final String INVALID_MEAL_ERROR = "Invalid meal category!";
     public static final String INVALID_FIND_ERROR = "Sorry, please follow one of the find command formats." +
-            "\nAccepted find commands are: 'kw' 'date' and 'meal'.";
+            "\nAccepted find commands are: 'kw' 'date', 'meal' and 'url.";
     public static final String NO_MATCHES_PROMPT = "Please ensure that you have inputted a full word.";
     public static final String VALID_KEYWORD_MATCHES = "Here are your matches with keyword: ";
     public static final String VALID_DATE_MATCHES = "Here are your matches with date: ";
+    public static final String VALID_URL_MATCHES = "Here are your matches with url:  ";
     public static final String NO_CATEGORY_MATCHES = "There's no recipe with category: ";
     public static final String VALID_CATEGORY_MATCHES = "These recipes have the category: ";
     public static final String EMPTY_RECIPE_ERROR = "Sorry, there are no recipes in your recipe book to print.";
