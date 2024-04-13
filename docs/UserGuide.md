@@ -39,8 +39,9 @@ Follow these steps to get started with Recipe.io
 
 ## Commands 
 
-### Disclaimer 
-In this document, parameters inside `[]` are compulsory, while those inside `{}` are optional.
+### Disclaimers 
+* In this document, parameters inside `[]` are compulsory, while those inside `{}` are optional.
+* Additionally, this program uses the comma `,` as a delimeter, so ensure not to use commas within parameters for intended usability. 
 
 ### 1. Viewing help : `help`
 Shows instructions to use RecipeIO's chatbot.
