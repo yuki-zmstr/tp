@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
+import java.util.Collections;
 
 import static recipeio.InputParser.splitUpAddInput;
 import static recipeio.constants.CommandValidatorConstants.INPUT_DETAILS_INDEX;
@@ -299,6 +300,31 @@ public class CommandValidator {
         }
         return true;
     }
+
+    public static boolean isNotRepeatRecipe(Recipe newRecipe, ArrayList<Recipe> recipes) {
+        for (int i = 0; i < recipes.size(); i++) {
+            if (recipes.get(i).getName().equals(newRecipe.getName()) &&
+                    recipes.get(i).getCookTime() == newRecipe.getCookTime() &&
+                    recipes.get(i).getCalories() == newRecipe.getCalories() &&
+                    compareAllergies(recipes.get(i).getAllergies(), newRecipe.getAllergies()) &&
+                    recipes.get(i).getCategory().equals(newRecipe.getCategory()) &&
+                    recipes.get(i).getUrl().equals(newRecipe.getUrl())) {
+                System.out.println(CommandValidatorConstants.SAME_RECIPE_MESSAGE);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean compareAllergies(ArrayList<String> allergies1, ArrayList<String> allergies2) {
+        if (allergies1.size() != allergies2.size()) {
+            return false;
+        }
+        Collections.sort(allergies1);
+        Collections.sort(allergies2);
+        return allergies1.equals(allergies2);
+    }
+
 
     /**
      * Checks whether the url entered is valid by checking with URLValidator

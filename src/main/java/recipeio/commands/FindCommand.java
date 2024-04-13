@@ -20,7 +20,6 @@ import static recipeio.constants.CommandConstants.VALID_KEYWORD_MATCHES;
 import static recipeio.constants.CommandConstants.VALID_DATE_MATCHES;
 
 public class FindCommand {
-
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
         if (!CommandValidator.isValidFindCommand(userInput)) {
             return;
@@ -32,14 +31,14 @@ public class FindCommand {
             if (!CommandValidator.isWord(criteria)) {
                 return;
             }
-            findKeyword(criteria, recipes);
+            FindKeyword.execute(criteria, recipes);
             break;
         case (FIND_BY_DATE):
             if (!CommandValidator.isParsableAsDate(criteria)) {
                 return;
             }
             LocalDate date = LocalDate.parse(criteria);
-            findDate(date, recipes);
+            FindDate.execute(date, recipes);
             break;
         case (FIND_BY_MEAL):
             if (!CommandValidator.isMealCat(criteria)) {
@@ -53,44 +52,4 @@ public class FindCommand {
             System.out.println(INVALID_FIND_ERROR);
         }
     }
-    public static void findKeyword(String keyword, ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> matches = new ArrayList<>();
-        ArrayList<Integer> listNumbers = new ArrayList<>();
-        Integer count = CommandConstants.STARTING_COUNT;
-        for (Recipe recipe : recipes) {
-            if (CommandValidator.splitName(recipe.getName()).contains(keyword)) {
-                matches.add(recipe);
-                listNumbers.add(count);
-            }
-            count ++;
-        }
-        if (matches.isEmpty()) {
-            System.out.println(NO_MATCHES_ERROR);
-            System.out.println(NO_MATCHES_PROMPT);
-            return;
-        }
-        System.out.println(VALID_KEYWORD_MATCHES + keyword + "\n");
-        UI.printRecipes(matches, listNumbers);
-    }
-
-    public static void findDate(LocalDate date, ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> matches = new ArrayList<>();
-        ArrayList<Integer> listNumbers = new ArrayList<>();
-        Integer count = CommandConstants.STARTING_COUNT;
-        for (Recipe recipe : recipes) {
-            if (recipe.dateAdded.isEqual(date)) {
-                matches.add(recipe);
-                listNumbers.add(count);
-            }
-            count ++;
-        }
-        if (matches.isEmpty()) {
-            System.out.println(NO_MATCHES_ERROR);
-            return;
-        }
-        System.out.println(VALID_DATE_MATCHES + date + "\n");
-        UI.printRecipes(matches, listNumbers);
-    }
-
-
 }

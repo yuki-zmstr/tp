@@ -126,6 +126,9 @@ public class RecipeList {
         }
         try {
             Recipe newRecipe = parseAdd(userInput);
+            if (!CommandValidator.isNotRepeatRecipe(newRecipe, recipes)) {
+                return;
+            }
             AddRecipeCommand.execute(newRecipe, recipes);
             UI.printAddMessage(newRecipe, recipes.size());
             saveRecipes();

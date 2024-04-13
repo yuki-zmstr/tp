@@ -31,6 +31,7 @@ public class CommandValidatorConstants {
     public static final String URL_SUBDOMAIN_HTTP = "http://";
     public static final String URL_SUBDOMAIN_HTTPS = "https://";
     public static final String URL_SUBDOMAIN_WWW = "www.";
-
+    public static final String SAME_RECIPE_MESSAGE = "Sorry, you are attempting to add a same recipe that is already" +
+            "in your recipe book.\nTry adding something new!";
 
 }

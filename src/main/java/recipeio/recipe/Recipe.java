@@ -44,7 +44,11 @@ public class Recipe {
     public int getCookTime() {
         return cookTime;
     }
-
+    public ArrayList<String>  getAllergies() {
+        return allergies;
+    }
+    public MealCategory getCategory() {return category;}
+    public String getUrl() {return url;}
     @Override
     public String toString() {
         return name + " / added on " + dateAdded + " / url: " + url;
