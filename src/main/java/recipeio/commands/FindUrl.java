@@ -2,11 +2,11 @@ package recipeio.commands;
 
 import recipeio.constants.CommandConstants;
 import recipeio.recipe.Recipe;
+import recipeio.ui.UI;
 
 import java.util.ArrayList;
 
 import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
-import static recipeio.CommandValidator;
 
 public class FindUrl {
 
