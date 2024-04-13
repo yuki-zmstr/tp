@@ -52,7 +52,10 @@ public class Recipe {
         return allergies;
     }
 
-    public MealCategory getCategory() { return category; }
+    public MealCategory getCategory() {
+        return category;
+    }
+
 
     @Override
     public String toString() {

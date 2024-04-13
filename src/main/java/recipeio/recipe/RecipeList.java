@@ -136,7 +136,7 @@ public class RecipeList {
             }
             AddRecipeCommand.execute(newRecipe, recipes);
             UI.printAddMessage(newRecipe, recipes.size());
-            saveRecipes();
+            saveRecipes(recipes);
         } catch (Exception e){
             UI.printMessage(e.getMessage());
         }
@@ -158,7 +158,7 @@ public class RecipeList {
             return;
         }
         DeleteRecipeCommand.execute(index, recipes);
-        saveRecipes();
+        saveRecipes(recipes);
     }
 
     /**
@@ -199,7 +199,7 @@ public class RecipeList {
      * Calls the saveFile method in Storage.
      * If fails, and error message is shown.
      */
-    public void saveRecipes() {
+    public static void saveRecipes(ArrayList<Recipe> recipes) {
         try {
             Storage.saveFile(recipes);
         } catch (Exception e) {

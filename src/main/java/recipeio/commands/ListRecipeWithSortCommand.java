@@ -2,6 +2,7 @@ package recipeio.commands;
 
 import recipeio.enums.SortType;
 import recipeio.recipe.Recipe;
+import recipeio.recipe.RecipeList;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class ListRecipeWithSortCommand {
         case DATE:
             ArrayList<Recipe> listToBePrinted = SortList.execute(recipes, sortType);
             printSortedList(listToBePrinted);
+            RecipeList.saveRecipes(recipes);
             break;
         default:
             ListRecipeCommand.execute(recipes);

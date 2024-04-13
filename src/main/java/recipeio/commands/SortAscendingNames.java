@@ -11,8 +11,7 @@ public class SortAscendingNames {
      * @return a list of recipes sorted by name
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        Collections.sort(copy, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-        return copy;
+        Collections.sort(recipes, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+        return recipes;
     }
 }

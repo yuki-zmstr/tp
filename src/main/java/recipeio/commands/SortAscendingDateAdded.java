@@ -12,8 +12,7 @@ public class SortAscendingDateAdded {
      * @return a list of recipes sorted by date added
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        Collections.sort(copy, (o1, o2) -> o1.getDateAdded().compareTo(o2.getDateAdded()));
-        return copy;
+        Collections.sort(recipes, (o1, o2) -> o1.getDateAdded().compareTo(o2.getDateAdded()));
+        return recipes;
     }
 }

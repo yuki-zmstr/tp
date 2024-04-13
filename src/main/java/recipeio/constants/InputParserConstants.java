@@ -33,7 +33,7 @@ public class InputParserConstants {
 
     public static final String MORE_ADD_PARAMETERS = "Please make sure you are adding parameters to the add " +
             "function!\nHere is the required add command format: add NAME, MINUTES, KCALS, SINGULAR-TENSE " +
-            "SPACE-SEPARATED ALLERGIES, CATEGORY, URL";
+            "SLASH-SEPARATED ALLERGIES, CATEGORY, URL";
     public static final String INVALID_LIST_ERROR = "List command should not have any trailing characters";
     public static final String SORT_NAME = "sortname";
     public static final String SORT_DATE_ADDED = "sortdate";

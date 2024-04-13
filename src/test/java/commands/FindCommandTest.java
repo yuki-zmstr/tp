@@ -139,7 +139,7 @@ public class FindCommandTest {
 
     @Test
     public void testInvalidURL() {
-        String expected = "URL must start with 'http://', 'https://', or 'www.'" + System.lineSeparator() +
+        String expected = "Make sure your URL starts with 'http://', 'https://', or 'www.'" + System.lineSeparator() +
                 "Example: \"www.food.com\" or \" https://www.example.com\" " + System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);

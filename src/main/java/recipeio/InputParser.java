@@ -167,8 +167,9 @@ public class InputParser {
         String recipeName = remainingInput[InputParserConstants.RECIPE_NAME_INDEX].trim();
         int cookTime = Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
         int calories = Integer.parseInt(remainingInput[InputParserConstants.CALORIES_INDEX].trim());
-        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().split(" ");
+        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().split("/");
         ArrayList<String> allergiesList = new ArrayList<>(List.of(allergies));
+        allergiesList.replaceAll(String::trim);
         MealCategory category = MealCategory.valueOf(remainingInput[MEAL_CATEGORY_INDEX].trim().toUpperCase());
         String url = remainingInput[InputParserConstants.URL_INDEX].trim();
         return new Recipe(recipeName, cookTime, calories, allergiesList, category, LocalDate.now(), url);
