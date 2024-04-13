@@ -308,7 +308,7 @@ public class CommandValidator {
                     recipes.get(i).getCalories() == newRecipe.getCalories() &&
                     compareAllergies(recipes.get(i).getAllergies(), newRecipe.getAllergies()) &&
                     recipes.get(i).getCategory().equals(newRecipe.getCategory()) &&
-                    recipes.get(i).getUrl().equals(newRecipe.getUrl())) {
+                    recipes.get(i).getURL().equals(newRecipe.getURL())) {
                 System.out.println(CommandValidatorConstants.SAME_RECIPE_MESSAGE);
                 return false;
             }
@@ -344,9 +344,7 @@ public class CommandValidator {
             System.out.println(CommandValidatorConstants.URL_SUBDOMAIN_ERROR);
             System.out.println(CommandValidatorConstants.URL_EXAMPLE);
             isValid = false;
-        }
-        // Validate domain name and TLD
-        else if (!details.matches(SUB_DOMAIN_MATCHES + DOMAIN_REGEX + ".*$")) {
+        } else if (!details.matches(SUB_DOMAIN_MATCHES + DOMAIN_REGEX + ".*$")) {
             System.out.println(CommandValidatorConstants.URL_INVALID_DOMAIN);
             System.out.println(CommandValidatorConstants.URL_EXAMPLE);
             isValid = false;

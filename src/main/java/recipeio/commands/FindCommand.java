@@ -2,7 +2,6 @@ package recipeio.commands;
 
 import recipeio.InputParser;
 import recipeio.CommandValidator;
-import recipeio.constants.CommandConstants;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
 
@@ -12,12 +11,9 @@ import java.util.ArrayList;
 import static recipeio.constants.CommandConstants.FIND_BY_KEYWORD;
 import static recipeio.constants.CommandConstants.FIND_BY_MEAL;
 import static recipeio.constants.CommandConstants.FIND_BY_DATE;
+import static recipeio.constants.CommandConstants.FIND_BY_URL;
 import static recipeio.constants.CommandConstants.INVALID_MEAL_ERROR;
 import static recipeio.constants.CommandConstants.INVALID_FIND_ERROR;
-import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
-import static recipeio.constants.CommandConstants.NO_MATCHES_PROMPT;
-import static recipeio.constants.CommandConstants.VALID_KEYWORD_MATCHES;
-import static recipeio.constants.CommandConstants.VALID_DATE_MATCHES;
 
 public class FindCommand {
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
@@ -47,6 +43,12 @@ public class FindCommand {
                 return;
             }
             FindMeal.execute(criteria, recipes);
+            break;
+        case (FIND_BY_URL):
+            if (!CommandValidator.isValidURL(criteria)) {
+                return;
+            }
+            FindUrl.execute(criteria, recipes);
             break;
         default:
             System.out.println(INVALID_FIND_ERROR);

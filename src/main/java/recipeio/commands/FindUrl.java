@@ -1,5 +1,6 @@
 package recipeio.commands;
 
+import recipeio.CommandValidator;
 import recipeio.constants.CommandConstants;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
@@ -23,10 +24,10 @@ public class FindUrl {
         Integer count = CommandConstants.STARTING_COUNT;
 
         for (Recipe recipe : recipes) {
-            String domain = recipe.getUrl();
+            String domain = recipe.getURL();
             //If the recipe contains a path but the url does not
             if (domain.contains("/") && CommandValidator.getPath(url).isEmpty()) {
-                domain = recipe.getUrl().split("/")[0];
+                domain = recipe.getURL().split("/")[0];
             }
             if (domain.matches(url)) {
                 urlMatches.add(recipe);
@@ -38,8 +39,7 @@ public class FindUrl {
             System.out.println(NO_MATCHES_ERROR);
             return;
         }
-        System.out.println(VALID_URL_MATCHES + url + "\n");
+        System.out.println(CommandConstants.VALID_URL_MATCHES + url + "\n");
         UI.printRecipes(urlMatches, listNumbers);
     }
-
 }
