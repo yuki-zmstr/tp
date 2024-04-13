@@ -12,8 +12,7 @@ public class SortAscendingCookTime {
      * @return a list of recipes sorted by cook time
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        Collections.sort(copy, (o1, o2) -> new Integer(o1.getCookTime()).compareTo(new Integer(o2.getCookTime())));
-        return copy;
+        Collections.sort(recipes, (o1, o2) -> new Integer(o1.getCookTime()).compareTo(new Integer(o2.getCookTime())));
+        return recipes;
     }
 }

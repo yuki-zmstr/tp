@@ -98,6 +98,8 @@ public class UI {
         System.out.println("help: shows available commands\n");
         System.out.println("list: shows you list of recipes");
         System.out.println("\tInput Example: list\n");
+        System.out.println("list {SORT_TYPE}: shows you list of recipes");
+        System.out.println("\tInput Example: list\n");
         System.out.println("add NAME, MINUTES, KCALS, SINGULAR-TENSE SPACE-SEPARATED ALLERGIES, CATEGORY, " +
                 "URL: adds a recipe");
         System.out.println("\tInput Example: add pizza, 34, 340, egg nut dairy gluten, dinner, www.food.com\n");

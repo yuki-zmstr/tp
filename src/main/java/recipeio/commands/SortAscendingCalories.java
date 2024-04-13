@@ -12,8 +12,7 @@ public class SortAscendingCalories {
      * @return a list of recipes sorted by calories
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        Collections.sort(copy, (o1, o2) -> new Integer(o1.getCalories()).compareTo(new Integer(o2.getCalories())));
-        return copy;
+        Collections.sort(recipes, (o1, o2) -> new Integer(o1.getCalories()).compareTo(new Integer(o2.getCalories())));
+        return recipes;
     }
 }
