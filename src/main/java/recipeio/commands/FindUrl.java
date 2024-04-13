@@ -1,7 +1,7 @@
 //@@author chenxk619
 package recipeio.commands;
 
-import recipeio.CommandValidator;
+import recipeio.InputParser;
 import recipeio.constants.CommandConstants;
 import recipeio.recipe.Recipe;
 import recipeio.ui.UI;
@@ -26,7 +26,7 @@ public class FindUrl {
         for (Recipe recipe : recipes) {
             String domain = recipe.getURL();
             //If the recipe contains a path but the url does not
-            if (domain.contains("/") && CommandValidator.getPath(url).isEmpty()) {
+            if (domain.contains("/") && InputParser.getPath(url).isEmpty()) {
                 domain = recipe.getURL().split("/")[0];
             }
             if (domain.matches(url)) {

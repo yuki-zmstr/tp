@@ -25,6 +25,7 @@ or even students, to manage their recipes.
     * **Code Structure**: Find by url function
       * Allows users to find recipes via their url
       * **Justification**: Users can view all their saved recipes belonging to a certain url
+      * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/170)
    
    * **Functionality**: Add error handling for invalid url entries
       * Exception checker for users with invalid domain or subdomain formats
@@ -35,9 +36,13 @@ or even students, to manage their recipes.
      * Exception checker to prevent users from inputting negative integers
      * **Justification**: Negative calories and cook time does not exist in the real world
      * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/164)
+    
+    * **Testing**: Add testing for find url functions
+    * To validate that different types of url functions are found correctly
+    * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/170)
      
 3. **Documentation - DG**: 
-   * Add test cases for adding a recipe, and also added console output examples for deleting a recipe, finding recipes
+   * Add test cases for adding a recipe, sorting by list, and also added console output examples for deleting a recipe, finding recipes
    by date and keyword
    * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/89/files)
 

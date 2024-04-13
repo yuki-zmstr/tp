@@ -320,14 +320,33 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: No recipe is deleted as no index is provided.
    * **Console output**: Directs the user to provide an index for the delete command.
 ### Show the recipe list
-1. **Test case**: `list sortname sortdate`
+**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+
+2. **Test case**: `list sortname sortdate`
    * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
    * *Console output*: Reports that there are redundant details for the command
 
-2. **Test case**: `list srt`
+3. **Test case**: `list srt`
    * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
    * *Console output*: Reports that `SORT_TYPE` is incorrect.
    * *Console output*: Also display available options for `SORT_TYPE` to the user.
+
+4. **Test case**: `list sortname`
+   * **Expected**: The recipes in recipe list are sorted according to their name.
+   * *Console output*: Display list of recipes organised according to their recipe name in alphabetical order.
+
+5. **Test case**: `list sortdate`
+   * **Expected**: The recipes in recipe list are sorted according to the date they were added.
+   * *Console output*: Display list of recipes organised according to the date they were added from earliest to latest.
+
+6. **Test case**: `list sortcooktime`
+   * **Expected**: The recipe list is sorted according to their cook time.
+   * *Console output*: Display list of recipes organised according to their cooking time from the shortest.
+
+7. **Test case**: `list sortcalories`
+   * **Expected**: The recipe list is sorted according to their calories.
+   * *Console output*: Display list of recipes organised according to their calories from the lowest.
+   
 
 ### Finding a Recipe by Keyword
 
