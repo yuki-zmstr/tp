@@ -167,7 +167,78 @@ Recipe.io is designed to cater to a diverse range of users who share a common ne
 1.  User requests to list recipes
 2.  RecipeIO shows a list of recipes
 3.  User requests to delete a specific recipe in the list
-4.  AddressBook deletes the person
+4.  RecipeIO deletes the recipe and confirms the deletion to the user.
+
+Use case ends.
+
+**Use case: Add a recipe**
+
+1.  User provides details for a new recipe using the `add` command format.
+2.  RecipeIO validates the input data.
+3.  If the data is valid, RecipeIO stores the new recipe and confirms the addition to the user.
+4.  If the data is invalid, RecipeIO informs the user about the validation errors and requests correct data.
+
+Use case ends.
+
+**Use case: Find recipes by keyword**
+
+1.  User inputs a keyword using the `find kw [KEYWORD]` command.
+2.  RecipeIO searches for recipes containing the keyword in their names / descriptions.
+3.  RecipeIO displays the list of matching recipes.
+4.  If no recipes match, RecipeIO informs the user that no recipes were found.
+
+Use case ends.
+
+**Use case: Find recipes by date**
+
+1.  User inputs a date using the `find date [YYYY-MM-DD]` command.
+2.  RecipeIO searches for recipes added on the specified date.
+3.  RecipeIO displays the list of recipes added on that date.
+4.  If no recipes match the specified date, RecipeIO informs the user that no recipes were added on that date.
+
+Use case ends.
+
+**Use case: Find recipes by URL**
+
+1.  User inputs a URL using the `find url [URL]` command.
+2.  RecipeIO searches for recipes that include the specified URL or match parts of the URL in their stored URL data.
+3.  RecipeIO displays the list of recipes that match the URL criteria.
+4.  If no recipes match the specified URL, RecipeIO informs the user that no recipes were found with that URL.
+
+Use case ends.
+
+**Use case: Find recipes by meal category**
+
+1.  User inputs a meal category using the `find meal [MEAL_CATEGORY]` command.
+2.  RecipeIO searches for recipes that are part of the specified meal category. 
+3.  RecipeIO displays the list of recipes that match the URL criteria.
+4.  If no recipes match the specified meal category, RecipeIO informs the user that no recipes were found with that URL.
+
+Use case ends.
+
+**Use case: Filter recipes by allergy**
+
+1.  User specifies an allergy using the `filter [ALLERGY]` command.
+2.  RecipeIO filters the recipes to exclude any that contain the specified allergy.
+3.  RecipeIO displays the list of filtered recipes.
+4.  If all recipes contain the allergy, RecipeIO informs the user that no suitable recipes were found.
+
+Use case ends.
+
+**Use case: List all recipes**
+
+1.  User requests to view all recipes using the `list` command.
+2.  RecipeIO retrieves all recipes from storage.
+3.  RecipeIO displays the recipes in the order they were added or sorted according to any specified criteria.
+4.  If no recipes exist, RecipeIO informs the user that the recipe book is empty.
+
+Use case ends.
+
+**Use case: Exit the application**
+
+1.  User issues the `exit` command to close the application.
+2.  RecipeIO saves any changes made during the session.
+3.  RecipeIO closes the application and confirms closure to the user.
 
 Use case ends.
 
@@ -248,6 +319,15 @@ testers are expected to do more *exploratory* testing.</div>
 4. **Test case**: `delete`
    * **Expected**: No recipe is deleted as no index is provided.
    * **Console output**: Directs the user to provide an index for the delete command.
+### Show the recipe list
+1. **Test case**: `list sortname sortdate`
+   * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
+   * *Console output*: Reports that there are redundant details for the command
+
+2. **Test case**: `list srt`
+   * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
+   * *Console output*: Reports that `SORT_TYPE` is incorrect.
+   * *Console output*: Also display available options for `SORT_TYPE` to the user.
 
 ### Finding a Recipe by Keyword
 
@@ -288,49 +368,64 @@ testers are expected to do more *exploratory* testing.</div>
 4. **Test case**: `find date`
    * **Expected**: No recipe is found due to the lack of a specified date.
    * **Console output**: Asks the user to ensure that two arguments are entered for the find command.
-### Show the recipe list
-1. **Test case**: `list sortname sortdate`
-   * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
-   * *Console output*: Reports that there are redundant details for the command
 
-2. **Test case**: `list srt`
-   * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
-   * *Console output*: Reports that `SORT_TYPE` is incorrect.
-   * *Console output*: Also display available options for `SORT_TYPE` to the user.
 ### Finding a recipe by url
 
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
    At least one recipe with url of `www.food.com/fish` but none with url of `www.food.net`.
 
-2. **Test case**: `find url www.food.com`
+1. **Test case**: `find url www.food.com`
    * **Expected**: Matching recipes containing valid urls are given, including `www.food.com/fish`
    * *Console output*: Shows the user which recipes match the url of `www.food.com`
    
-3. **Test case**: `find url`
+2. **Test case**: `find url`
    * **Expected**: No recipe is found due to the lack of a given url.
    * *Console output*: Asks the user to check that he or she inputted two arguments to the find method.
 
-4. **Test case**: `find url 123`
+3. **Test case**: `find url 123`
    * **Expected**: No recipe is found due to an invalid url subdomain.
    * *Console output*: Reports to the user that a valid subdomain must be given, with valid url examples given.
 
-5. **Test case**: `find url food.com`
+4. **Test case**: `find url food.com`
    * **Expected**: No recipe is found due to an invalid url subdomain.
    * *Console output*: Reports to the user that a valid subdomain must be given, with valid url examples given.
 
-6. **Test case**: `find url www.food`
+5. **Test case**: `find url www.food`
    * **Expected**: No recipe is found due to an invalid url domain.
    * *Console output*: Reports to the user that a valid domain or TLD must be given, with valid url examples given.
 
-7. **Test case**: `find url www.food.net`
+6. **Test case**: `find url www.food.net`
    * **Expected**: No matching recipes are found despite a valid url given.
    * *Console output*: Reports that no recipes matches `www.food.net` as a
      valid url is given without any matching recipes.
 
-8. **Test case**: `find url www.food.com/fish`
+7. **Test case**: `find url www.food.com/fish`
    * **Expected**: Recipes matching the whole url including path will be matched, thus excluding `www.food.com` recipes
    * *Console output*: Shows the user which recipes match the url of `www.food.com/fish`
 
+### Finding a recipe by meal category
+
+**Prerequisites**: List all recipes using the `list` command. There is at least one recipe in the `BREAKFAST` meal category, and none in the `DINNER` meal category.
+
+1. **Test case**: `find meal BREAKFAST`
+   * **Expected**: Recipes categorized under BREAKFAST are displayed.
+   * **Console output**: Shows the user which recipes are categorized as BREAKFAST.
+
+2. **Test case**: `find meal`
+   * **Expected**: No recipe is found due to the lack of a specified meal category.
+   * **Console output**: Asks the user to check that he or she inputted two arguments to the find method.
+
+3. **Test case**: `find meal breakfast`
+   * **Expected**: Recipes categorized under BREAKFAST are displayed, showcasing case-insensitivity in category handling.
+   * **Console output**: Shows the user which recipes are categorized as BREAKFAST.
+
+4. **Test case**: `find meal snack`
+   * **Expected**: No recipe is found as "snack" is not a valid meal category.
+   * **Console output**: Informs the user that "snack" is not a recognized meal category and displays valid options: GENERAL, BREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT.
+
+5. **Test case**: `find meal DINNER`
+   * **Expected**: No recipe is found as there are no recipes with `DINNER` as a meal category.
+   * **Console output**: SInforms the user that there were no matches with the given meal category `DINNER`.
 ---
 
 ## Appendix: Area of Improvement
