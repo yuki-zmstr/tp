@@ -3,6 +3,7 @@ package recipeio;
 import recipeio.constants.InputParserConstants;
 import recipeio.recipe.Recipe;
 import recipeio.constants.CommandValidatorConstants;
+import recipeio.ui.UI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -351,6 +352,27 @@ public class CommandValidator {
         }
         return isValid;
     }
+    public static boolean isValidListCommand(String userInput) {
+        String[] words = userInput.trim().split(" ");
+        //if there are more than 2 words in the command, return false
+        if (words.length > 2) {
+            System.out.println(CommandValidatorConstants.EXCESS_DETAILS_ERROR);
+            return false;
+        }
+        if (words.length == 1) {
+            return true;
+        }
+        //if the sort type is incorrect, return false
+        if (!(words[1].equals(InputParserConstants.SORT_NAME) ||
+                words[1].equals(InputParserConstants.SORT_DATE_ADDED) ||
+                words[1].equals(InputParserConstants.SORT_CALORIES) ||
+                words[1].equals(InputParserConstants.SORT_COOK_TIME))) {
+            System.out.println(CommandValidatorConstants.INVALID_SORT_TYPE_ERROR_MESSAGE);
+            UI.printSortTypes();
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Returns the path of a given url if present, and returns an empty otherwise
@@ -365,7 +387,7 @@ public class CommandValidator {
                 return "/";
             }
             return userInput.split("/")[1];
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }

@@ -5,7 +5,7 @@ import recipeio.recipe.Recipe;
 
 import java.util.ArrayList;
 
-public class SortCommand {
+public class SortList {
     /**
      * Sort the list by different type, such as calories, cook time, name, and date added
      * @param recipes list of recipes

@@ -1,5 +1,5 @@
 package recipeio.enums;
 
 public enum SortType {
-    NAME, DATE, COOK_TIME, CALORIES
+    NONE, NAME, DATE, COOK_TIME, CALORIES
 }
