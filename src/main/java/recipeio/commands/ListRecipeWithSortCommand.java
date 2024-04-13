@@ -4,7 +4,6 @@ import recipeio.enums.SortType;
 import recipeio.recipe.Recipe;
 import recipeio.recipe.RecipeList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static recipeio.constants.CommandConstants.EMPTY_RECIPE_ERROR;

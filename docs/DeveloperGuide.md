@@ -321,9 +321,22 @@ testers are expected to do more *exploratory* testing.</div>
    * **Console output**: Directs the user to provide an index for the delete command.
 
 ### Show the recipe list
-1. **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
+**Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
+<<<<<<< HEAD
 2. **Test case**: `list sortname`
+=======
+2. **Test case**: `list sortname sortdate`
+   * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
+   * *Console output*: Reports that there are redundant details for the command
+
+3. **Test case**: `list srt`
+   * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
+   * *Console output*: Reports that `SORT_TYPE` is incorrect.
+   * *Console output*: Also display available options for `SORT_TYPE` to the user.
+
+4. **Test case**: `list sortname`
+>>>>>>> 1d17de443d021f1b3f2f1654cb07f4f786f967d4
    * **Expected**: The recipes in recipe list are sorted according to their name.
    * *Console output*: Display list of recipes organised according to their recipe name in alphabetical order.
 
@@ -338,7 +351,11 @@ testers are expected to do more *exploratory* testing.</div>
 5. **Test case**: `list sortcalories`
    * **Expected**: The recipe list is sorted according to their calories.
    * *Console output*: Display list of recipes organised according to their calories from the lowest.
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 1d17de443d021f1b3f2f1654cb07f4f786f967d4
 
 ### Finding a Recipe by Keyword
 
@@ -379,7 +396,10 @@ testers are expected to do more *exploratory* testing.</div>
 4. **Test case**: `find date`
    * **Expected**: No recipe is found due to the lack of a specified date.
    * **Console output**: Asks the user to ensure that two arguments are entered for the find command.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1d17de443d021f1b3f2f1654cb07f4f786f967d4
 
 ### Finding a recipe by url
 
