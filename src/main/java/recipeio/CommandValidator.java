@@ -1,7 +1,6 @@
 package recipeio;
 
 import recipeio.constants.InputParserConstants;
-import recipeio.constants.StorageConstants;
 import recipeio.recipe.Recipe;
 import recipeio.constants.CommandValidatorConstants;
 
@@ -241,16 +240,6 @@ public class CommandValidator {
     }
 
     /**
-     * Check if the entries of the add command contains the write delimiter.
-     * @param userInput The user's input from the CLI.
-     * @return false if the entries in the add command contain the write delimiter and true otherwise.
-     */
-    public static boolean isValidAddEntries(String userInput) {
-        String entries = userInput.substring(ADD_COMMAND_ENRIES_START_INDEX);
-        return !entries.contains(StorageConstants.WRITE_DELIMITER);
-    }
-
-    /**
      * Checks if an add recipe command is valid
      * The input is initially checked against the expected total number of ingredients and subsequently all the
      * other input parameters to ensure that they are of the expected format.
@@ -267,10 +256,6 @@ public class CommandValidator {
             return false;
         }
 
-        if (!isValidAddEntries(userInput)) {
-            System.out.println("Please remove the '|' character from the data entries.");
-            return false;
-        }
         String[] remainingInput = splitUpAddInput(userInput);
         if (!isName(remainingInput[RECIPE_NAME_INDEX])) {
             return false;
