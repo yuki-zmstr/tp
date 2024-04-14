@@ -55,6 +55,15 @@ public class RecipeList {
     }
 
     /**
+     * Returns the size of the recipe list.
+     *
+     * @return The recipe list size.
+     */
+    public int getSize() {
+        return recipes.size();
+    }
+
+    /**
      * Executes command given from the user.
      *
      * @param command command keyword in the user's command in the command line.
