@@ -1,9 +1,13 @@
 package commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import recipeio.commands.FindCommand;
+import recipeio.commands.FindDate;
+import recipeio.commands.FindKeyword;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 
@@ -12,8 +16,9 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
+
 public class FindCommandTest {
-    //Test find commands
     public static final String COMMAND_INVALID_MEAL_CAT = "find meal fdjsjfsad";
     public static final String COMMAND_EXIST_MEAL = "find meal breakfast";
     public static final String COMMAND_NOT_EXIST_MEAL = "find meal Appetizer";
@@ -29,8 +34,11 @@ public class FindCommandTest {
     public static final String COMMAND_INVALID_TOP_LEVEL_DOMAIN = "find url www.food.c";
     private ArrayList<Recipe> recipes;
     private ArrayList<String> allergies;
-
     private Recipe testRecipe;
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+
     public FindCommandTest() {
         this.recipes = new ArrayList<>();
         this.allergies = new ArrayList<>();
@@ -69,7 +77,68 @@ public class FindCommandTest {
         );
         recipes.add(this.testRecipe);
     }
+    @Test
+    public void testFindByKeywordExist() {
+        System.setOut(new PrintStream(outContent));
+        recipes = new ArrayList<>();
+        recipes.add(new Recipe("Cream Spaghetti", 60, 500, null,
+                null, LocalDate.of(2024, 3, 20), "www.food.com/spaghetti"));
+        recipes.add(new Recipe("Pho", 480, 600, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com/pho"));
+        recipes.add(new Recipe("Laksa", 100, 620, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com"));
+        FindKeyword.execute("Spaghetti", recipes);
+        assertTrue(outContent.toString().contains("Here are your matches with keyword: Spaghetti"));
+        assertTrue(outContent.toString().contains("Cream Spaghetti"));
+        assertFalse(outContent.toString().contains("Pho"));
+        System.setOut(originalOut);
+    }
 
+    @Test
+    public void testFindByKeywordNotExist() {
+        System.setOut(new PrintStream(outContent));
+        recipes = new ArrayList<>();
+        recipes.add(new Recipe("Cream Spaghetti", 60, 500, null,
+                null, LocalDate.of(2024, 3, 20), "www.food.com/spaghetti"));
+        recipes.add(new Recipe("Pho", 480, 600, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com/pho"));
+        recipes.add(new Recipe("Laksa", 100, 620, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com"));
+        FindKeyword.execute("Burger", recipes);
+        assertTrue(outContent.toString().contains("There were no matches. Try searching for something else. "));
+        System.setOut(originalOut);
+    }
+    @Test
+    public void testFindByDateExist() {
+        System.setOut(new PrintStream(outContent));
+        recipes = new ArrayList<>();
+        recipes.add(new Recipe("Cream Spaghetti", 60, 500, null,
+                null, LocalDate.of(2024, 3, 20), "www.food.com/spaghetti"));
+        recipes.add(new Recipe("Pho", 480, 600, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com/pho"));
+        recipes.add(new Recipe("Laksa", 100, 620, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com"));
+        FindDate.execute(LocalDate.of(2024, 4, 1), recipes);
+        assertTrue(outContent.toString().contains("Pho"));
+        assertTrue(outContent.toString().contains("Laksa"));
+        assertFalse(outContent.toString().contains("Cream Spaghetti"));
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void testFindByDateNotExist() {
+        System.setOut(new PrintStream(outContent));
+        recipes = new ArrayList<>();
+        recipes.add(new Recipe("Cream Spaghetti", 60, 500, null,
+                null, LocalDate.of(2024, 3, 20), "www.food.com/spaghetti"));
+        recipes.add(new Recipe("Pho", 480, 600, null,
+                null, LocalDate.of(2024, 4, 1), "www.food.com/pho"));
+        recipes.add(new Recipe("Laksa", 100, 620,
+                null, null, LocalDate.of(2024, 4, 1), "www.food.com"));
+        FindDate.execute(LocalDate.of(2024, 5, 1), recipes);
+        assertTrue(outContent.toString().contains("There were no matches. Try searching for something else. "));
+        System.setOut(originalOut);
+    }
     @Test
     public void testFindByMealExistItem() {
         String expected = "These recipes have the category: breakfast\n"
