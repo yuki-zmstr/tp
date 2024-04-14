@@ -7,19 +7,33 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * UI class is responsible for handling user interface.
+ */
 public class UI {
     public static final String SEPARATOR = "---------------------------------------------------";
 
     private final Scanner in;
 
+    /**
+     * Constructor for UI.
+     */
     public UI() {
         this(System.in);
     }
 
+    /**
+     * Constructor for UI.
+     *
+     * @param in InputStream object.
+     */
     public UI (InputStream in) {
         this.in = new Scanner(in);
     }
 
+    /**
+     * Prints a line separator.
+     */
     public static void printLine() {
         System.out.println(SEPARATOR);
     }
@@ -43,10 +57,26 @@ public class UI {
         System.out.println("Welcome to Recipe.io! How can I help you today chef?");
     }
 
+    /**
+     * Prints a message to the user.
+     *
+     * @param message The message to be printed.
+     */
     public static void printMessage(String message) {
         printLine();
         System.out.println(message);
         printLine();
+    }
+
+    /**
+     * Prints list of valid sort types.
+     */
+    public static void printSortTypes() {
+        System.out.println("These are the valid sort type inputs:");
+        System.out.println("\tsortname: Sort the list by name in lexicographically ascending order");
+        System.out.println("\tsortdate: Sort the list by date in ascending order i.e. from oldest to newest");
+        System.out.println("\tsortcooktime: Sort the list by cook time in ascending order");
+        System.out.println("\tsortcalories: Sort the list by calories in ascending order");
     }
 
     //@@author nidhi-nayak
@@ -79,7 +109,7 @@ public class UI {
     }
 
     /**
-     * Prints the valid meal categories
+     * Prints the valid meal categories.
      */
     public static void printValidMealCategories() {
         System.out.println("Accepted meal categories are:");
@@ -120,17 +150,6 @@ public class UI {
         System.out.println("filter ALLERGY: lists the recipes that do not contain this allergen");
         System.out.println("\tInput Example: filter dairy\n");
         System.out.println("exit: to leave the program");
-    }
-
-    /**
-     * Prints list of valid sort types
-     */
-    public static void printSortTypes() {
-        System.out.println("These are the valid sort type inputs:");
-        System.out.println("\tsortname: Sort the list by name in lexicographically ascending order");
-        System.out.println("\tsortdate: Sort the list by date in ascending order i.e. from oldest to newest");
-        System.out.println("\tsortcooktime: Sort the list by cook time in ascending order");
-        System.out.println("\tsortcalories: Sort the list by calories in ascending order");
     }
 
     /**

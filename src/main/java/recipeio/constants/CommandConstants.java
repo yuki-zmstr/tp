@@ -1,5 +1,8 @@
 package recipeio.constants;
 
+/**
+ * Constants for commands.
+ */
 public class CommandConstants {
     public static final String RECIPES_INCLUDED = "All your recipes include: ";
     public static final String RECIPES_EXCLUDED = "These recipes do not include: ";

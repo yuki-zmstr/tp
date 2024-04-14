@@ -10,8 +10,16 @@ import java.util.ArrayList;
 import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
 import static recipeio.constants.CommandConstants.VALID_DATE_MATCHES;
 
+/**
+ * Command for finding recipes based on a specific date.
+ */
 public class FindDate {
-
+    /**
+     * Executes the find command based on the user's input.
+     *
+     * @param date The date to be searched for.
+     * @param recipes The list of current recipes.
+     */
     public static void execute(LocalDate date, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
         ArrayList<Integer> listNumbers = new ArrayList<>();

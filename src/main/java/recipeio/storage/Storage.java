@@ -15,8 +15,10 @@ import recipeio.constants.StorageConstants;
 import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 
+/**
+ * Storage class is responsible for saving and loading the recipe book to and from a text file.
+ */
 public class Storage {
-
     private static File dataFile;
     private static String pathToFile;
 
@@ -150,41 +152,84 @@ public class Storage {
         return recipes;
     }
 
+    /**
+     * Parses each line in the data file into an array of Strings.
+     *
+     * @param line a line in the data file.
+     */
     private String[] parseItem(String line) {
         return line.split(StorageConstants.READ_DELIMITER);
     }
 
+    /**
+     * Helper methods to parse the name of the recipe.
+     *
+     * @param line a line in the data file.
+     */
     private String parseName(String line) {
         return parseItem(line)[StorageConstants.NAME_LOCATION];
     }
 
+    /**
+     * Helper methods to parse the cook time of the recipe.
+     *
+     * @param line a line in the data file.
+     */
     private int parseCookTime(String line) {
         return Integer.parseInt(parseItem(line)[StorageConstants.COOKTIME_LOCATION]
                 .replace(StorageConstants.MINUTE_IDENTIFIER, StorageConstants.EMPTY_STRING));
     }
 
+    /**
+     * Helper methods to parse the calories of the recipe.
+     *
+     * @param line a line in the data file.
+     */
     private int parseCalories(String line) {
         return Integer.parseInt(parseItem(line)[StorageConstants.CALORIES_LOCATION]
                 .replace(StorageConstants.CALORIE_IDENTIFIER, StorageConstants.EMPTY_STRING));
     }
 
+    /**
+     * Helper methods to parse the allergies of the recipe.
+     *
+     * @param line a line in the data file.
+     */
     private ArrayList<String> parseAllergies(String line) {
         return new ArrayList<>(Arrays.asList(parseItem(line)[StorageConstants.ALLERGIES_LOCATION]
                 .split(StorageConstants.ALLERGY_DELIMITER)));
     }
 
+    /**
+     * Helper methods to parse the category of the recipe.
+     *
+     * @param line a line in the data file.
+     */
     private MealCategory parseCategory(String line) {
         return MealCategory.valueOf(parseItem(line)[StorageConstants.CATEGORY_LOCATION]);
     }
 
+    /**
+     * Helper methods to parse the date the recipe was added.
+     *
+     * @param line a line in the data file.
+     */
     private LocalDate parseDate(String line) {
         return LocalDate.parse(parseItem(line)[StorageConstants.DATE_LOCATION]);
     }
 
+    /**
+     * Helper methods to parse the URL of the recipe.
+     *
+     * @param line a line in the data file.
+     */
     private String parseURL(String line) {
         return (parseItem(line)[StorageConstants.URL_LOCATION]);
     }
 
+    /**
+     * Prints a greeting message to identify the class as the Storage client.
+     */
     private static void identifySelfAsStorageClient() {
         System.out.print(StorageConstants.STORAGE_CLIENT_GREETING);
     }

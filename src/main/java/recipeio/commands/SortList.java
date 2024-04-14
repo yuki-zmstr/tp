@@ -5,12 +5,16 @@ import recipeio.recipe.Recipe;
 
 import java.util.ArrayList;
 
+/**
+ * Command for sorting recipes by different types.
+ */
 public class SortList {
     /**
-     * Sort the list by different type, such as calories, cook time, name, and date added
-     * @param recipes list of recipes
-     * @param sortType specify which attribute to sort by
-     * @return a sorted ArrayList of recipes sorted by the specified sort type
+     * Sort the list by different type, such as calories, cook time, name, and date added.
+     *
+     * @param recipes list of recipes.
+     * @param sortType specify which attribute to sort by.
+     * @return a sorted ArrayList of recipes sorted by the specified sort type.
      */
     public static ArrayList<Recipe> execute(ArrayList<Recipe> recipes, SortType sortType) {
         ArrayList<Recipe> temp;

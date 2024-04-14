@@ -5,6 +5,9 @@ import recipeio.recipe.Recipe;
 
 import java.util.ArrayList;
 
+/**
+ * Command for adding a recipe to the list.
+ */
 public class AddRecipeCommand {
 
     /**
