@@ -34,6 +34,7 @@ import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_WWW;
 import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
+import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_INDEX_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.URL_INDEX;
 import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
@@ -61,16 +62,16 @@ public class CommandValidator {
      * @param input the String to check.
      * @return status of check.
      */
-    public static boolean isParsableAsInteger(String input) {
+    public static boolean isParsableAsInteger(String input, String errorMessage) {
         try {
             int result = Integer.parseInt(input);
             if (result > 0) {
                 return true;
             }
-            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            System.out.println(errorMessage);
             return false;
         } catch (NumberFormatException e) {
-            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
+            System.out.println(errorMessage);
             return false;
         }
     }
@@ -196,7 +197,7 @@ public class CommandValidator {
             System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
-        if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
+        if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX], INTEGER_NEEDED_INDEX_ERROR_MESSAGE)) {
             System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
@@ -226,7 +227,7 @@ public class CommandValidator {
             System.out.println(VALID_DELETE_EXAMPLE);
             return false;
         }
-        if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
+        if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX], INTEGER_NEEDED_INDEX_ERROR_MESSAGE)) {
             System.out.println(VALID_DELETE_PROMPT);
             return false;
         }
@@ -281,10 +282,10 @@ public class CommandValidator {
         if (!isName(remainingInput[RECIPE_NAME_INDEX])) {
             return false;
         }
-        if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
+        if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX], INTEGER_NEEDED_ERROR_MESSAGE)) {
             return false;
         }
-        if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
+        if (!isParsableAsInteger(remainingInput[CALORIES_INDEX],INTEGER_NEEDED_ERROR_MESSAGE)) {
             return false;
         }
         if (!isAllergies(remainingInput[ALLERGIES_INDEX])) {
