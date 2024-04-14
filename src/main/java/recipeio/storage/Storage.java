@@ -136,18 +136,26 @@ public class Storage {
     private ArrayList<Recipe> parse(ArrayList<String> dataItems) {
         ArrayList<Recipe> recipes = new ArrayList<>();
         for (String line : dataItems) {
-            // fetch details of the recipe
-            String name = parseName(line);
-            int cookTime = parseCookTime(line);
-            int calories = parseCalories(line);
-            ArrayList<String> allergies = parseAllergies(line);
-            MealCategory category = parseCategory(line);
-            LocalDate dateAdded = parseDate(line);
-            String url = parseURL(line);
+            try {
+                // fetch details of the recipe
+                String name = parseName(line);
+                int cookTime = parseCookTime(line);
+                int calories = parseCalories(line);
+                ArrayList<String> allergies = parseAllergies(line);
+                MealCategory category = parseCategory(line);
+                LocalDate dateAdded = parseDate(line);
+                String url = parseURL(line);
+                // add recipe into ArrayList
+                Recipe recipe = new Recipe(name, cookTime, calories, allergies, category, dateAdded, url);
+                recipes.add(recipe);
+            } catch (Exception e){
+                // in case of tempering, skip the line.
+                identifySelfAsStorageClient();
+                System.out.println("Skipping line due to potential tempering: " + line);
+            }
 
-            // add recipe into ArrayList
-            Recipe recipe = new Recipe(name, cookTime, calories, allergies, category, dateAdded, url);
-            recipes.add(recipe);
+
+
         }
         return recipes;
     }
