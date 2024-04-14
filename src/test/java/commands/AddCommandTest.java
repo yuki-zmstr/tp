@@ -44,11 +44,6 @@ public class AddCommandTest {
     }
 
     @Test
-    public void testExample() {
-        System.out.println("Hello Test");
-        assertEquals("Hello Test\n", outContent.toString());
-    }
-    @Test
     public void testMultipleAllergyParseAdd() {
         recipes.clear();
         Recipe testRecipe = InputParser.parseAdd(MULTIPLE_ALLERGY_PARAM_INPUT);
