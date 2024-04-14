@@ -34,6 +34,7 @@ public class ListRecipeWithSortCommand {
             break;
         default:
             ListRecipeCommand.execute(recipes);
+            break;
         }
     }
 }
