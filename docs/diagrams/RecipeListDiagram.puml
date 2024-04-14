@@ -20,11 +20,15 @@ class Recipe {
     +toString(): String
 }
 
+class CommandValidator {
+}
+
 note left of Recipe::"toString()"
     Overridden method
 end note
 
 RecipeList *--> "recipe *" Recipe : contains >
+RecipeList ..> CommandValidator
 
 Recipe --> "mealCategory 1" MealCategory
 

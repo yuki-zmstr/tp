@@ -23,7 +23,7 @@
 
 ## Setting up, getting started
 
-Refer to the User guide at https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.html for how to get started with RecipeIO.
+Refer to the [User guide](https://ay2324s2-cs2113-w14-2.github.io/tp/UserGuide.html) for how to get started with RecipeIO.
 
 ---
 
@@ -100,12 +100,73 @@ The `RecipeList` contains many `Recipe`s, which has attributes:
 How the component works:
 
 * Upon `executeCommand` call, the `RecipeList` will identify the command given in the user input (e.g. `list`), 
-* It will then call the corresponding `list()` method defined in `RecipeList`. 
-* This `list()` method in turn calls the `ListRecipeCommand.execute()` command. 
+* It will then call the corresponding `listRecipes()` method defined in `RecipeList`. 
+* This `listRecipes()` method will first call the `isValidListCommand` method in `CommandValidator` class.
+* If the command is valid, the `ListRecipeCommand.execute()` command is called. 
 * The reason for such a structure is to allow for command validation *before* the real execution. A good example is the `find()` command. 
 * Thus, `RecipeList` contains an intermediate method for each functionality (add, find, delete, so on) , and serves as a command validator.
   * **Note:** these methods have been omitted in the class diagram for brevity.
 * In `add()` and `delete()`, the `saveRecipes()` method is called to save the recipeBook after the modification.
+
+
+### InputParser Component
+
+The **API** of this component is specified in [InputParser.java](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/src/main/java/recipeio/InputParser.java)
+
+![Structure of the InputParser Component](images/InputParserDiagram.png)
+
+The `InputParser` contains many static methods that are used to make sense of the user's input. Some important methods are:
+* `parseCommand(userInput)` : String 
+  * gets the command type from the user input. e.g. `add`, `delete`
+* `parseDetails(userInput)` : String[] 
+  * gets the parameters that the user gave in his or her input.
+  * for example, if the user inputs `find kw pasta`, the method will return `["kw", "pasta"]`
+* `parseMealCriteria(userInput)` : MealCategory
+   * checks which meal category the user inputted.
+
+How the component works:
+
+* The `InputParser` methods are called during command validation (see next Section for `CommandValidator` implementation)
+
+
+### CommandValidator Component
+
+The **API** of this component is specified in [CommandValidator.java](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/src/main/java/recipeio/CommandValidator.java)
+
+![Structure of the CommandValidator Component](images/CommandValidatorDiagram.png)
+
+The `CommandValidator` contains many static methods that are used to validate the user's input. Some important methods are:
+* `isValidAddCommand(userInput)` : boolean
+* `isValidDetailCommand(userInput)` : boolean
+* `isValidDeleteCommand(userInput)` : boolean
+* `isValidFindCommand(userInput)` : boolean
+
+For example the `isValidDeleteCommand` will return `false` if one of the following happens.
+1. the user does not input an index to find. e.g. `delete`
+2. the user's inputted index is not a integer. e.g. `delete abc`
+3. the user inputs an index that is out of range. e.g. `delete -1`, or `delete 10` when there are only 3 recipes.
+
+How the component works:
+
+* The `CommandValidator` methods are called by methods in the `RecipeList` component to verify the user's input.
+* Methods in `InputParser` are called to make sense of the user's input.
+
+
+### Storage Component
+
+The **API** of this component is specified in [Storage.java](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/src/main/java/recipeio/storage/Storage.java)
+
+![Structure of the Storage Component](images/StorageDiagram.png)
+
+The `Storage` class handles the saving and loading of data file (i.e. the recipe book). Some important methods are:
+* `saveFile(ArrayList<Recipe> recipeList))` : void
+* `loadData()` : void
+
+How the component works:
+
+* Upon start up of `RecipeIO`, an instance of `Storage` is created, and the app attempts to read an existing data file via the `loadData()` method.
+* If no file is found, the application will create one upon execution of `add` command.
+* The `list`, `add`, and `delete` methods in `RecipeList` will call the `saveFile` method to write into the data file.
 
 ---
 
