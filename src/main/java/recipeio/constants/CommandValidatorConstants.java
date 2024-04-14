@@ -11,6 +11,7 @@ public class CommandValidatorConstants {
     public static final int MAX_RECIPES = 1;
     public static final int VALID_FIND_LENGTH = 2;
     public static final int MAX_COOKTIME = 4320;
+    public static final int MAX_CALORIES = 9000;
     public static final String MEAL_CAT_GENERAL = "general";
     public static final String MEAL_CAT_DINNER = "dinner";
     public static final String MEAL_CAT_BREAKFAST = "breakfast";
@@ -19,6 +20,7 @@ public class CommandValidatorConstants {
     public static final String MEAL_CAT_DESSERT = "dessert";
     public static final String MATCH_WORD_REGEX = "^[a-zA-Z]+$";
     public static final String ALLOW_SPACES_AND_NUMS_REGEX = "^(?=.*[a-zA-Z])[a-zA-Z0-9 /]+$";
+    public static final String NUMS_ONLY_REGEX = "\\d+";
     public static final String URL_SUBDOMAIN_ERROR = "Make sure your URL starts with 'http://', 'https://', or 'www.'";
     public static final String URL_INVALID_DOMAIN = "URL domain name or TLD is invalid.";
     public static final String URL_EXAMPLE = "Example: \"www.food.com\" or \" https://www.example.com\" ";
