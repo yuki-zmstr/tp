@@ -1,8 +1,8 @@
 # About us
 
-| Display                                             |      Name      |              Github Profile              |                             Portfolio                             |
-|-----------------------------------------------------|:--------------:|:----------------------------------------:|:-----------------------------------------------------------------:|
-| ![](https://via.placeholder.com/100.png?text=Photo) | Phan Dinh Hung | [Github](https://github.com/PDHung1104)  |              [Github](https://github.com/PDHung1104)              |
-| ![](https://via.placeholder.com/100.png?text=Photo) |      Yuki      | [Github](https://github.com/yuki-zmstr)  |            [Profile](https://yukihide-takahashi.com/)             |
-| ![](../docs/images/nidhi.jpeg)                      |  Nidhi Nayak   | [Github](https://github.com/nidhi-nayak) |        [LinkedIn](https://www.linkedin.com/in/nidhirnayak)        |
-| ![](https://via.placeholder.com/100.png?text=Photo) |   Xiao Kang    |  [Github](https://github.com/chenxk619)  | [LinkedIn](https://www.linkedin.com/in/chen-xiao-kang-9127b4234/) |
+| Display                                            |      Name      |              Github Profile              |                             Portfolio                             |
+|----------------------------------------------------|:--------------:|:----------------------------------------:|:-----------------------------------------------------------------:|
+| <img src="../docs/images/dummy1.JPG" width="300"/> | Phan Dinh Hung | [Github](https://github.com/PDHung1104)  |              [Github](https://github.com/PDHung1104)              |
+| <img src="../docs/images/yuki.JPG" width="300"/>   |      Yuki      | [Github](https://github.com/yuki-zmstr)  |            [Profile](https://yukihide-takahashi.com/)             |
+| <img src="../docs/images/nidhi.jpeg" width="300"/> |  Nidhi Nayak   | [Github](https://github.com/nidhi-nayak) |        [LinkedIn](https://www.linkedin.com/in/nidhirnayak)        |
+| <img src="../docs/images/dummy2.JPG" width="300"/> |   Xiao Kang    |  [Github](https://github.com/chenxk619)  | [LinkedIn](https://www.linkedin.com/in/chen-xiao-kang-9127b4234/) |
