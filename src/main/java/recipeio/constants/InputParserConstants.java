@@ -24,11 +24,19 @@ public class InputParserConstants {
     public static final String MEAL_CAT_DESSERT = "dessert";
 
     public static final String INTEGER_NEEDED_ERROR_MESSAGE = "Make sure you enter an integer for cook time and" +
-            " calories!";
-    public static final String INVALID_TASK_FORMAT_ERROR_MESSAGE = "Sorry. I couldn't understand. Please follow the " +
-            "correct format.";
-
-    public static final String MEAL_CATEGORY_ERROR_MESSAGE = "Please enter a valid meal category. Here are your" +
-            "options:\n BREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
+            " calories! " + "\nPlease enter an integer from 1 onwards.";
+    public static final String MEAL_CATEGORY_ERROR_MESSAGE = "Please enter a valid meal category. Here are your " +
+            "options:\nBREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
     public static final String RECIPE_DELIMETER = ",";
+    public static final String PARSE_ID_ERROR = "Recipe number not given, please enter an integer representing a " +
+            "recipe number.";
+
+    public static final String MORE_ADD_PARAMETERS = "Please make sure you are adding parameters to the add " +
+            "function!\nHere is the required add command format: add NAME, MINUTES, KCALS, SINGULAR-TENSE " +
+            "SLASH-SEPARATED ALLERGIES, CATEGORY, URL";
+    public static final String INVALID_LIST_ERROR = "List command should not have any trailing characters";
+    public static final String SORT_NAME = "sortname";
+    public static final String SORT_DATE_ADDED = "sortdate";
+    public static final String SORT_CALORIES = "sortcalories";
+    public static final String SORT_COOK_TIME = "sortcooktime";
 }

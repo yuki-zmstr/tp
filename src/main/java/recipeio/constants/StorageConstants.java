@@ -8,7 +8,7 @@ public class StorageConstants {
     public static final String MINUTE_IDENTIFIER = " mins";
     public static final String CALORIE_IDENTIFIER = " kcals";
 
-    public static final String STORAGE_CLIENT_GREETING = "Storage client says: ";
+    public static final String STORAGE_CLIENT_GREETING = "\nStorage client says: ";
 
     public static final String SUCCESSFUL_SAVE_MESSAGE = "Successfully saved recipe book.";
     public static final String UNSUCCESSFUL_SAVE_MESSAGE = "Failed to save recipe book.";

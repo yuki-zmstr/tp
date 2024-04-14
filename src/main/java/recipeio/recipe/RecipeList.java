@@ -3,12 +3,14 @@ package recipeio.recipe;
 import recipeio.InputParser;
 import recipeio.CommandValidator;
 import recipeio.commands.AddRecipeCommand;
-import recipeio.commands.ListRecipeCommand;
-import recipeio.commands.ShowDetailsCommand;
-import recipeio.commands.FindCommand;
-import recipeio.commands.FilterByAllergyCommand;
 import recipeio.commands.DeleteRecipeCommand;
+import recipeio.commands.FilterByAllergyCommand;
+import recipeio.commands.FindCommand;
+import recipeio.commands.ShowDetailsCommand;
+import recipeio.commands.ListRecipeWithSortCommand;
+
 import recipeio.constants.StorageConstants;
+import recipeio.enums.SortType;
 import recipeio.storage.Storage;
 
 import recipeio.ui.UI;
@@ -59,7 +61,7 @@ public class RecipeList {
     public void executeCommand(String command, String userInput){
         switch (command) {
         case LIST_COMMAND:
-            listRecipes();
+            listRecipes(userInput);
             break;
         case DETAIL_COMMAND:
             showDetails(userInput);
@@ -81,7 +83,6 @@ public class RecipeList {
             break;
         default:
             UI.printInvalidCommandWarning();
-            UI.printInstructions();
             break;
         }
     }
@@ -90,8 +91,12 @@ public class RecipeList {
      * Lists the recipes in the recipe book.
      * Calls the execute method in ListRecipeCommand.
      */
-    public void listRecipes() {
-        ListRecipeCommand.execute(recipes);
+    public void listRecipes(String userInput) {
+        if (!CommandValidator.isValidListCommand(userInput)) {
+            return;
+        }
+        SortType sortType = InputParser.parseListCommand(userInput);
+        ListRecipeWithSortCommand.execute(recipes, sortType);
     }
 
     /**
@@ -126,9 +131,12 @@ public class RecipeList {
         }
         try {
             Recipe newRecipe = parseAdd(userInput);
+            if (!CommandValidator.isNotRepeatRecipe(newRecipe, recipes)) {
+                return;
+            }
             AddRecipeCommand.execute(newRecipe, recipes);
             UI.printAddMessage(newRecipe, recipes.size());
-            saveRecipes();
+            saveRecipes(recipes);
         } catch (Exception e){
             UI.printMessage(e.getMessage());
         }
@@ -150,7 +158,7 @@ public class RecipeList {
             return;
         }
         DeleteRecipeCommand.execute(index, recipes);
-        saveRecipes();
+        saveRecipes(recipes);
     }
 
     /**
@@ -191,7 +199,7 @@ public class RecipeList {
      * Calls the saveFile method in Storage.
      * If fails, and error message is shown.
      */
-    public void saveRecipes() {
+    public static void saveRecipes(ArrayList<Recipe> recipes) {
         try {
             Storage.saveFile(recipes);
         } catch (Exception e) {

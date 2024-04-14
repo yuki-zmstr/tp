@@ -24,14 +24,38 @@ public class Recipe {
         this.cookTime = cookTime;
         this.calories = calories;
         this.allergies = allergies;
-        this.url = url;
         this.category = Objects.requireNonNullElse(category, MealCategory.GENERAL);
         this.dateAdded = dateAdded;
+        this.url = url;
     }
 
     public String getName() {
         return name;
     }
+
+    public LocalDate getDateAdded() {
+        return dateAdded;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public int getCookTime() {
+        return cookTime;
+    }
+
+    public String getURL() {
+        return url;
+    }
+    public ArrayList<String> getAllergies() {
+        return allergies;
+    }
+
+    public MealCategory getCategory() {
+        return category;
+    }
+
 
     @Override
     public String toString() {
