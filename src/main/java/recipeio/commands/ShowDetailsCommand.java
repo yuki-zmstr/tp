@@ -2,6 +2,9 @@ package recipeio.commands;
 
 import recipeio.recipe.Recipe;
 
+/**
+ * Command for showing details of a recipe.
+ */
 public class ShowDetailsCommand {
 
     /**

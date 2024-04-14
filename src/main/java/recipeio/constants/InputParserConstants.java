@@ -1,5 +1,8 @@
 package recipeio.constants;
 
+/**
+ * Constants for input parsing.
+ */
 public class InputParserConstants {
     public static final int INDEX_COMMAND = 0;
     public static final int FIND_TYPE_INDEX = 0;

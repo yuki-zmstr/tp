@@ -6,15 +6,18 @@ import recipeio.recipe.Recipe;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * Command for sorting recipes by ascending cook time.
+ */
 public class SortAscendingCookTime {
     /**
-     * Sort recipes by ascending cook time
-     * @param recipes the list of recipes
-     * @return a list of recipes sorted by cook time
+     * Sort recipes by ascending cook time.
+     *
+     * @param recipes the list of recipes.
+     * @return a list of recipes sorted by cook time.
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> sortedRecipes = new ArrayList<>(recipes);
-        sortedRecipes.sort(Comparator.comparing(Recipe::getCookTime));
-        return sortedRecipes;
+        recipes.sort(Comparator.comparing(Recipe::getCookTime));
+        return recipes;
     }
 }

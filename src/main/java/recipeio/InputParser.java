@@ -28,7 +28,7 @@ public class InputParser {
      * Returns command entered by the user, expected to be at beginning of string.
      * Most error handling in TaskList.java, with an exception for the list command.
      * Checks are made for any trailing characters following the list command and returns an invalid command
-     * if any of such characters are found
+     * if any of such characters are found.
      *
      * @param userInput input from the user in the command line.
      * @return the command keyword. e.g. add, delete.
@@ -41,7 +41,7 @@ public class InputParser {
      * Returns index entered by the user, expected to be after the command.
      *
      * @param userInput input from the user in the command line.
-     * @return the part of the user input after the command. e.g. 1
+     * @return the part of the user input after the command. e.g. 1.
      */
     public static Integer parseID(String userInput) {
         String id = "";
@@ -58,10 +58,10 @@ public class InputParser {
     }
 
     /**
-     * Splits the description into components, such as name and time
+     * Splits the description into components, such as name and time.
      *
      * @param userInput input from the user in the command line.
-     * @return an array of description extracted from the user input
+     * @return an array of description extracted from the user input.
      */
     public static String[] parseDetails(String userInput){
         String[] words = userInput.trim().split(" ");
@@ -71,40 +71,46 @@ public class InputParser {
     }
 
     /**
-     * Return the type of find the user is using from selection of keyword and date
+     * Return the type of find the user is using from selection of keyword and date.
      *
      * @param userInput input from the user in the command line.
-     * @return String of the type of find command
+     * @return String of the type of find command.
      */
     public static String parseFindType(String userInput) {
         return parseDetails(userInput)[FIND_TYPE_INDEX];
     }
 
     /**
-     * Return the criteria the user is searching with after processing
+     * Return the criteria the user is searching with after processing.
      *
      * @param userInput input from the user in the command line.
-     * @return String of appropriate criteria
+     * @return String of appropriate criteria.
      */
     public static String parseFindCriteria(String userInput) {
         return parseDetails(userInput)[FIND_CRITERIA_INDEX].trim().toLowerCase();
     }
 
     /**
-     * Return the description of allergies from the user input
+     * Return the description of allergies from the user input.
      *
      * @param userInput input from the user in the command line.
-     * @return String of allergies
+     * @return String of allergies.
      */
     public static String parseAllergyCriteria(String userInput) {
         int firstSpaceIndex = userInput.indexOf(' ');
         if (firstSpaceIndex == -1) {
             return "";
         }
-        String allergy = userInput.substring(firstSpaceIndex + 1).trim();
-        return allergy;
+
+        return userInput.substring(firstSpaceIndex + 1).trim();
     }
 
+    /**
+     * Return the description of allergies from the user input.
+     *
+     * @param userInput input from the user in the command line.
+     * @return String of allergies.
+     */
     public static MealCategory parseMealCriteria(String userInput) {
         MealCategory mealCategory;
         switch (userInput) {
@@ -132,6 +138,12 @@ public class InputParser {
         return mealCategory;
     }
 
+    /**
+     * Returns the sort type of the list command.
+     *
+     * @param userInput input from the user in the command line.
+     * @return the sort type of the list command.
+     */
     public static SortType parseListCommand(String userInput) {
         String[] words = userInput.trim().split(" ");
         if (words.length == 1) {
@@ -148,6 +160,13 @@ public class InputParser {
         }
         return SortType.NONE;
     }
+
+    /**
+     * Splits the user input into the recipe name, cook time, calories, allergies, meal category, and url.
+     *
+     * @param userInput input from the user in the command line.
+     * @return an array of the recipe details extracted from the user input.
+     */
     public static String[] splitUpAddInput(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         try {
@@ -161,12 +180,25 @@ public class InputParser {
         }
         return remainingInput;
     }
+
+    /**
+     * Parses the user input to create a recipe object.
+     *
+     * @param userInput input from the user in the command line.
+     * @return a recipe object.
+     */
     public static Recipe parseAdd(String userInput) {
         String[] remainingInput = splitUpAddInput(userInput);
         assert remainingInput.length > 0 : "Add additional parameters to add command";
         return breakUpRemainingInput(remainingInput);
     }
 
+    /**
+     * Splits the user input into the recipe name, cook time, calories, allergies, meal category, and url.
+     *
+     * @param remainingInput input from the user in the command line.
+     * @return an array of the recipe details extracted from the user input.
+     */
     public static Recipe breakUpRemainingInput(String[] remainingInput) {
         String recipeName = remainingInput[InputParserConstants.RECIPE_NAME_INDEX].trim();
         int cookTime = Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
@@ -180,11 +212,11 @@ public class InputParser {
     }
 
     /**
-     * Returns the path of a given url if present, and returns an empty otherwise
-     * If only forward slash is present, return non-empty String
+     * Returns the path of a given url if present, and returns an empty otherwise.
+     * If only forward slash is present, return non-empty String.
      *
      * @param userInput User's url in the command line.
-     * @return path of url, if any
+     * @return path of url, if any.
      */
     public static String getPath(String userInput) {
         try {

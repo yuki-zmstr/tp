@@ -6,6 +6,9 @@ import recipeio.ui.UI;
 
 import java.util.ArrayList;
 
+/**
+ * Command for deleting a recipe from the list.
+ */
 public class DeleteRecipeCommand {
 
     /**
