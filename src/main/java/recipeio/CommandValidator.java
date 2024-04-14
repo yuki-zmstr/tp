@@ -31,11 +31,14 @@ import static recipeio.constants.CommandValidatorConstants.DATE_TIME_PARSE_ERROR
 import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_HTTP;
 import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_HTTPS;
 import static recipeio.constants.CommandValidatorConstants.URL_SUBDOMAIN_WWW;
+import static recipeio.constants.CommandValidatorConstants.MAX_COOKTIME;
 import static recipeio.constants.InputParserConstants.ALLERGIES_INDEX;
 import static recipeio.constants.InputParserConstants.CALORIES_INDEX;
 import static recipeio.constants.InputParserConstants.COOK_TIME_INDEX;
 import static recipeio.constants.InputParserConstants.URL_INDEX;
 import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.COOKTIME_ERROR_MESSAGE;
+import static recipeio.constants.InputParserConstants.CALORIES_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
@@ -67,10 +70,8 @@ public class CommandValidator {
             if (result > 0) {
                 return true;
             }
-            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             return false;
         } catch (NumberFormatException e) {
-            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             return false;
         }
     }
@@ -197,6 +198,7 @@ public class CommandValidator {
             return false;
         }
         if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             System.out.println(VALID_DETAILS_EXAMPLE);
             return false;
         }
@@ -227,6 +229,7 @@ public class CommandValidator {
             return false;
         }
         if (!isParsableAsInteger(details[INPUT_DETAILS_INDEX])) {
+            System.out.println(INTEGER_NEEDED_ERROR_MESSAGE);
             System.out.println(VALID_DELETE_PROMPT);
             return false;
         }
@@ -260,6 +263,20 @@ public class CommandValidator {
     }
 
     /**
+     * Checks if a given cooktime is reasonable.
+     *
+     * @param cooktime User's input of cooktime in the command line.
+     * @return status of check.
+     */
+    public static boolean isValidCooktime(int cooktime) {
+        if (cooktime > MAX_COOKTIME) {
+            System.out.println("Your recipe takes more than three days...Please double check your cooktime");
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Checks if an add recipe command is valid
      * The input is initially checked against the expected total number of ingredients and subsequently all the
      * other input parameters to ensure that they are of the expected format.
@@ -282,9 +299,11 @@ public class CommandValidator {
             return false;
         }
         if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
+            System.out.println(COOKTIME_ERROR_MESSAGE);
             return false;
         }
         if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
+            System.out.println(CALORIES_ERROR_MESSAGE);
             return false;
         }
         if (!isAllergies(remainingInput[ALLERGIES_INDEX])) {
