@@ -45,7 +45,7 @@ time and caters to quick typers.
    * Added a commmand summary glossary.
    * Enhanced the target users section to include more groups, make it broader, and more detailed. 
    * Add use cases of different user commands. 
-   * [PR#1](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/178), [PR#2](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/59/files)
+   * [PR#1](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/178), [PR#2](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/59/files), [PR#3](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/194)
 5. **Project management**:
     * Maintained the collaborative document for my team (took notes at weekly meetings and put todos at the top). [Collaborative Document](https://docs.google.com/document/d/1PwDRHaHKZCxdC0KUim_fY-kILnjcSBEjdbpc3BlHrJU/edit#heading=h.qdajypmbgwqd)
     * Release version 1.0 + closed the v1.0 milestone (shifted all leftover issues to v2.0) [v1.0](https://github.com/AY2324S2-CS2113-W14-2/tp/releases/tag/v1.0)
