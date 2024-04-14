@@ -3,7 +3,7 @@ package recipeio.commands;
 import recipeio.recipe.Recipe;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 
 public class SortAscendingDateAdded {
     /**
@@ -13,7 +13,7 @@ public class SortAscendingDateAdded {
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
         ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        copy.sort(Comparator.comparing(Recipe::getDateAdded));
+        Collections.sort(copy, (o1, o2) -> o1.getDateAdded().compareTo(o2.getDateAdded()));
         return copy;
     }
 }

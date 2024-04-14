@@ -2,7 +2,7 @@ package recipeio.commands;
 
 import java.util.ArrayList;
 import recipeio.recipe.Recipe;
-import java.util.Comparator;
+import java.util.Collections;
 
 public class SortAscendingNames {
     /**
@@ -12,7 +12,7 @@ public class SortAscendingNames {
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
         ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        copy.sort(Comparator.comparing(Recipe::getName));
+        Collections.sort(copy, (o1, o2) -> o1.getName().compareTo(o2.getName()));
         return copy;
     }
 }

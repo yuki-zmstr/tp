@@ -3,7 +3,7 @@ package recipeio.commands;
 import recipeio.recipe.Recipe;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 
 public class SortAscendingCookTime {
     /**
@@ -13,7 +13,7 @@ public class SortAscendingCookTime {
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
         ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        copy.sort(Comparator.comparing(Recipe::getCookTime));
+        Collections.sort(copy, (o1, o2) -> new Integer(o1.getCookTime()).compareTo(new Integer(o2.getCookTime())));
         return copy;
     }
 }
