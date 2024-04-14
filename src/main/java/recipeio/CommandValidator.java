@@ -253,8 +253,9 @@ public class CommandValidator {
         String[] details = InputParser.splitUpAddInput(userInput);
         if (details.length != InputParserConstants.TOTAL_INGREDIENTS_INDEX) {
             System.out.println("The add function accepts 6 parameters: {name} {cook time} {calories}\n\t {singular " +
-                    "space separated allergies} {meal category} {url}");
-            System.out.println("Input Example: add pizza, 34, 340, egg dairy, dinner, www.food.com");
+                    "slash separated allergies} {meal category} {url}");
+            System.out.println("Input Example: add pizza, 34, 340, egg/red meat, dinner, www.food.com");
+            System.out.println("Tip: make sure you are not missing a comma anywhere!");
             return false;
         }
 
@@ -290,7 +291,7 @@ public class CommandValidator {
      */
     public static boolean isValidFilterCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
-        if (details.length != VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
+        if (details.length < VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
             System.out.println(VALID_FILTER_PROMPT);
             System.out.println(VALID_FILTER_EXAMPLE);
             return false;
@@ -372,23 +373,5 @@ public class CommandValidator {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Returns the path of a given url if present, and returns an empty otherwise
-     * If only forward slash is present, return non-empty String
-     *
-     * @param userInput User's url in the command line.
-     * @return path of url, if any
-     */
-    public static String getPath(String userInput) {
-        try {
-            if (userInput.endsWith("/")) {
-                return "/";
-            }
-            return userInput.split("/")[1];
-        } catch (Exception e) {
-            return "";
-        }
     }
 }

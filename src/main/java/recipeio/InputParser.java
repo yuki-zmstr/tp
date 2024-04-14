@@ -15,7 +15,6 @@ import static recipeio.constants.InputParserConstants.INDEX_COMMAND;
 import static recipeio.constants.InputParserConstants.ARRAY_START_INDEX;
 import static recipeio.constants.InputParserConstants.FIND_TYPE_INDEX;
 import static recipeio.constants.InputParserConstants.FIND_CRITERIA_INDEX;
-import static recipeio.constants.InputParserConstants.FIND_ALLERGY_INDEX;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
 import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
@@ -98,7 +97,12 @@ public class InputParser {
      * @return String of allergies
      */
     public static String parseAllergyCriteria(String userInput) {
-        return parseDetails(userInput)[FIND_ALLERGY_INDEX];
+        int firstSpaceIndex = userInput.indexOf(' ');
+        if (firstSpaceIndex == -1) {
+            return "";
+        }
+        String allergy = userInput.substring(firstSpaceIndex + 1).trim();
+        return allergy;
     }
 
     public static MealCategory parseMealCriteria(String userInput) {
@@ -167,10 +171,29 @@ public class InputParser {
         String recipeName = remainingInput[InputParserConstants.RECIPE_NAME_INDEX].trim();
         int cookTime = Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
         int calories = Integer.parseInt(remainingInput[InputParserConstants.CALORIES_INDEX].trim());
-        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().split(" ");
+        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().split("/");
         ArrayList<String> allergiesList = new ArrayList<>(List.of(allergies));
+        allergiesList.replaceAll(String::trim);
         MealCategory category = MealCategory.valueOf(remainingInput[MEAL_CATEGORY_INDEX].trim().toUpperCase());
         String url = remainingInput[InputParserConstants.URL_INDEX].trim();
         return new Recipe(recipeName, cookTime, calories, allergiesList, category, LocalDate.now(), url);
+    }
+
+    /**
+     * Returns the path of a given url if present, and returns an empty otherwise
+     * If only forward slash is present, return non-empty String
+     *
+     * @param userInput User's url in the command line.
+     * @return path of url, if any
+     */
+    public static String getPath(String userInput) {
+        try {
+            if (userInput.endsWith("/")) {
+                return "/";
+            }
+            return userInput.split("/")[1];
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
