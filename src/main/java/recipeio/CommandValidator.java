@@ -291,7 +291,7 @@ public class CommandValidator {
      */
     public static boolean isValidFilterCommand(String userInput) {
         String[] details = InputParser.parseDetails(userInput);
-        if (details.length != VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
+        if (details.length < VALID_FILTER_LENGTH || details[INPUT_DETAILS_INDEX].isEmpty()) {
             System.out.println(VALID_FILTER_PROMPT);
             System.out.println(VALID_FILTER_EXAMPLE);
             return false;

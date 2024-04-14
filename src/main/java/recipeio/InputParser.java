@@ -15,7 +15,6 @@ import static recipeio.constants.InputParserConstants.INDEX_COMMAND;
 import static recipeio.constants.InputParserConstants.ARRAY_START_INDEX;
 import static recipeio.constants.InputParserConstants.FIND_TYPE_INDEX;
 import static recipeio.constants.InputParserConstants.FIND_CRITERIA_INDEX;
-import static recipeio.constants.InputParserConstants.FIND_ALLERGY_INDEX;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
 import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
@@ -98,7 +97,12 @@ public class InputParser {
      * @return String of allergies
      */
     public static String parseAllergyCriteria(String userInput) {
-        return parseDetails(userInput)[FIND_ALLERGY_INDEX];
+        int firstSpaceIndex = userInput.indexOf(' ');
+        if (firstSpaceIndex == -1) {
+            return "";
+        }
+        String allergy = userInput.substring(firstSpaceIndex + 1).trim();
+        return allergy;
     }
 
     public static MealCategory parseMealCriteria(String userInput) {
