@@ -6,6 +6,7 @@ package recipeio.constants;
 public class CommandConstants {
     public static final String RECIPES_INCLUDED = "All your recipes include: ";
     public static final String RECIPES_EXCLUDED = "These recipes do not include: ";
+    public static final String FILTERING_TIP = "Tip: input your allergen as a whole word.";
     public static final String FIND_BY_MEAL = "meal";
     public static final String FIND_BY_KEYWORD = "kw";
     public static final String FIND_BY_DATE = "date";
