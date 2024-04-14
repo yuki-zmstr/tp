@@ -449,10 +449,6 @@ testers are expected to do more *exploratory* testing.</div>
 4. **Test case**: `find date`
    * **Expected**: No recipe is found due to the lack of a specified date.
    * **Console output**: Asks the user to ensure that two arguments are entered for the find command.
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d17de443d021f1b3f2f1654cb07f4f786f967d4
 
 ### Finding a recipe by url
 
