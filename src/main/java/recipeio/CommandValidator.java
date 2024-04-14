@@ -101,7 +101,7 @@ public class CommandValidator {
      */
     public static boolean isName(String input) {
         if (input.matches(CommandValidatorConstants.NUMS_ONLY_REGEX)) {
-            System.out.println("Your recipe name should not only contain numbers.");
+            System.out.println("Your recipe name should not contain numbers only.");
             System.out.println("Please make sure to enter a name using alphabets as well.");
             return false;
         }
@@ -121,9 +121,9 @@ public class CommandValidator {
      */
     public static boolean isAllergies(String input) {
         if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
-            System.out.println("Sorry, I was unable to detect any allergies for your recipe.");
-            System.out.println("Please make sure to enter allergies using upper and lower case alphabets, spaces," +
-                    "and numbers\n");
+            System.out.println("Sorry, I was unable to detect appropriate allergies for your recipe.");
+            System.out.println("Please make sure to enter allergies using upper and lower case alphabets, spaces, " +
+                    "and numbers.\n");
             System.out.println("Ensure that while your allergies can include numbers, that they are not JUST " +
                     "a number.");
             System.out.println("If there are no allergies, please type 'none' instead.");
@@ -133,7 +133,7 @@ public class CommandValidator {
         ArrayList<String> allergiesList = new ArrayList<>(List.of(allergies));
         for (String allergy : allergiesList) {
             if (allergy.matches(CommandValidatorConstants.NUMS_ONLY_REGEX)) {
-                System.out.println("Your allergen should not only contain numbers.");
+                System.out.println("Your allergen should not contain numbers only.");
                 System.out.println("Please make sure to enter an allergen using alphabets as well.");
                 return false;
 
@@ -348,7 +348,6 @@ public class CommandValidator {
         if (!isAllergies(remainingInput[ALLERGIES_INDEX])) {
             return false;
         }
-
         if (!isMealCat(remainingInput[MEAL_CATEGORY_INDEX])) {
             System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;

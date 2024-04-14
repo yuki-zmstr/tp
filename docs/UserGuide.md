@@ -12,7 +12,6 @@ In particular, it allows users to keep track of the URL at which he or she found
 - **Add Recipe:** Add new recipe through the command line by providing a recipe description.
 - **Delete Recipe:** Delete a recipe from the recipe book.
 - **View Recipe Book:** List all recipes in recipe book in a certain order.
-- **View Recipe Book:** List all recipes in recipe book.
 - **Find Recipe:** Find a recipe using a keyword, date, meal category or url.
 - **Filter Recipe:** Show recipes that do not contain a certain allergy.
 
@@ -28,7 +27,7 @@ Follow these steps to get started with Recipe.io
 1. **Ensure that you have Java 11 installed.**
 
 2. **Download the latest JAR File:**
-    - Download the latest release from https://github.com/AY2324S2-CS2113-W14-2/tp
+    - Download the latest release from [team repo](https://github.com/AY2324S2-CS2113-W14-2/tp)
 
 3. **Run the JAR File from the command line:**
     - Execute the JAR file to launch the chatbot.
@@ -41,7 +40,7 @@ Follow these steps to get started with Recipe.io
 
 ### Disclaimers 
 * In this document, parameters inside `[]` are compulsory, while those inside `{}` are optional.
-* Additionally, this program uses the comma `,` as a delimeter, so ensure not to use commas within parameters for intended usability. 
+* Additionally, this program uses the comma `,` as a delimiter, so ensure not to use commas within parameters for intended usability. 
 
 ### 1. Viewing help : `help`
 Shows instructions to use RecipeIO's chatbot.
@@ -57,9 +56,9 @@ Format: `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`
 * The `MINUTES` must be an integer.
 * The `KCALS` must be an integer.
 * The `ALLERGIES` can take multiple allergies, separated by a slash. e.g. `egg/dairy` All allergies must be singular tense. e.g. `egg` NOT `eggs`
-* The `CATEGORY` must be one of: `breakfast`, `lunch`, `dinner`, `appetizer`, `dessert`.
+* The `CATEGORY` must be one of: `breakfast`, `lunch`, `dinner`, `appetizer`, `dessert`, or `general`.
 * The `URL` must be a string, that leads to the website that contains the full recipe.
-  It should contain subdomains of `"www"` , `"http"` or `"https"` and a valid domain.
+  It should begin with `"www"` , `"http"` or `"https"` and have a valid domain.
 
 Example of usage: 
 
@@ -75,7 +74,7 @@ Deletes a recipe at a given recipe number. The application saves your recipe boo
 Format: `delete RECIPE_NUMBER`
 
 * The `RECIPE_NUMBER` must be within the number of recipes already added.
-* A recipe's number can be found in the `list` (with no `SORT_TYPE` specifed), `find`, or `filter` commands.
+* A recipe's number can be found in the `list` (with no `SORT_TYPE` specified), `find`, or `filter` commands.
 
 
 ### 4. Listing recipe book : `list`
@@ -91,7 +90,7 @@ Shows all details of a recipe.
 
 Format: `detail RECIPE_NUMBER`
 * The `RECIPE_NUMBER` must be within the number of recipes already added.
-* A recipe's number can be found in the `list` (with no `SORT_TYPE` specifed), `find`, or `filter` commands.
+* A recipe's number can be found in the `list` (with no `SORT_TYPE` specified), `find`, or `filter` commands.
 
 ### 6. Find recipes : `find`
 Searches for all recipes that meet a certain criteria.
@@ -103,7 +102,7 @@ Format: `find TYPE CRITERIA`
 * If type `date` is given, `CRITERIA` must be a date in yyyy-MM-dd format. This searches for recipes added on this date.
 * If type `meal` is given, `CRITERIA` must be a valid meal category. There are 6 meal categories: `general`, `breakfast`, `lunch`, `dinner`, `appetizer`, and `dessert`.
 * If type `url` is given, `CRITERIA` must be a valid url. This searches in the recipe list for a match in domain of the 
-    url, or an exact match if url path is given
+    url, or an exact match if full url with path is given.
 
 Example of usage:
 * `find kw pizza`
@@ -112,7 +111,9 @@ Example of usage:
 
 * `find meal breakfast`
 
-* `find url www.food.com`
+* `find url www.food.com` (will find entries with this as a domain)
+
+* `find url www.food.com/pasta/carbonara` (will find the entry with this exact url)
 
 ### 7. Filter recipes by allergy : `filter`
 Shows recipes that do not contain a given allergy. 
@@ -157,7 +158,7 @@ A: Download the latest JAR file from the official github website and replace the
 
 ### Tips and Best Practices
 * ##### Organizing Recipes: 
-  * Use the sortname or sortdate options in the list command to view your recipes in alphabetical order or by the date added, making them easier to find.
+  * Use the `sortname` or `sortdate` options in the list command to view your recipes in alphabetical order or by the date added, making them easier to find.
   * Utilize the find command to locate recipes based on specific criteria such as keywords or dates. Use the filter command to exclude recipes containing certain allergens.
 
 ## Command Summary
@@ -170,6 +171,7 @@ A: Download the latest JAR file from the official github website and replace the
 * Find by keyword `find kw NAME_KEYWORD`
 * Find by date `find date YYYY-MM-DD`
 * Find by meal category `find meal MEAL_CATEGORY`
+* Find by url `find url URL`
 * Filter by allergy `filter ALLERGY`
 * Exit program `exit`
 
