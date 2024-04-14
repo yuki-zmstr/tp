@@ -146,9 +146,32 @@ public class CommandValidatorTest {
     }
 
     @Test
-    public void isValidAddCommand_invalidCommand_expectFalse() {
-        String test = "add pizza, abc, 340, egg nut dairy gluten, dinner, www.food.com";
+    public void isValidAddCommand_spacesAndNumbersInRecipeName_expectTrue() {
+        String test = "add apple pie 1, 34, 340, egg nut dairy gluten, dinner, www.food.com";
+        assertTrue(CommandValidator.isValidAddCommand(test));
+    }
+
+    @Test
+    public void isValidAddCommand_numbersOnlyInName_expectFalse() {
+        String test = "add 123, 34, 340, egg nut dairy gluten, dinner, www.food.com";
         assertFalse(CommandValidator.isValidAddCommand(test));
     }
 
+    @Test
+    public void isValidAddCommand_specialCharacterInName_expectFalse() {
+        String test = "add pizza*, 60, 10000, egg nut dairy gluten, dinner, www.food.com";
+        assertFalse(CommandValidator.isValidAddCommand(test));
+    }
+
+    @Test
+    public void isValidAddCommand_invalidCookTime_expectFalse() {
+        String test = "add pizza, 5000, 340, egg nut dairy gluten, dinner, www.food.com";
+        assertFalse(CommandValidator.isValidAddCommand(test));
+    }
+
+    @Test
+    public void isValidAddCommand_invalidCalories_expectFalse() {
+        String test = "add pizza, 60, 10000, egg nut dairy gluten, dinner, www.food.com";
+        assertFalse(CommandValidator.isValidAddCommand(test));
+    }
 }

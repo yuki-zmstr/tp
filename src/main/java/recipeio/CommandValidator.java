@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
 import java.util.Collections;
+import java.util.List;
 
 import static recipeio.InputParser.splitUpAddInput;
 import static recipeio.constants.CommandValidatorConstants.INPUT_DETAILS_INDEX;
@@ -99,9 +100,14 @@ public class CommandValidator {
      * @return status of check.
      */
     public static boolean isName(String input) {
+        if (input.matches(CommandValidatorConstants.NUMS_ONLY_REGEX)) {
+            System.out.println("Your recipe name should not only contain numbers.");
+            System.out.println("Please make sure to enter a name using alphabets as well.");
+            return false;
+        }
         if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
-            System.out.println("Sorry, I was unable to detect a name for your recipe.");
-            System.out.println("Please make sure to enter a name using upper and lower case alphabets.");
+            System.out.println("You seem to be using special characters in your recipe name.");
+            System.out.println("Please make sure to enter a name using alphabets and numbers only.");
             return false;
         }
         return true;
@@ -122,6 +128,16 @@ public class CommandValidator {
                     "a number.");
             System.out.println("If there are no allergies, please type 'none' instead.");
             return false;
+        }
+        String[] allergies = input.trim().split("/");
+        ArrayList<String> allergiesList = new ArrayList<>(List.of(allergies));
+        for (String allergy : allergiesList) {
+            if (allergy.matches(CommandValidatorConstants.NUMS_ONLY_REGEX)) {
+                System.out.println("Your allergen should not only contain numbers.");
+                System.out.println("Please make sure to enter an allergen using alphabets as well.");
+                return false;
+
+            }
         }
         return true;
     }
@@ -263,14 +279,39 @@ public class CommandValidator {
     }
 
     /**
-     * Checks if a given cooktime is reasonable.
+     * Checks if a given cookTime is reasonable.
      *
-     * @param cooktime User's input of cooktime in the command line.
+     * @param input User's input of cookTime in the command line.
      * @return status of check.
      */
-    public static boolean isValidCooktime(int cooktime) {
-        if (cooktime > MAX_COOKTIME) {
-            System.out.println("Your recipe takes more than three days...Please double check your cooktime");
+    public static boolean isValidCookTime(String input) {
+        if (!isParsableAsInteger(input)) {
+            System.out.println(COOKTIME_ERROR_MESSAGE);
+            return false;
+        }
+        int cookTime = Integer.parseInt(input.trim());
+        if (cookTime > MAX_COOKTIME) {
+            System.out.println("Your recipe takes more than three days to cook...Please double check your cookTime.");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks if a given calorie is reasonable.
+     *
+     * @param input User's input of calories in the command line.
+     * @return status of check.
+     */
+    public static boolean isValidCalories(String input) {
+        if (!isParsableAsInteger(input)) {
+            System.out.println(CALORIES_ERROR_MESSAGE);
+            return false;
+        }
+        int calories = Integer.parseInt(input.trim());
+        if (calories > CommandValidatorConstants.MAX_CALORIES) {
+            System.out.println("Your recipe gives you more calories than you need in three days... " +
+                    "Please double check your calories.");
             return false;
         }
         return true;
@@ -298,17 +339,16 @@ public class CommandValidator {
         if (!isName(remainingInput[RECIPE_NAME_INDEX])) {
             return false;
         }
-        if (!isParsableAsInteger(remainingInput[COOK_TIME_INDEX])) {
-            System.out.println(COOKTIME_ERROR_MESSAGE);
+        if (!isValidCookTime(remainingInput[COOK_TIME_INDEX])) {
             return false;
         }
-        if (!isParsableAsInteger(remainingInput[CALORIES_INDEX])) {
-            System.out.println(CALORIES_ERROR_MESSAGE);
+        if (!isValidCalories(remainingInput[CALORIES_INDEX])) {
             return false;
         }
         if (!isAllergies(remainingInput[ALLERGIES_INDEX])) {
             return false;
         }
+
         if (!isMealCat(remainingInput[MEAL_CATEGORY_INDEX])) {
             System.out.println(MEAL_CATEGORY_ERROR_MESSAGE);
             return false;
