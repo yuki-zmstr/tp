@@ -32,4 +32,36 @@ time and caters to quick typers.
    * ***UI:*** Responsible for "prettifying" the console output. 
      * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/120)
      * Changed all returned messages to make chatbot more friendly, changed layour + added tabbing for user input to make chatbot more clear. Changed delimeter to a more user intuitive option (commas rather than backslashes). 
-3. **Documentation - UG**: 
+   * **JavaDoc**: Added JavaDoc to several methods and fixed formatting in previous javadoc comments.
+       * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/181)
+3. **Documentation - UG**:
+   * Enhanced the description of Recipe IO. 
+   * Included necessary disclaimers about parameters, interpreting the UG, and how to efficiently use the CLI. 
+   * Added a troubleshooting section, Q&A section, and formatting/descriptions for specific user commands. 
+   * [PR#1](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/178), 
+   [PR#2](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/162)
+4. **Documentation - DG**: 
+   * Added user stories for v2.0 and v2.1.
+   * Added a commmand summary glossary.
+   * Enhanced the target users section to include more groups, make it broader, and more detailed. 
+   * Add use cases of different user commands. 
+   * [PR#1](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/178), [PR#2](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/59/files)
+5. **Project management**:
+    * Maintained the collaborative document for my team (took notes at weekly meetings and put todos at the top). [Collaborative Document](https://docs.google.com/document/d/1PwDRHaHKZCxdC0KUim_fY-kILnjcSBEjdbpc3BlHrJU/edit#heading=h.qdajypmbgwqd)
+    * Release version 1.0 + closed the v1.0 milestone (shifted all leftover issues to v2.0) [v1.0](https://github.com/AY2324S2-CS2113-W14-2/tp/releases/tag/v1.0)
+6. **Contributions to team-based tasks**:
+   * Code enhancements
+       * Functional code.
+       * Test code.
+       * Documentation.
+   * Maintaining the issue tracker
+       * Creating issues, assigning issues, clearing issues from issue tracker once completed.
+   * Reviewing PRs.
+   * Note-taking during every team meeting and adding it to the collaborative document.
+7. **Mentoring Contributions**:
+   * Assisted @chenxk619 in a step-by-step process for how to release version 2.0. (Refer to his PPP for credit)
+   * Making syntax suggestions when teammate's code can be simplified/look cleaner.
+   * Reviewed numerous PR's: [\#171](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/171), [\#164](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/164), [\#168](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/168), [\#39](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/39)
+8. **Contributions beyond the project team**:
+    * Made 10 bug reports during PE-D.
+    * eg: [1](https://github.com/AY2324S2-CS2113-T12-2/tp/issues/105), [2](https://github.com/AY2324S2-CS2113-T12-2/tp/issues/125), [3](https://github.com/AY2324S2-CS2113-T12-2/tp/issues/94)
