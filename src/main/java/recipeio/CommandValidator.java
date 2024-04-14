@@ -353,13 +353,15 @@ public class CommandValidator {
         }
         return isValid;
     }
+
     public static boolean isValidListCommand(String userInput) {
-        String[] words = userInput.trim().split(" ");
+        String[] words = userInput.trim().split("\\s+");
         //if there are more than 2 words in the command, return false
         if (words.length > 2) {
             System.out.println(CommandValidatorConstants.EXCESS_DETAILS_ERROR);
             return false;
         }
+        //case of list without optional flag
         if (words.length == 1) {
             return true;
         }
