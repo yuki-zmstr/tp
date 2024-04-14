@@ -1,5 +1,10 @@
 package commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static recipeio.enums.MealCategory.DINNER;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
@@ -15,10 +20,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static recipeio.enums.MealCategory.DINNER;
 
 public class AddCommandTest {
     public static final String MULTIPLE_ALLERGY_PARAM_INPUT = "add pizza, 34, 340, dairy/egg, dinner, www.url.com";
@@ -79,7 +80,8 @@ public class AddCommandTest {
     public void testAddCommandWithCorrectInput() {
         recipes.clear();
         String input = "add sandwich, 10, 250, nuts, lunch, www.example.com";
-        Recipe expectedRecipe = new Recipe("sandwich", 10, 250, new ArrayList<>(Arrays.asList("nuts")), MealCategory.LUNCH, LocalDate.now(), "www.example.com");
+        Recipe expectedRecipe = new Recipe("sandwich", 10, 250,
+                new ArrayList<>(Arrays.asList("nuts")), MealCategory.LUNCH, LocalDate.now(), "www.example.com");
         Recipe actualRecipe = InputParser.parseAdd(input);
         AddRecipeCommand.execute(actualRecipe, recipes);
         assertEquals(1, recipes.size());
@@ -91,7 +93,8 @@ public class AddCommandTest {
         recipes.clear();
         String input = "add sandwich,  10, 250,  nuts, lunch,  www.example.com ";
         Recipe actualRecipe = InputParser.parseAdd(input);
-        Recipe expectedRecipe = new Recipe("sandwich", 10, 250, new ArrayList<>(Arrays.asList("nuts")), MealCategory.LUNCH, LocalDate.now(), "www.example.com");
+        Recipe expectedRecipe = new Recipe("sandwich", 10, 250,
+                new ArrayList<>(Arrays.asList("nuts")), MealCategory.LUNCH, LocalDate.now(), "www.example.com");
         AddRecipeCommand.execute(actualRecipe, recipes);
         assertEquals(1, recipes.size());
         assertEquals(expectedRecipe.toString(), actualRecipe.toString());
@@ -108,7 +111,8 @@ public class AddCommandTest {
     public void testAddCommandWithBoundaryValues() {
         recipes.clear();
         String input = "add massive sandwich, 0, 10000, nuts, dinner, www.bigrecipe.com";
-        Recipe expectedRecipe = new Recipe("massive sandwich", 0, 10000, new ArrayList<>(Arrays.asList("nuts")), MealCategory.DINNER, LocalDate.now(), "www.bigrecipe.com");
+        Recipe expectedRecipe = new Recipe("massive sandwich", 0, 10000,
+                new ArrayList<>(Arrays.asList("nuts")), MealCategory.DINNER, LocalDate.now(), "www.bigrecipe.com");
         Recipe actualRecipe = InputParser.parseAdd(input);
         AddRecipeCommand.execute(actualRecipe, recipes);
         assertEquals(1, recipes.size());
@@ -126,8 +130,9 @@ public class AddCommandTest {
     public void testAddCommandWithAllCaps() {
         recipes.clear();
         String input = "add PIZZA, 30, 300, CHEESE, DINNER, www.pizzaplace.com";
-        Recipe expectedRecipe = new Recipe("PIZZA", 30, 300, new ArrayList<>
-                (Arrays.asList("CHEESE")), MealCategory.DINNER, LocalDate.now(), "www.pizzaplace.com");
+        Recipe expectedRecipe = new Recipe("PIZZA", 30, 300,
+                new ArrayList<>(Arrays.asList("CHEESE")), MealCategory.DINNER, LocalDate.now(),
+                "www.pizzaplace.com");
         Recipe actualRecipe = InputParser.parseAdd(input);
         AddRecipeCommand.execute(actualRecipe, recipes);
         assertEquals(1, recipes.size());

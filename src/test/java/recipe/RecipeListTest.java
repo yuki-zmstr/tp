@@ -1,5 +1,9 @@
 package recipe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +12,6 @@ import recipeio.enums.MealCategory;
 import recipeio.recipe.Recipe;
 import recipeio.recipe.RecipeList;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,13 +19,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RecipeListTest {
     public static final String RECIPE_DELETE_INPUT = "delete 1";
-    private RecipeList recipeList;
     private static final String RECIPE_ADD_INPUT = "add pasta, 20, 500, dairy / egg, dinner, www.example.com";
     private static final ArrayList<String> ALLERGIES = new ArrayList<>(List.of("dairy", "egg"));
-    private static final Recipe RECIPE = new Recipe("pasta", 20, 500, ALLERGIES, MealCategory.DINNER, LocalDate.now(), "www.example.com");
-
+    private static final Recipe RECIPE = new Recipe("pasta", 20, 500, ALLERGIES,
+            MealCategory.DINNER, LocalDate.now(), "www.example.com");
+    private RecipeList recipeList;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
