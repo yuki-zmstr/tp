@@ -8,6 +8,7 @@ import recipeio.ui.UI;
 import java.util.ArrayList;
 import static recipeio.constants.CommandConstants.RECIPES_INCLUDED;
 import static recipeio.constants.CommandConstants.RECIPES_EXCLUDED;
+import static recipeio.constants.CommandConstants.FILTERING_TIP;
 
 /**
  * Command for filtering recipes by allergy.
@@ -41,5 +42,6 @@ public class FilterByAllergyCommand {
 
         System.out.println(RECIPES_EXCLUDED + allergy + "\n");
         UI.printRecipes(matches, listNumbers);
+        System.out.println("\n" + FILTERING_TIP);
     }
 }

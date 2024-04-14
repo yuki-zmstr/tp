@@ -26,10 +26,10 @@ public class InputParserConstants {
     public static final String MEAL_CAT_APPETIZER = "appetizer";
     public static final String MEAL_CAT_DESSERT = "dessert";
 
-    public static final String INTEGER_NEEDED_ERROR_MESSAGE = "Make sure you enter an integer for cook time and" +
-            " calories! " + "\nPlease enter an integer from 1 onwards.";
-    public static final String INTEGER_NEEDED_INDEX_ERROR_MESSAGE = "Please enter an integer from 1 onwards for " +
-            "your recipe number.";
+    public static final String INTEGER_NEEDED_ERROR_MESSAGE = "Make sure you enter an integer from 1 onwards" +
+            " as a parameter.";
+    public static final String COOKTIME_ERROR_MESSAGE = "Make sure you enter an integer from 1 onwards for cook time!";
+    public static final String CALORIES_ERROR_MESSAGE = "Make sure you enter an integer from 1 onwards for calories!";
     public static final String MEAL_CATEGORY_ERROR_MESSAGE = "Please enter a valid meal category. Here are your " +
             "options:\nBREAKFAST, LUNCH, DINNER, APPETIZER, DESSERT";
     public static final String RECIPE_DELIMETER = ",";

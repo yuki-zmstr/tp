@@ -6,6 +6,7 @@ package recipeio.constants;
 public class CommandConstants {
     public static final String RECIPES_INCLUDED = "All your recipes include: ";
     public static final String RECIPES_EXCLUDED = "These recipes do not include: ";
+    public static final String FILTERING_TIP = "Tip: input your allergen as a whole word.";
     public static final String FIND_BY_MEAL = "meal";
     public static final String FIND_BY_KEYWORD = "kw";
     public static final String FIND_BY_DATE = "date";
@@ -24,7 +25,7 @@ public class CommandConstants {
     public static final String RECIPE_SUMMARY = "Here is a summary of your recipe book.";
     public static final String RECIPE_DETAILS_PROMPT = "\nTo find out more about a particular recipe," +
             " try the 'detail {recipe number}' command. \nTo sort the recipes by different filters," +
-            " try 'list {SORT_TYPE} instead. \nSORT_TYPE include `sortname`, `sortdate`,`sortcooktime` and " +
+            " try 'list {SORT_TYPE}' instead. \nSORT_TYPE is one of `sortname`, `sortdate`,`sortcooktime` and " +
             "`sortcalories`";
     public static final int STARTING_COUNT = 1;
 }
