@@ -386,6 +386,7 @@ public class CommandValidator {
         return isValid;
     }
 
+
     /**
      * Checks if a list command is valid.
      * Check fails if number of parameters is not 1, or the parameter is not a valid sort type.
@@ -394,12 +395,13 @@ public class CommandValidator {
      * @return status of check.
      */
     public static boolean isValidListCommand(String userInput) {
-        String[] words = userInput.trim().split(" ");
+        String[] words = userInput.trim().split("\\s+");
         //if there are more than 2 words in the command, return false
         if (words.length > 2) {
             System.out.println(CommandValidatorConstants.EXCESS_DETAILS_ERROR);
             return false;
         }
+        //case of list without optional flag
         if (words.length == 1) {
             return true;
         }
