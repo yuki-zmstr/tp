@@ -9,14 +9,18 @@ import recipeio.ui.UI;
 import java.util.ArrayList;
 
 import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
+
+/**
+ * Command for finding recipes based on a URL.
+ */
 public class FindUrl {
 
     /**
-     * This searches in the recipe list for a match in domain of the
-     * url, or an exact match if url path is given
+     * This searches in the recipe list for a match in domain of the url,
+     * or an exact match if url path is given.
      *
-     * @param url User's url to be found
-     * @param recipes List of available recipes to search through
+     * @param url User's url to be found.
+     * @param recipes List of available recipes to search through.
      */
     public static void execute(String url, ArrayList<Recipe> recipes) {
         ArrayList<Integer> listNumbers = new ArrayList<>();
@@ -25,7 +29,7 @@ public class FindUrl {
 
         for (Recipe recipe : recipes) {
             String domain = recipe.getURL();
-            //If the recipe contains a path but the url does not
+            // If the recipe contains a path but the url does not
             if (domain.contains("/") && InputParser.getPath(url).isEmpty()) {
                 domain = recipe.getURL().split("/")[0];
             }

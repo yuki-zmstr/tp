@@ -10,7 +10,16 @@ import static recipeio.constants.CommandConstants.NO_MATCHES_ERROR;
 import static recipeio.constants.CommandConstants.NO_MATCHES_PROMPT;
 import static recipeio.constants.CommandConstants.VALID_KEYWORD_MATCHES;
 
+/**
+ * Command for finding recipes based on a keyword.
+ */
 public class FindKeyword {
+    /**
+     * Executes the find command based on the user's input.
+     *
+     * @param keyword The keyword to be searched for.
+     * @param recipes The list of current recipes.
+     */
     public static void execute(String keyword, ArrayList<Recipe> recipes) {
         ArrayList<Recipe> matches = new ArrayList<>();
         ArrayList<Integer> listNumbers = new ArrayList<>();

@@ -11,11 +11,15 @@ import java.util.ArrayList;
 import static recipeio.constants.CommandConstants.NO_CATEGORY_MATCHES;
 import static recipeio.constants.CommandConstants.VALID_CATEGORY_MATCHES;
 
+/**
+ * Command for finding recipes based on a meal category.
+ */
 public class FindMeal {
     /**
-     * Show a list of recipes with a given meal category
-     * @param meal the user's meal search from the terminal
-     * @param recipes the current recipe list
+     * Show a list of recipes with a given meal category.
+     *
+     * @param meal the user's meal search from the terminal.
+     * @param recipes the current recipe list.
      */
     public static void execute(String meal, ArrayList<Recipe> recipes) {
         MealCategory mealCategory = InputParser.parseMealCriteria(meal);

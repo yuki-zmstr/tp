@@ -1,5 +1,8 @@
 package recipeio.constants;
 
+/**
+ * Constants for CommandValidator.
+ */
 public class CommandValidatorConstants {
     public static final int INPUT_DETAILS_INDEX = 0;
     public static final int VALID_DETAILS_LENGTH = 1;

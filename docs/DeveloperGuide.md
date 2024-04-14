@@ -323,39 +323,31 @@ testers are expected to do more *exploratory* testing.</div>
 ### Show the recipe list
 **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
-<<<<<<< HEAD
-2. **Test case**: `list sortname`
-=======
-2. **Test case**: `list sortname sortdate`
+1. **Test case**: `list sortname sortdate`
    * **Expected**: The recipe list is not shown due to having extra details aside from `SORT_TYPE`
    * *Console output*: Reports that there are redundant details for the command
 
-3. **Test case**: `list srt`
+2. **Test case**: `list srt`
    * **Expected**: The recipe list is not shown due to the incorrect `SORT_TYPE`.
    * *Console output*: Reports that `SORT_TYPE` is incorrect.
    * *Console output*: Also display available options for `SORT_TYPE` to the user.
 
-4. **Test case**: `list sortname`
->>>>>>> 1d17de443d021f1b3f2f1654cb07f4f786f967d4
+3. **Test case**: `list sortname`
    * **Expected**: The recipes in recipe list are sorted according to their name.
    * *Console output*: Display list of recipes organised according to their recipe name in alphabetical order.
 
-3. **Test case**: `list sortdate`
+4. **Test case**: `list sortdate`
    * **Expected**: The recipes in recipe list are sorted according to the date they were added.
    * *Console output*: Display list of recipes organised according to the date they were added from earliest to latest.
 
-4. **Test case**: `list sortcooktime`
+5. **Test case**: `list sortcooktime`
    * **Expected**: The recipe list is sorted according to their cook time.
    * *Console output*: Display list of recipes organised according to their cooking time from the shortest.
 
-5. **Test case**: `list sortcalories`
+6. **Test case**: `list sortcalories`
    * **Expected**: The recipe list is sorted according to their calories.
    * *Console output*: Display list of recipes organised according to their calories from the lowest.
-<<<<<<< HEAD
 
-=======
-   
->>>>>>> 1d17de443d021f1b3f2f1654cb07f4f786f967d4
 
 ### Finding a Recipe by Keyword
 

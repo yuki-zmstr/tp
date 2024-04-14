@@ -8,8 +8,17 @@ import java.util.ArrayList;
 
 import static recipeio.constants.CommandConstants.EMPTY_RECIPE_ERROR;
 
+/**
+ * Command for listing all recipes in the list with a specified sort type.
+ */
 public class ListRecipeWithSortCommand {
     private static final String RECIPE_SUMMARY = "Here's your sorted list: ";
+
+    /**
+     * Prints the sorted list of recipes.
+     *
+     * @param recipes The list of current recipes.
+     */
     private static void printSortedList(ArrayList<Recipe> recipes) {
         if (recipes.isEmpty()) {
             System.out.println(EMPTY_RECIPE_ERROR);
@@ -22,6 +31,12 @@ public class ListRecipeWithSortCommand {
         }
     }
 
+    /**
+     * Executes the list command with a specified sort type.
+     *
+     * @param recipes The list of current recipes.
+     * @param sortType The type of sort to be executed.
+     */
     public static void execute(ArrayList<Recipe> recipes, SortType sortType) {
         switch (sortType) {
         case NAME:

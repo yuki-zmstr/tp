@@ -28,7 +28,9 @@ import static recipeio.constants.RecipeListConstants.FILTER_COMMAND;
 import static recipeio.constants.RecipeListConstants.HELP_COMMAND;
 import static recipeio.constants.RecipeListConstants.NO_RECIPES_ERROR_MESSAGE;
 
-
+/**
+ * Represents the user's list of recipes (ie their recipe book).
+ */
 public class RecipeList {
     /**
      * Represents the user's list of recipes (ie their recipe book).
@@ -90,6 +92,8 @@ public class RecipeList {
     /**
      * Lists the recipes in the recipe book.
      * Calls the execute method in ListRecipeCommand.
+     *
+     * @param userInput input from the user in the command line.
      */
     public void listRecipes(String userInput) {
         if (!CommandValidator.isValidListCommand(userInput)) {
