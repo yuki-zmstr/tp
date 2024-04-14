@@ -20,7 +20,7 @@ or even students, to manage their recipes.
       * Initial version that loads and saves changes made to recipeList
       * **Justification**: Essential component to allow users to save and load recipes instead of starting anew
       * **Credits**: @yuki-zmstr for enhancing and extracting the function to be more object orientated
-      * [Initial PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/22/files), [Updated PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/22/files)
+      * [PR-1](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/22/files), [PR-2](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/22/files)
       
     * **Code Structure**: Find by url function
       * Allows users to find recipes via their url
@@ -44,7 +44,7 @@ or even students, to manage their recipes.
 3. **Documentation - DG**: 
    * Add test cases for adding a recipe, sorting by list, and also added console output examples for deleting a recipe, finding recipes
    by date and keyword
-   * [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/89/files)
+   * [PR-1](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/89/files), [PR-2](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/176/files)
 
 4. **Documentation - UG**:
    * Update user guide on inputting the url correctly with example usage, and some other description changes
