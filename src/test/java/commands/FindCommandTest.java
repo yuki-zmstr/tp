@@ -67,7 +67,7 @@ public class FindCommandTest {
     public void testFindByMealExistItem() {
         String expected = "These recipes have the category: breakfast\n"
                 + System.lineSeparator()
-                + "Recipe 2. Pho / added on 2024-04-01 / url: www.food.com/pho"
+                + "Recipe 2. Pho / 600 kcals / 480 mins / added on 2024-04-01 / url: www.food.com/pho"
                 + System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
@@ -120,11 +120,11 @@ public class FindCommandTest {
     public void testValidURL() {
         String expected = "Here are your matches with url:  www.food.com\n" +
                 System.lineSeparator() +
-                "Recipe 1. Cream Spaghetti / added on 2024-03-20 / url: www.food.com/spaghetti" +
+                "Recipe 1. Cream Spaghetti / 500 kcals / 60 mins / added on 2024-03-20 / url: www.food.com/spaghetti" +
                 System.lineSeparator() +
-                "Recipe 2. Pho / added on 2024-04-01 / url: www.food.com/pho" +
+                "Recipe 2. Pho / 600 kcals / 480 mins / added on 2024-04-01 / url: www.food.com/pho" +
                 System.lineSeparator() +
-                "Recipe 3. Laksa / added on 2024-04-01 / url: www.food.com" +
+                "Recipe 3. Laksa / 620 kcals / 100 mins / added on 2024-04-01 / url: www.food.com" +
                 System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
@@ -156,7 +156,7 @@ public class FindCommandTest {
     public void testValidURLPath() {
         String expected = "Here are your matches with url:  www.food.com/spaghetti\n" +
                 System.lineSeparator() +
-                "Recipe 1. Cream Spaghetti / added on 2024-03-20 / url: www.food.com/spaghetti" +
+                "Recipe 1. Cream Spaghetti / 500 kcals / 60 mins / added on 2024-03-20 / url: www.food.com/spaghetti" +
                 System.lineSeparator();
         ByteArrayOutputStream testOut = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(testOut);
