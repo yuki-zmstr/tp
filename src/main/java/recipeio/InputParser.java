@@ -15,7 +15,6 @@ import static recipeio.constants.InputParserConstants.INDEX_COMMAND;
 import static recipeio.constants.InputParserConstants.ARRAY_START_INDEX;
 import static recipeio.constants.InputParserConstants.FIND_TYPE_INDEX;
 import static recipeio.constants.InputParserConstants.FIND_CRITERIA_INDEX;
-import static recipeio.constants.InputParserConstants.INTEGER_NEEDED_INDEX_ERROR_MESSAGE;
 import static recipeio.constants.InputParserConstants.MEAL_CATEGORY_INDEX;
 import static recipeio.constants.InputParserConstants.RECIPE_DELIMETER;
 import static recipeio.constants.InputParserConstants.USER_INPUT_INDEX;
@@ -52,7 +51,7 @@ public class InputParser {
             System.out.println(InputParserConstants.PARSE_ID_ERROR);
             return null;
         }
-        if (!CommandValidator.isParsableAsInteger(id, INTEGER_NEEDED_INDEX_ERROR_MESSAGE)) {
+        if (!CommandValidator.isParsableAsInteger(id)) {
             return null;
         }
         return Integer.parseInt(id);
