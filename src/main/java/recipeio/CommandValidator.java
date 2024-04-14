@@ -91,6 +91,12 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if an input can be parsed as a name.
+     *
+     * @param input the String to check.
+     * @return status of check.
+     */
     public static boolean isName(String input) {
         if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
             System.out.println("Sorry, I was unable to detect a name for your recipe.");
@@ -100,6 +106,12 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if an input can be parsed as allergies.
+     *
+     * @param input the String to check.
+     * @return status of check.
+     */
     public static boolean isAllergies(String input) {
         if (!input.matches(CommandValidatorConstants.ALLOW_SPACES_AND_NUMS_REGEX)){
             System.out.println("Sorry, I was unable to detect any allergies for your recipe.");
@@ -113,6 +125,12 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if an input can be parsed as a meal category.
+     *
+     * @param input the String to check.
+     * @return status of check.
+     */
     public static boolean isMealCat(String input) {
         String coreInput = input.trim().toLowerCase();
         boolean isCategory;
@@ -303,14 +321,21 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Checks if a recipe is not a repeat of an existing recipe.
+     *
+     * @param newRecipe the recipe to be checked.
+     * @param recipes the list of current recipes.
+     * @return status of check.
+     */
     public static boolean isNotRepeatRecipe(Recipe newRecipe, ArrayList<Recipe> recipes) {
-        for (int i = 0; i < recipes.size(); i++) {
-            if (recipes.get(i).getName().equals(newRecipe.getName()) &&
-                    recipes.get(i).getCookTime() == newRecipe.getCookTime() &&
-                    recipes.get(i).getCalories() == newRecipe.getCalories() &&
-                    compareAllergies(recipes.get(i).getAllergies(), newRecipe.getAllergies()) &&
-                    recipes.get(i).getCategory().equals(newRecipe.getCategory()) &&
-                    recipes.get(i).getURL().equals(newRecipe.getURL())) {
+        for (Recipe recipe : recipes) {
+            if (recipe.getName().equals(newRecipe.getName()) &&
+                    recipe.getCookTime() == newRecipe.getCookTime() &&
+                    recipe.getCalories() == newRecipe.getCalories() &&
+                    compareAllergies(recipe.getAllergies(), newRecipe.getAllergies()) &&
+                    recipe.getCategory().equals(newRecipe.getCategory()) &&
+                    recipe.getURL().equals(newRecipe.getURL())) {
                 System.out.println(CommandValidatorConstants.SAME_RECIPE_MESSAGE);
                 return false;
             }
@@ -318,6 +343,13 @@ public class CommandValidator {
         return true;
     }
 
+    /**
+     * Compares two lists of allergies.
+     *
+     * @param allergies1 the first list of allergies.
+     * @param allergies2 the second list of allergies.
+     * @return status of check.
+     */
     public static boolean compareAllergies(ArrayList<String> allergies1, ArrayList<String> allergies2) {
         if (allergies1.size() != allergies2.size()) {
             return false;
@@ -329,7 +361,7 @@ public class CommandValidator {
 
 
     /**
-     * Checks whether the url entered is valid by checking with URLValidator
+     * Checks whether the url entered is valid by checking with URLValidator.
      * Valid urls starts with 'http://', 'https://', or 'www.'
      * Valid urls must also follow domain naming conventions
      *
@@ -353,6 +385,14 @@ public class CommandValidator {
         }
         return isValid;
     }
+
+    /**
+     * Checks if a list command is valid.
+     * Check fails if number of parameters is not 1, or the parameter is not a valid sort type.
+     *
+     * @param userInput User's input in the command line.
+     * @return status of check.
+     */
     public static boolean isValidListCommand(String userInput) {
         String[] words = userInput.trim().split(" ");
         //if there are more than 2 words in the command, return false

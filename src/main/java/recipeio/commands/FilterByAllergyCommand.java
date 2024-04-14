@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import static recipeio.constants.CommandConstants.RECIPES_INCLUDED;
 import static recipeio.constants.CommandConstants.RECIPES_EXCLUDED;
 
+/**
+ * Command for filtering recipes by allergy.
+ */
 public class FilterByAllergyCommand {
 
     /**

@@ -76,6 +76,9 @@ public class RecipeIO {
         }
     }
 
+    /**
+     * Main entry-point for the application.
+     */
     public static void main(String[] args) {
         setUpLogger();
         new RecipeIO(PATH_TO_FILE).run();

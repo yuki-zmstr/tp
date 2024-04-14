@@ -16,7 +16,16 @@ import static recipeio.constants.CommandConstants.FIND_BY_URL;
 import static recipeio.constants.CommandConstants.INVALID_MEAL_ERROR;
 import static recipeio.constants.CommandConstants.INVALID_FIND_ERROR;
 
+/**
+ * Command for finding recipes based on different criteria.
+ */
 public class FindCommand {
+    /**
+     * Executes the find command based on the user's input.
+     *
+     * @param userInput The user's input in the command line.
+     * @param recipes The list of current recipes.
+     */
     public static void execute(String userInput, ArrayList<Recipe> recipes) {
         if (!CommandValidator.isValidFindCommand(userInput)) {
             return;

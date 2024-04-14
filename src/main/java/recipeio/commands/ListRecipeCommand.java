@@ -7,6 +7,9 @@ import static recipeio.constants.CommandConstants.EMPTY_RECIPE_ERROR;
 import static recipeio.constants.CommandConstants.RECIPE_SUMMARY;
 import static recipeio.constants.CommandConstants.RECIPE_DETAILS_PROMPT;
 
+/**
+ * Command for listing all recipes in the list.
+ */
 public class ListRecipeCommand {
 
     /**

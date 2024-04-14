@@ -1,5 +1,8 @@
 package recipeio.constants;
 
+/**
+ * Constants for RecipeList.
+ */
 public class RecipeListConstants {
     public static final String ADD_COMMAND = "add";
     public static final String DELETE_COMMAND = "delete";

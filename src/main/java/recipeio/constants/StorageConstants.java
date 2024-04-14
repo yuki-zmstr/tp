@@ -1,7 +1,9 @@
 package recipeio.constants;
 
+/**
+ * Constants for Storage.
+ */
 public class StorageConstants {
-
     public static final String WRITE_DELIMITER = " | ";
     public static final String READ_DELIMITER = " \\| ";
     public static final String ALLERGY_DELIMITER = ",";
