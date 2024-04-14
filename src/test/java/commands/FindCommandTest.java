@@ -19,7 +19,14 @@ public class FindCommandTest {
     public static final String COMMAND_NOT_EXIST_MEAL = "find meal Appetizer";
     public static final String COMMAND_VALID_URL = "find url www.food.com";
     public static final String COMMAND_INVALID_URL = "find url food.com";
+    public static final String COMMAND_INVALID_DOMAIN = "find url www.food";
     public static final String COMMAND_VALID_URL_WITH_PATH = "find url www.food.com/spaghetti";
+    public static final String COMMAND_VALID_URL_WITH_INCOMPLETE_PATH = "find url www.food.com/spaghe";
+    public static final String COMMAND_VALID_URL_WITHOUT_MATCH = "find url www.food.com/meatballs";
+    public static final String COMMAND_VALID_URL_WITHOUT_PATH = "find url www.food.com/";
+    public static final String COMMAND_DIFFERENT_PROTOCOL = "find url https://food.net";
+    public static final String COMMAND_VALID_URL_NUMERIC_PATH = "find url www.food.com/123/com";
+    public static final String COMMAND_INVALID_TOP_LEVEL_DOMAIN = "find url www.food.c";
     private ArrayList<Recipe> recipes;
     private ArrayList<String> allergies;
 
@@ -163,6 +170,114 @@ public class FindCommandTest {
         System.setOut(printStream);
 
         FindCommand.execute(COMMAND_VALID_URL_WITH_PATH, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testInvalidDomain() {
+        String expected = "URL domain name or TLD is invalid." +
+                System.lineSeparator() +
+                "Example: \"www.food.com\" or \" https://www.example.com\" " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_INVALID_DOMAIN, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testValidURLIncompletePath() {
+        String expected = "There were no matches. Try searching for something else. " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_VALID_URL_WITH_INCOMPLETE_PATH, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testValidURLWithoutMatch() {
+        String expected = "There were no matches. Try searching for something else. " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_VALID_URL_WITHOUT_MATCH, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testValidURLWithoutPath() {
+        String expected = "There were no matches. Try searching for something else. " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_VALID_URL_WITHOUT_PATH, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDifferentProtocol() {
+        String expected = "There were no matches. Try searching for something else. " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_DIFFERENT_PROTOCOL, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testNumericPath() {
+        String expected = "There were no matches. Try searching for something else. " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_VALID_URL_NUMERIC_PATH, recipes);
+
+        String actual = testOut.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testTLD() {
+        String expected = "URL domain name or TLD is invalid." +
+                System.lineSeparator() +
+                "Example: \"www.food.com\" or \" https://www.example.com\" " +
+                System.lineSeparator();
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(testOut);
+        System.setOut(printStream);
+
+        FindCommand.execute(COMMAND_INVALID_TOP_LEVEL_DOMAIN, recipes);
 
         String actual = testOut.toString();
 
