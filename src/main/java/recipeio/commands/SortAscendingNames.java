@@ -1,3 +1,4 @@
+//@@ author PDHung1104
 package recipeio.commands;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ public class SortAscendingNames {
      * @return a list of recipes sorted by name
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        copy.sort(Comparator.comparing(Recipe::getName));
-        return copy;
+        ArrayList<Recipe> sortedRecipes = new ArrayList<>(recipes);
+        sortedRecipes.sort(Comparator.comparing(Recipe::getName));
+        return sortedRecipes;
     }
 }

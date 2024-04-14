@@ -1,3 +1,4 @@
+//@@ author PDHung1104
 package recipeio.commands;
 
 import recipeio.recipe.Recipe;
@@ -12,8 +13,8 @@ public class SortAscendingDateAdded {
      * @return a list of recipes sorted by date added
      */
     public static ArrayList<Recipe> execute (ArrayList<Recipe> recipes) {
-        ArrayList<Recipe> copy = new ArrayList<>(recipes);
-        copy.sort(Comparator.comparing(Recipe::getDateAdded));
-        return copy;
+        ArrayList<Recipe> sortedRecipes = new ArrayList<>(recipes);
+        sortedRecipes.sort(Comparator.comparing(Recipe::getDateAdded));
+        return sortedRecipes;
     }
 }
