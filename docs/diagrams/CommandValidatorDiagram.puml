@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+
+skinparam classAttributeIconSize 0
+class CommandValidator {
+
+    +{static}isValidAddCommand(String userInput) : boolean
+    +{static}isValidDetailCommand(String userInput) : boolean
+    +{static}isValidDeleteCommand(String userInput) : boolean
+    +{static}isValidFindCommand(String userInput) : boolean
+}
+
+class InputParser {
+}
+
+class RecipeList {
+}
+
+RecipeList ..> CommandValidator
+
+CommandValidator .up.> InputParser
+
+@enduml
