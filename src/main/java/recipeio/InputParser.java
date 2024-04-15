@@ -168,7 +168,7 @@ public class InputParser {
      * @return an array of the recipe details extracted from the user input.
      */
     public static String[] splitUpAddInput(String userInput) {
-        String[] words = userInput.trim().split("\\s+", 2);
+        String[] words = userInput.trim().toLowerCase().split("\\s+", 2);
         try {
             String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -200,10 +200,10 @@ public class InputParser {
      * @return an array of the recipe details extracted from the user input.
      */
     public static Recipe breakUpRemainingInput(String[] remainingInput) {
-        String recipeName = remainingInput[InputParserConstants.RECIPE_NAME_INDEX].toLowerCase().trim();
+        String recipeName = remainingInput[InputParserConstants.RECIPE_NAME_INDEX].trim();
         int cookTime = Integer.parseInt(remainingInput[InputParserConstants.COOK_TIME_INDEX].trim());
         int calories = Integer.parseInt(remainingInput[InputParserConstants.CALORIES_INDEX].trim());
-        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().toLowerCase().split("/");
+        String[] allergies = remainingInput[InputParserConstants.ALLERGIES_INDEX].trim().split("/");
         ArrayList<String> allergiesList = new ArrayList<>(List.of(allergies));
         allergiesList.replaceAll(String::trim);
         MealCategory category = MealCategory.valueOf(remainingInput[MEAL_CATEGORY_INDEX].trim().toUpperCase());
