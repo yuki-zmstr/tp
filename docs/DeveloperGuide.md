@@ -45,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the app's work is done by the following five components:
 
-* `UI` The UI of the App.
+* `UI`: The UI of the App.
 * `RecipeList`: The command executor and holder of data of the app.
 * `InputParser`: Extracts information from the user input into the command line.
 * `CommandValidator`: The command validator.
@@ -65,9 +65,9 @@ The **API** of this component is specified in [UI.java](https://github.com/AY232
 
 ![Structure of the UI Component](images/UIDiagram.png)
 
-The `UI` has an class-level attribute `SEPARATOR`, which is a line of dashes that can be used in console output.
+The `UI` has a class-level attribute `SEPARATOR`, which is a line of dashes that can be used in console output.
 
-The `UI` the following methods
+The `UI` has the following methods
 * `getUserInput` : asks the user for an input through the command line.
 * `sayHi` (class-level): greets the user.
 * `printInstructions` (class-level) : prints a list of accepted commands.
@@ -315,10 +315,11 @@ Note: `[]` denote mandatory parameters, while `{}` denote optional paramters.
 * *add [NAME, MINUTES, KCALS, ALLERGIES, CATEGORY, URL]* - This is the command a user can call to add a recipe. 
 * *help* - This shows the user all the available commands. 
 * *list {SORT_TYPE}* - This lists out a users recipebook for them. 
-* *delete* - This deletes a recipe at a given valid index. If not valid, it will return an error message.
+* *detail [RECIPE NUMBER]* - This allows you to view creation details of a certain recipe.
+* *delete [RECIPE NUMBER]* - This deletes a recipe at a given valid index. If not valid, it will return an error message.
 * *find kw [KEYWORD]* - This finds recipes with a user-given keyword.
 * *find date [YYYY-MM-DD]* - This finds recipes added on a user-given date. The date is auto-added when adding. 
-* *find allergy [KEYWORD]* - This finds recipes without a certain ingredient.
+* *filter allergy [KEYWORD]* - This filters out recipes with a certain ingredient/allergy.
 * *exit* - This is the command to leave the program.
 ---
 
@@ -409,6 +410,21 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: The recipe list is sorted according to their calories.
    * *Console output*: Display list of recipes organised according to their calories from the lowest.
 
+### Showing Details of a Recipe
+**Prerequisites**: Ensure that multiple recipes are listed using the list command, and that each recipe has a unique index/recipe number associated with it.
+
+1. **Test Case**: `detail 1`
+   * **Expected**: The full details of the first recipe in the list are displayed.
+   * **Console Output**: Outputs all details of the first recipe (name, cook time, calories, allergies, category, URL, date added).
+2. Test Case: `detail 0`
+   * **Expected**: No details are shown because the index/recipe number provided is out of bounds (since the program is 1-based indexing).
+   * **Console Output**: Outputs a message reminding the user to enter a number within the range of existing recipe numbers.
+3. Test Case: `detail xyz`
+   * **Expected**: No details are shown as the input is not an integer.
+   * **Console Output**: Outputs a message instructing the user to input an integer value.
+4. Test Case: `detail`
+   * **Expected**: No details are shown as no index/recipe number is provided.
+   * **Console Output**: Outputs a message directing the user to provide an index/recipe number for the detail command.
 
 ### Finding a Recipe by Keyword
 

@@ -1,64 +1,70 @@
-# Duke project template
+# Recipe.io
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Welcome to Recipe.io, a command-line application designed for cooking enthusiasts ranging from professional culinary practitioners to students. This application allows users to manage their recipes efficiently, track where they found or noted them, and much more.
 
-## Setting up in Intellij
+## Useful Links
 
-Prerequisites: JDK 11 (use the exact version), update Intellij to the most recent version.
+- [User Guide](UserGuide.md)
+- [Developer Guide](DeveloperGuide.md)
+- [About Us](AboutUs.md)
 
-1. **Ensure Intellij JDK 11 is defined as an SDK**, as described [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) -- this step is not needed if you have used JDK 11 in a previous Intellij project.
-1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
-   ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+## Introduction
 
-## Build automation using Gradle
+Recipe.io helps users manage their recipes through a command-line interface, making it easy to add, delete, and search recipes. Particularly useful is the ability to keep track of the URL where the recipe was found or noted, aiding in organization and access.
 
-* This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
-* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
+## Features
 
-## Testing
+### Recipe Book Management
+- **Add Recipe:** Add a new recipe via the command line with a detailed description.
+- **Delete Recipe:** Remove a recipe from your recipe book.
+- **View Recipe Book:** List all your recipes in a specified order.
+- **Find Recipe:** Locate a recipe using a keyword, date, meal category, or URL.
+- **Filter Recipe:** Display recipes that exclude certain allergies.
 
-### I/O redirection tests
+### Command-Line Interface
+- **User-Friendly Commands:** Intuitive and straightforward commands facilitate seamless interaction.
+- **Efficient and Concise Commands:** Allows users who can type quickly to manage recipes efficiently with minimal practice.
 
-* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
+## Getting Started
 
-### JUnit tests
+Here are the steps to get started with Recipe.io:
 
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
-* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
+1. **Ensure Java 11 is installed.** Check by running `java -version` in your command prompt or terminal.
+2. **Download the latest JAR file** from our [team repository](https://github.com/AY2324S2-CS2113-W14-2/tp).
+3. **Run the JAR file:** Execute the command `java -jar tp.jar` in your command line to start the application.
+4. **Interact with the Chatbot:** Follow the on-screen instructions to add and manage your recipes.
 
-## Checkstyle
+## Commands
 
-* A sample CheckStyle rule configuration is provided in this project.
-* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+### General Commands
 
-## CI using GitHub Actions
+- `help`: Display help instructions.
+- `exit`: Exit the program. This command saves your current recipes to `recipe.txt`.
 
-The project uses [GitHub actions](https://github.com/features/actions) for CI. When you push a commit to this repo or PR against it, GitHub actions will run automatically to build and verify the code as updated by the commit/PR.
+### Recipe Management
 
-## Documentation
+- `add NAME,MINUTES,KCALS,ALLERGIES,CATEGORY,URL`: Add a new recipe.
+   - Example: `add pizza, 30, 270, nuts/seafood, dinner, www.examplefood.com`
+- `delete RECIPE_NUMBER`: Remove a recipe by its number in the list.
+- `list {SORT_TYPE}`: List recipes, optionally sorting them.
+- `detail RECIPE_NUMBER`: Show detailed information about a recipe.
 
-`/docs` folder contains a skeleton version of the project documentation.
+### Searching and Filtering
 
-Steps for publishing documentation to the public: 
-1. If you are using this project template for an individual project, go your fork on GitHub.<br>
-   If you are using this project template for a team project, go to the team fork on GitHub.
-1. Click on the `settings` tab.
-1. Scroll down to the `GitHub Pages` section.
-1. Set the `source` as `master branch /docs folder`.
-1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+- `find kw KEYWORD`: Find recipes by keywords.
+   - Example: `find kw pizza`
+- `find date YYYY-MM-DD`: Find recipes by the date added.
+- `find meal MEAL_CATEGORY`: Find recipes by meal category (breakfast, lunch, etc.).
+- `find url URL`: Find recipes by their noted URL.
+- `filter ALLERGY`: Filter recipes by allergies.
+   - Example: `filter nuts`
+
+## Troubleshooting and FAQs
+
+If you encounter issues, ensure you have the correct Java version and the syntax of your commands is correct. For more complex issues, refer to our detailed [FAQ section](AboutUs.md#faqs).
+
+## About Us
+
+Learn more about the team behind Recipe.io in our [About Us](AboutUs.md) section.
+
+Thank you for using Recipe.io, and happy cooking!
