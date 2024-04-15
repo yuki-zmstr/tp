@@ -291,7 +291,7 @@ public class CommandValidator {
         }
         int cookTime = Integer.parseInt(input.trim());
         if (cookTime > MAX_COOKTIME) {
-            System.out.println("Your recipe takes more than three days to cook...Please double check your cookTime.");
+            System.out.println("Your recipe takes more than three days to cook...Please double check your cook time.");
             return false;
         }
         return true;
