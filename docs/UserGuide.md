@@ -122,6 +122,7 @@ Format: `filter CRITERIA`
 * The `CRITERIA` must be a word. Ensure that the criteria is singular tense (eg. `egg` NOT `eggs`)
 * While inputting plural allergies will still work, it is for your own benefit to input singular allergies
 as the filter command will work as expected this way. Thus, for the usability of our app, we *strongly recommend* using singular tense allergies. 
+* Some allergens contain numbers, e.g. E220. The app accepts adding and filtering by such allergens as well.
 
 Example of usage:
 `filter egg`
