@@ -7,7 +7,6 @@ import recipeio.ui.UI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.time.format.DateTimeParseException;
 import java.util.Collections;
@@ -49,13 +48,17 @@ import static recipeio.constants.InputParserConstants.RECIPE_NAME_INDEX;
  */
 public class CommandValidator {
     /**
-     * Splits a recipe name into individual words.
+     * Checks if an input in alphanumeric
      *
      * @return ArrayList of words in recipe name.
      */
-    public static ArrayList<String> splitName(String recipeName) {
-        String[] nameWords = recipeName.split(" ");
-        return new ArrayList<>(Arrays.asList(nameWords));
+    public static boolean isAlphaNumeric(String input) {
+        if (!input.matches(CommandValidatorConstants.ALPHANUMERIC_REGEX)){
+            System.out.println("You seem to be using special characters, or only numbers.");
+            System.out.println("Please make sure to enter using alphanumericals, with at least one alphabet.");
+            return false;
+        }
+        return true;
     }
 
 
@@ -372,7 +375,7 @@ public class CommandValidator {
             System.out.println(VALID_FILTER_EXAMPLE);
             return false;
         }
-        if (!isWord(details[INPUT_DETAILS_INDEX])) {
+        if (!isAlphaNumeric(details[INPUT_DETAILS_INDEX])) {
             System.out.println(VALID_FILTER_EXAMPLE);
             return false;
         }

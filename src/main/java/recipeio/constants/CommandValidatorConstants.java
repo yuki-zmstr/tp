@@ -19,6 +19,7 @@ public class CommandValidatorConstants {
     public static final String MEAL_CAT_APPETIZER = "appetizer";
     public static final String MEAL_CAT_DESSERT = "dessert";
     public static final String MATCH_WORD_REGEX = "^[a-zA-Z]+$";
+    public static final String ALPHANUMERIC_REGEX = "^(?=.*[a-zA-Z])[a-zA-Z0-9]+$";
     public static final String ALLOW_SPACES_AND_NUMS_REGEX = "^(?=.*[a-zA-Z])[a-zA-Z0-9 /]+$";
     public static final String NUMS_ONLY_REGEX = "\\d+";
     public static final String URL_SUBDOMAIN_ERROR = "Make sure your URL starts with 'http://', 'https://', or 'www.'";
