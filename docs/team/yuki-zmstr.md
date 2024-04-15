@@ -44,12 +44,12 @@ or even students, to manage their recipes.
 4. **Documentation - DG**:
    * Created layout of DG with general sections: [PR](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/84)
    * Created Sequence diagram for `delete` command: [UML](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/docs/diagrams/DeleteRecipe.puml)
-   * Created Class diagram for `RecipeList` class: [UML](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/docs/diagrams/RecipeListDiagram.puml)
+   * Created Class diagrams. e.g. `RecipeList` class: [UML](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/docs/diagrams/RecipeListDiagram.puml)
    * Created Architecture diagram for app: [UML](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/docs/diagrams/ArchitectureDiagram.puml)
 
 5. **Project management**:
    * Managed release `v2.0.1` on GitHub.
-   * Created and managed milestones `v1.0`, `v2.0`, and `v.2.1`.
+   * Created and managed milestones `v1.0`, `v2.0`, and `v2.1`.
 
 6. **Contributions to team-based tasks**:
    * Setting up the GitHub team org/repo.
@@ -64,12 +64,12 @@ or even students, to manage their recipes.
 
 7. **Mentoring contributions**:
    * Made myself a required approver of PRs in `v2.0` phase: [CODEOWNERS file](https://github.com/AY2324S2-CS2113-W14-2/tp/blob/master/.github/CODEOWNERS)
-     * This was to ensure code base integrity, and code quality.
+     * This was to ensure code base integrity and code quality.
      * Turned off this rule in `v2.1` phase since teammates should already understand the protocol when merging PRs. For example:
        * ensuring code is bug free
        * complies with coding standard
        * follows coding principles (SLAP, separation of concern, etc)
-   * PRs reviewed: [\#103](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/103), [\#101](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/101), [\#120](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/120)
+   * Some PRs reviewed: [\#103](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/103), [\#101](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/101), [\#120](https://github.com/AY2324S2-CS2113-W14-2/tp/pull/120)
 
 8. **Contributions beyond the project team**:
    * Made 17 bug reports during PE-D.
