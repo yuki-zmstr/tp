@@ -34,7 +34,7 @@ public class InputParser {
      * @return the command keyword. e.g. add, delete.
      */
     public static String parseCommand(String userInput) {
-        return userInput.trim().split(" ")[INDEX_COMMAND].toLowerCase();
+        return userInput.trim().split("\\s+")[INDEX_COMMAND].toLowerCase();
     }
 
     /**
@@ -46,7 +46,7 @@ public class InputParser {
     public static Integer parseID(String userInput) {
         String id = "";
         try {
-            id = userInput.trim().split(" ")[InputParserConstants.INDEX_ID];
+            id = userInput.trim().split("\\s+")[InputParserConstants.INDEX_ID];
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(InputParserConstants.PARSE_ID_ERROR);
             return null;
@@ -64,7 +64,7 @@ public class InputParser {
      * @return an array of description extracted from the user input.
      */
     public static String[] parseDetails(String userInput){
-        String[] words = userInput.trim().split(" ");
+        String[] words = userInput.trim().split("\\s+");
         // Ignore the first word and join the remaining words into a string
         String remainingInput = String.join(" ", Arrays.copyOfRange(words, ARRAY_START_INDEX, words.length));
         return remainingInput.trim().split(" ");
@@ -145,7 +145,7 @@ public class InputParser {
      * @return the sort type of the list command.
      */
     public static SortType parseListCommand(String userInput) {
-        String[] words = userInput.trim().split(" ");
+        String[] words = userInput.trim().split("\\s+");
         if (words.length == 1) {
             return SortType.NONE;
         }
@@ -168,7 +168,7 @@ public class InputParser {
      * @return an array of the recipe details extracted from the user input.
      */
     public static String[] splitUpAddInput(String userInput) {
-        String[] words = userInput.trim().split(" ", 2);
+        String[] words = userInput.trim().split("\\s+", 2);
         try {
             String[] remainingInput = words[USER_INPUT_INDEX].trim().split(RECIPE_DELIMETER);
         } catch (ArrayIndexOutOfBoundsException e) {
