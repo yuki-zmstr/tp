@@ -335,6 +335,7 @@ testers are expected to do more *exploratory* testing.</div>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
+[//]: # (@@author chenxk619)
 ### Adding a Recipe
 
 1. **Test case**: `add pizza, 34, 340, egg/nut/dairy/red meat, dinner, www.food.com`
@@ -365,6 +366,7 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: The recipe is not added because a comma is missing, leading to incorrect parameter parsing.
    * **Console output**: Alerts the user to provide all 6 parameters correctly and suggests checking for missing commas.
 
+[//]: # (@@author)
 ### Deleting a Recipe
 
 **Prerequisites**: Ensure that multiple recipes are listed using the `list` command.
@@ -385,6 +387,7 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: No recipe is deleted as no index is provided.
    * **Console output**: Directs the user to provide an index for the delete command.
 
+[//]: # (@@author chenxk619)
 ### Show the recipe list
 **Prerequisites**: List all recipes using the `list` command. Multiple recipes in the list.
 
@@ -413,6 +416,7 @@ testers are expected to do more *exploratory* testing.</div>
    * **Expected**: The recipe list is sorted according to their calories.
    * *Console output*: Display list of recipes organised according to their calories from the lowest.
 
+[//]: # (@@author)
 ### Showing Details of a Recipe
 **Prerequisites**: Ensure that multiple recipes are listed using the list command, and that each recipe has a unique index/recipe number associated with it.
 
