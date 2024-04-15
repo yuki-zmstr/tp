@@ -1,10 +1,8 @@
-# Nidhi Nayak - Project Portfolio Page
+## Nidhi Nayak - Project Portfolio Page
 ### Overview
 Meet Recipe IO, a friendly command line interface (CLI) to help users manage their recipes. Recipe IO
 allows users to add recipes, delete recipes, find recipes via different criteria, and saves the user's recipe book to
-computer storage. With quick, short commands and a reduction of a complicated GUI, Recipe IO makes sure to save users' 
-time and caters to quick typers.
-
+computer storage. 
 ### Summary of Contribution
 
 1. **Code Contributed**: [RepoSense link](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=nidhi-nayak&breakdown=true)
@@ -50,13 +48,8 @@ time and caters to quick typers.
     * Maintained the collaborative document for my team (took notes at weekly meetings and put todos at the top). [Collaborative Document](https://docs.google.com/document/d/1PwDRHaHKZCxdC0KUim_fY-kILnjcSBEjdbpc3BlHrJU/edit#heading=h.qdajypmbgwqd)
     * Release version 1.0 + closed the v1.0 milestone (shifted all leftover issues to v2.0) [v1.0](https://github.com/AY2324S2-CS2113-W14-2/tp/releases/tag/v1.0)
 6. **Contributions to team-based tasks**:
-   * Code enhancements
-       * Functional code.
-       * Test code.
-       * Documentation.
    * Maintaining the issue tracker
        * Creating issues, assigning issues, clearing issues from issue tracker once completed.
-   * Reviewing PRs.
    * Note-taking during every team meeting and adding it to the collaborative document.
 7. **Mentoring Contributions**:
    * Assisted @chenxk619 in a step-by-step process for how to release version 2.0. (Refer to his PPP for credit)
